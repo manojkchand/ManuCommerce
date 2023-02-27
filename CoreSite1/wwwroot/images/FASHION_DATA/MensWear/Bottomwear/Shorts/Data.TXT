@@ -1,0 +1,58 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Slim Fit Chino Shorts
+1999
+United Colors of Benetton
+25%
+
+2
+Men D2M Cool Sports Shorts
+1999
+ADIDAS
+25%
+
+3
+Men Slim Fit Chino Shorts
+1999
+United Colors of Benetton
+25%
+
+4
+Men Elevated ESS Sports Shorts
+1799
+Puma
+25%
+
+5
+Men 4KRFT Tech Woven 3-Stripes solid Training Shorts
+2299
+ADIDAS
+25%
+
+6
+Men Regular Fit Sports Shorts
+1799
+Puma
+0%
+
+7
+Men Winter Emb Training Shorts
+2299
+ADIDAS
+25%
+
+8
+Men Regular Fit Chino Shorts
+2299
+Puma
+25%
+

@@ -1,0 +1,75 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+
+1
+Printed Polo Collar T-Shirt
+637
+FIDO DIDO
+50%
+
+2
+Slim Fit Polo Collar T-Shirt
+637
+FIDO DIDO
+50%
+
+3
+Solid Polo Collar T-Shirt
+999
+HERE&NOW
+0%
+
+4
+Color Block Men Round Neck White, Plue Grey T-Shirt
+999
+AUSK
+60%
+
+5
+Color Block Men Round Neck Dark Blue T-Shirt
+1499
+Wrath
+72%
+
+
+
+6
+Color Block Men Round Neck White, Blue, Yellow T-Shirt
+1499
+Aelomart
+70%
+
+
+7
+STATUS QUO Printed Slim Fit Crew Neck T-Shirt
+699
+Regular
+50%
+
+
+8
+SMILEY Graphic Print Regular Fit T-Shirt
+599
+Regular
+40%
+
+
+9
+FORCE Textured Regular Fit Crew Nect T-Shirt
+599
+Regular
+40%
+
+10
+Striped Polo T-Shirt
+899
+Roadster
+20%

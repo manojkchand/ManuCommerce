@@ -1,0 +1,51 @@
+﻿@page
+@model CoreSite1.Pages.Home.IndexModel
+@{
+    //ViewData["Title"] = "Index";
+    Layout = Model.Pages.LayoutPage;//"~/Pages/Shared/_LayoutGlobal.cshtml";
+}
+
+@*<h1>Index</h1>*@
+@*<head>
+        <meta http-Equiv="Cache-Control" Content="no-cache" />
+        <meta http-Equiv="Pragma" Content="no-cache" />
+        <meta http-Equiv="Expires" Content="0" />
+    </head>*@
+
+
+@if (Model.Pages != null)
+{
+    @*@foreach (var row in Model.Pages)
+        {*@
+    <!-- Page Header  -->
+    @*<header class="masthead" style="background-image: url('@Html.Raw(@Model.Pages.HeaderImage)')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="post-heading">
+
+                            <h1>@Html.Raw(@Model.Pages.Heading)</h1>
+                            <h2 class="subheading">@Html.Raw(@Model.Pages.SubHeading)</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>*@
+
+    <!-- Post Content -->
+    @*<article>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        @Html.Raw(Model.Pages.Content)
+
+                    </div>
+                </div>
+            </div>
+        </article>*@
+
+    //}
+    @Html.Raw(Model.Pages.Content)
+}
+@*<hr>*@

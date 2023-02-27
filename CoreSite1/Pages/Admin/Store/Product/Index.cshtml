@@ -1,0 +1,357 @@
+﻿@page
+@model CoreSite1.Pages.Product.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    ////Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style>
+    /* Style the Image Used to Trigger the Modal */
+    #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        #myImg:hover {
+            opacity: 0.7;
+        }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
+
+    /* Modal Content (Image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 35%;
+        max-width: 700px;
+        height: 90%;
+    }
+
+    /* Caption of Modal Image (Image Text) - Same Width as the Image */
+    #caption {
+        margin: auto;
+        display: block;
+        width: 40%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+
+    /* Add Animation - Zoom in the Modal */
+    .modal-content, #caption {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+    @@keyframes zoom {
+        from {
+            transform: scale(0)
+        }
+
+        to {
+            transform: scale(1)
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    /* 100% Image Width on Smaller Screens */
+    @@media only screen and (max-width: 700px) {
+        .modal-content {
+            width: 100%;
+        }
+    }
+</style>
+
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Products</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Product</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+    <partial name="_TotalPartial" />
+        @*<a href="">~/Pages/Admin/Dashboard/TotalPartial.cshtml</a>*@
+        @*<div class="row">
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tshirt"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Products</span>
+                        <span class="info-box-number">
+                            10
+                            <small>%</small>
+                        </span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-list"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Categorys</span>
+                        <span class="info-box-number">41,410</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- fix for small devices only -->
+            <div class="clearfix hidden-md-up"></div>
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-boxes"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Product Variants</span>
+                        <span class="info-box-number">760</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box mb-3">
+                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-compass"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Total Brands</span>
+                        <span class="info-box-number">2,000</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+        </div>*@
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <div class="card">
+                <div class="card-header border-transparent">
+                    <h3 class="card-title">Products</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-header border-0">
+                    <p>
+                        <a asp-page="Create">Create New</a>
+                    </p>
+                    <form asp-page="./Index" method="get">
+                        <div class="form-inline">
+                            <div class="input-group" data-widget="sidebar-search">
+                                <div class="form-actions no-color">
+                                    <p>
+                                        Find by name, Brand:
+                                        <input type="search" class="form-control form-control-sidebar" name="SearchString" value="@Model.CurrentFilter" placeholder="Search" aria-label="Search" />
+                                        <button class="btn btn-sidebar">
+                                            <i class="fas fa-search fa-fw"></i>
+                                        </button>
+                                        |<a asp-page="./Index">Back to full List</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Create New Variant
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product[0].Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product[0].Price)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product[0].Brand)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product[0].Discount)
+                                </th>
+                                <th>
+                                    @*@Html.DisplayNameFor(model => model.Product[0].ProductArtUrl)*@ Product Image
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product[0].Description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product[0].Category)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Product[0].UPC)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Product)
+                            {
+                            <tr>
+                                <td>
+                                    <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                                    <a asp-page="/Variant/Create" asp-route-id="@item.ProductId">CreateVariant</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Brand)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Discount)
+                                </td>
+                                <td>
+                                    @*<a class="thumbnail pull-left" href="#">*@
+                                    <img id="myImg" calss="tt" src="@Html.DisplayFor(modelItem => item.ProductArtUrl)" alt="@Html.DisplayFor(modelItem => item.Title)" style="width: 72px; height: 72px;">
+                                    @*<img id="myImg" class="media-object" src="@Html.DisplayFor(modelItem => item.ProductArtUrl)" style="width: 72px; height: 72px;">*@
+                                    @*</a>*@
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Category.Name) | ID:@Html.DisplayFor(modelItem => item.Category.CategoryId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UPC)
+                                </td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+
+                                    <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @{
+                        var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+                    }
+                    <a asp-page="./Index"
+                      
+                       asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                       asp-route-currentFilter="@Model.CurrentFilter"
+                       class="btn btn-default @prevDisabled">
+                        Previous
+                    </a>
+                    <a asp-page="./Index"
+                       
+                       asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                       asp-route-currentFilter="@Model.CurrentFilter"
+                       class="btn btn-default @nextDisabled">
+                        Next
+                    </a>
+                </div>
+            </div>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- The Close Button -->
+                <span class="close">&times;</span>
+
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" id="img01">
+
+                <!-- Modal Caption (Image Text) -->
+                <div id="caption"></div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div><!--/. container-fluid -->
+</section>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    $(document).ready(function () {
+        $(".table img").on('click', function () {
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            //img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            //alert('bb');
+        });
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+    });
+</script>

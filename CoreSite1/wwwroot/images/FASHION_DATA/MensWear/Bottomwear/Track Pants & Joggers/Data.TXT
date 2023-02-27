@@ -1,0 +1,48 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Solid Joggers
+3999
+Puma
+15%
+
+2
+Men Solid Straight Fit Joggers
+1499
+Here&Now
+30%
+
+3
+Men Slim Track Pants
+999
+Hubberholme
+50%
+
+4
+Men Slim-Fit Joggers
+1329
+Maniac
+60%
+
+5
+Men Solid Slim Mit Track Pants
+999
+Hubberholme
+50%
+
+6
+Men Slim-Fit Track Pants
+999
+HIGHLANDER
+40%
+
+
+

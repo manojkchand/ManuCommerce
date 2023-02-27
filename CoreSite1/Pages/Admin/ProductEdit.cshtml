@@ -1,0 +1,251 @@
+﻿@page
+@model CoreSite1.Pages.Admin.ProductEditModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProductEdit</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link href="~/css/card.css" rel="stylesheet" />
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+<link href="~/css/themes/default/style.min.css" rel="stylesheet" />
+
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+
+    <link rel="stylesheet" href="~/ckeditor/samples/css/samples.css">
+    <link rel="stylesheet" href="~/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+</head>
+<body>
+
+    @*<h4>Product</h4>
+        <hr />*@
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Product Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="row">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="Product.ProductId" />
+                                    <input type="hidden" asp-for="Product.CategoryId" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Product.Title" class="control-label"></label>
+                                            <input asp-for="Product.Title" class="form-control" />
+                                            <span asp-validation-for="Product.Title" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 pr-1">
+                                        <div class="form-group">
+                                            <label asp-for="Product.Price" class="control-label"></label>
+                                            <input asp-for="Product.Price" class="form-control" />
+                                            <span asp-validation-for="Product.Price" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 px-1">
+                                        <div class="form-group">
+                                            <label asp-for="Product.Discount" class="control-label"></label>
+                                            <input asp-for="Product.Discount" class="form-control" />
+                                            <span asp-validation-for="Product.Discount" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.CostPrice" class="control-label"></label>
+                                            <input asp-for="Product.CostPrice" class="form-control" />
+                                            <span asp-validation-for="Product.CostPrice" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Product.Brand" class="control-label"></label>
+                                            <input asp-for="Product.Brand" class="form-control" />
+                                            <span asp-validation-for="Product.Brand" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Product.ProductArtUrl" class="control-label"></label>
+                                            <input asp-for="Product.ProductArtUrl" id="inp1" class="form-control" /><a href="#" onclick="window.open('/Admin/Store/Product/BufferedSingleFileUploadPhysical','','toolbar=no,status=no,menubar=no,location=center,scrollbars=no,resizable=no,height=500,width=857')">Add New Image</a>
+                                            <br />Select New Image:
+                                            <div id="imgDirTree"></div>
+                                            <span asp-validation-for="Product.ProductArtUrl" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Product.Description" class="control-label"></label>
+                                            @*<input asp-for="Product.Description" class="form-control" />*@
+                                            <textarea asp-for="Product.Description" cols="80" rows="10" class="form-control">
+                                            </textarea>
+                                            <span asp-validation-for="Product.Description" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Save</button>
+                                    <div class="clearfix"></div>
+                                    @*<input type="submit" value="Save" class="btn btn-primary" style=" color: #fff; background-color: #9368E9 !important; border-color: #9368E9;" />*@
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-user">
+                        <div class="card-header">
+                            <h4 class="card-title">Product Image</h4>
+                        </div>
+                        <div class="button-container mr-auto ml-auto">
+                            <img class="img-fluid" id="img1" src="@Model.Product.ProductArtUrl" alt="...">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @*<div class="row">
+            <div class="col-md-8 ">
+
+            </div>
+        </div>*@
+
+    @*<div>
+            <a asp-page="./Index">Back to List</a>
+        </div>*@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/jstree.js"></script>
+    <script>
+        CKEDITOR.replace('Product.Description');
+        //CKEDITOR.replace('Page_Heading');
+        //CKEDITOR.replace('Page_SubHeading');
+        //, {
+        //        extraPlugins: 'autogrow',
+        //        autoGrow_minHeight: 200,
+        //        autoGrow_maxHeight: 600,
+        //        autoGrow_bottomSpace: 50,
+        //        removePlugins: 'resize'
+        //    }
+    </script>
+
+    <script>
+
+        $('#imgDirTree')
+            .on("changed.jstree", function (e, data) {
+                if (data.selected.length) {
+                    //get the id and remove Page from it added while creating unique Json node (Json combine data from 2 tables)
+                    var v = data.instance.get_node(data.selected[0]).id;
+                    //alert(v);
+                    var d = data.instance.get_node(data.selected[0]).text;
+                    if (d.includes(".")) {
+                        //v = v.replace(d, "");
+                        //$("#img1").css("visibility", "visible");
+                        var temp = data.instance.get_node(data.selected[0]).id;
+                        temp = temp.replace("C:\\Users\\L\\source\\repos\\CoreSite1\\CoreSite1\\wwwroot", "");
+                        //alert(temp);
+                        $("#img1").attr("src", temp);
+                        v = v.replace("C:\\Users\\L\\source\\repos\\CoreSite1\\CoreSite1\\wwwroot", "");
+                        $('#inp1').attr('value', v);
+                    }
+                    //alert(v);
+                   
+                    //alert('The selected node is: ' + data.instance.get_node(data.selected[0]).text);
+                }
+            })
+            .jstree({
+                'core': {
+                    "animation": 0,
+                    "check_callback": true,
+                    'force_text': true,
+                    "check_callback": true,
+                    'force_text': true,
+                    //'primaryKey': 'id',
+                    //'dataSource': '/Admin?handler=LazyPCategory',
+                    //'lazyLoading': true,
+                    "themes": {
+                        /* "stripes": true,*/
+                        'name': 'default',
+                        "variant": "small"
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "fas fa-bars"//"jstree-folder" //"//jstree.com/tree.png"
+                        },
+                        "demo": {
+                            "icon": "jstree-file"
+                        }
+                    },
+
+                    'data': {
+                        'url': function (node) {
+                            return node.id === '#' ?
+                                '/Admin/Store/Product/BufferedSingleFileUploadPhysical?handler=TreeData' :
+                                '/Admin?handler=LazyPCategory&id=' + { 'id': node.id };
+                        },
+                        'data': function (node) {
+                            return { 'id': node.id, "a_attr": { "href": node.a_attr } };
+                        }
+                        //"url": "/Admin?handler=LazyPCategory", /*////https://localhost:44336/Admin?handler=LazyPCategory&id=5*/
+                        //"data": function (node) {
+                        //    return { "id": node.id };
+                        //}
+                        //function(node, cb) {
+                        //    if (node.id === "#") {
+                        //        cb([{ "text": "Root", "id": "1", "children": true }]);
+                        //    }
+                        //    else {
+                        //        cb(["Child"]);
+                        //    }
+                        //}
+                    }
+
+                },
+                //// plugins here
+                "plugins": ["dnd", "search", "types", "wholerow"]
+            });
+    </script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#inp1").focusout(function () {
+        $("#img1").css("visibility", "visible");
+        $("#img1").attr("src", $("#inp1").val());
+    });
+</script>

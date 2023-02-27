@@ -1,0 +1,133 @@
+﻿@page
+@model CoreSite1.Pages.OrderItem.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form asp-page="./Index" method="get">
+    @*<div class="form-actions no-color">
+        <p>
+            UserID, Order ID:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>*@
+    <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+            <div class="form-actions no-color">
+                <p>
+                    UserID, Order ID:
+                    <input type="search" class="form-control form-control-sidebar" name="SearchString" value="@Model.CurrentFilter" placeholder="Search" aria-label="Search" />
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                    |<a asp-page="./Index">Back to full List</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].AddedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].AddedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].SKU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].FinalUnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].Variant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItem[0].Order)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItem)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SKU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinalUnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Variant.VariantId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.OrderId)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.OrderItemId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.OrderItemId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.OrderItemId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.OrderItem.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.OrderItem.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.OrderItem.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.OrderItem.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

@@ -1,0 +1,9 @@
+ProductId,CategoryId,AddedDate,AddedBy,Title,Price,Brand,Discount,ProductArtUrl,Description,UnitInStock,RowVersion,StockOfNonVariant,Colour,Size,VariantId,OptionalImageURL,chcekboxAnswer,Name,ParentCategoryId,Description
+1,1,7/15/2020 17:36,manojchand@gmail.com,Ladies Yellow Shirt,637,FIDO DIDO,50,/ashion/img/product/product-1.jpg,,50,,,,,,,FALSE,,0,
+2,1,7/15/2020 17:36,manojchand@gmail.com,Mens Pink Shirt,637,FIDO DIDO,50,/ashion/img/product/product-2.jpg,,50,,,,,,,FALSE,,0,
+3,1,7/15/2020 17:36,manojchand@gmail.com,Ladies Shikrt,999,HERE&NOW,0,/ashion/img/product/product-3.jpg,,50,,,,,,,FALSE,,0,
+4,1,7/15/2020 17:36,manojchand@gmail.com,Mens White Stripped Shirt,999,AUSK,60,/ashion/img/product/product-4.jpg,,50,,,,,,,FALSE,,0,
+5,1,7/15/2020 17:36,manojchand@gmail.com,Mens Yellow Stripped Shirt,1499,Wrath,72,/ashion/img/product/product-5.jpg,,50,,,,,,,FALSE,,0,
+6,1,7/15/2020 17:36,manojchand@gmail.com,Ladies Geans,1499,Aelomart,70,/ashion/img/product/product-6.jpg,,50,,,,,,,FALSE,,0,
+7,1,7/15/2020 17:36,manojchand@gmail.com,Woman Gowan,699,Regular,50,/ashion/img/product/product-7.jpg,,50,,,,,,,FALSE,,0,
+9,1,7/15/2020 17:36,manojchand@gmail.com,Printed Mens Shirt,599,Regular,40,/ashion/img/product/product-8.jpg,,50,,,,,,,FALSE,,0,

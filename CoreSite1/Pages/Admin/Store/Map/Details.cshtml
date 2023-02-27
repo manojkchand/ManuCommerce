@@ -1,0 +1,38 @@
+﻿@page
+@model CoreSite1.Pages.Admin.Store.Map.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    //Layout = "~/Pages/Shared/Yoga/Blog/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MapImage</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MapImage.LocationName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MapImage.LocationName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MapImage.MapShape)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MapImage.MapShape)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MapImage.coords)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MapImage.coords)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.MapImage.MapImageID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

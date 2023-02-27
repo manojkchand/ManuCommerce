@@ -1,0 +1,225 @@
+﻿@page
+@model SampleApp.Pages.BufferedSingleFileUploadPhysicalModel
+@{ ViewData["Title"] = "Add New Image";
+    Layout = null; }
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link href="~/css/card.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/themes/default/style.min.css" />
+</head>
+@*<h1>Upload one buffered file to physical storage with one file upload control</h1>
+
+    <p>The following form's page handler saves the file to disk.</p>*@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Image Folder Tree</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="imgDirTree"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="card-header">
+                        <h4 class="card-title">Product Image</h4>
+                    </div>
+                    <div class="button-container mr-auto ml-auto">
+                        <img class="img-fluid" id="img1" src="~/images/DefaultImageless.png" alt="...">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Upload New Image</h4>
+                    </div>
+                    <div class="card-body">
+                        <form enctype="multipart/form-data" method="post">
+                            <dl>
+                                <dt>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="FileUpload.FormFile">New Image</label>
+
+                                                <br /><label class="control-label">Server Drop Folder- + please added the remaing path</label>
+                                                <input id="inp1" asp-for="path" class="form-control" value="@Model.path">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dt>
+                                <dd>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Local directory -Choose Image</label>
+                                                <input asp-for="FileUpload.FormFile" type="file" class="btn btn-primary" />
+                                                <span asp-validation-for="FileUpload.FormFile"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </dd>
+                            </dl>
+                            <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="Upload" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<p class="result">
+    @Model.Result
+</p>
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/jstree.js"></script>
+
+<script>
+
+    $('#imgDirTree')
+        .on("changed.jstree", function (e, data) {
+            if (data.selected.length) {
+                //get the id and remove Page from it added while creating unique Json node (Json combine data from 2 tables)
+                var v = data.instance.get_node(data.selected[0]).id;
+                //alert(v);
+                var d = data.instance.get_node(data.selected[0]).text;
+                if (d.includes(".") ){
+                    v = v.replace(d, "");
+                    //$("#img1").css("visibility", "visible");
+                    var temp = data.instance.get_node(data.selected[0]).id;
+                    temp = temp.replace("C:\\Users\\L\\source\\repos\\CoreSite1\\CoreSite1\\wwwroot", "");
+                    //alert(temp);
+                    $("#img1").attr("src", temp);
+                }
+                //alert(v);
+                $('#inp1').attr('value', v);
+                //alert('The selected node is: ' + data.instance.get_node(data.selected[0]).text);
+            }
+        })
+        .jstree({
+            'core': {
+                "animation": 0,
+                "check_callback": true,
+                'force_text': true,
+                "check_callback": true,
+                'force_text': true,
+                "themes": {
+                    /* "stripes": true,*/
+                    'name': 'default',
+                    "variant": "small"
+                },
+                "types": {
+                    "default": {
+                        "icon": "fas fa-bars"//"jstree-folder" //"//jstree.com/tree.png"
+                    },
+                    "demo": {
+                        "icon": "jstree-file"
+                    }
+                },
+
+                'data': {
+                    'url': function (node) {
+                        return node.id === '#' ?
+                            '/Admin/Store/Product/BufferedSingleFileUploadPhysical?handler=TreeData' :
+                            '/Admin?handler=LazyPCategory&id=' + { 'id': node.id };
+                    },
+                    'data': function (node) {
+                        return { 'id': node.id, "a_attr": { "href": node.a_attr } };
+                    }
+                
+                }
+
+            },
+            //// plugins here
+                "plugins": ["contextmenu", "dnd", "search", "types", "wholerow"], contextmenu: { items: customFolderMenu }
+
+        });
+    function customFolderMenu(node) {
+        // The default set of all items
+        var items = {
+
+            "create": {
+                "separator_before": false,
+                "separator_after": true,
+                "_disabled": false, //(this.check("create_node", data.reference, {}, "last")),
+                "label": "Create New Folder",
+                "action": function (data) {
+                    // alert(7);
+                    var inst = $.jstree.reference(data.reference),
+                        obj = inst.get_node(data.reference);
+                    //inst.insert(obj);
+                    var v = obj.id;
+                    //if (!v.includes("Page")) {
+
+                        var newNodeattr;
+                        inst.insertFolder(obj, inst);//created by create new Node-Page database instinct
+                    //}
+                    //else {
+                    //    alert("Create Page or Sub-Node from Parent Node");
+                    //}
+
+
+                }
+            },
+            "remove": {
+                "separator_before": false,
+                "icon": false,
+                "separator_after": false,
+                "_disabled": false, //(this.check("delete_node", data.reference, this.get_parent(data.reference), "")),
+                "label": "Delete",
+                "action": function (data) {
+                    var inst = $.jstree.reference(data.reference),
+                        obj = inst.get_node(data.reference);
+                    if (inst.is_selected(obj)) {
+                        //alert(4);
+                        //inst.delete_node(inst.get_selected());
+                        inst.delete_Folder(obj);
+                    }
+                    else {
+                        inst.delete_Folder(obj);
+                    }
+                }
+            },
+            "rename": {
+                "separator_before": false,
+                "separator_after": false,
+                "_disabled": false, //(this.check("rename_node", data.reference, this.get_parent(data.reference), "")),
+                "label": "Rename",
+                /*!
+                "shortcut"			: 113,
+                "shortcut_label"	: 'F2',
+                "icon"				: "glyphicon glyphicon-leaf",
+                */
+                "action": function (data) {
+                    var inst = $.jstree.reference(data.reference),
+                        obj = inst.get_node(data.reference);
+                    inst.editFolder(obj);
+                }
+            }
+        };
+
+        return items;
+    }
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

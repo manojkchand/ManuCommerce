@@ -1,0 +1,53 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Solid Sweater
+7499
+Calvin Klein Jeans
+30%
+
+2
+Men Solid Sweater
+2599
+Red Tape
+70%
+
+3
+Men Self-Design Sweater
+6999
+Calvin Klein Jeans
+30%
+
+4
+Solid Round Neck Casual Men Dark Green Sweater
+2799
+Lee
+35%
+
+
+5
+Solid Round Neck Casual Men Yellow Sweater
+2299
+Pepe Jeans
+40%
+
+6
+Solid Crew Neck Casual Men Dark Blue,Maroon Sweater
+2999
+Pepe Jeans
+40%
+
+
+7
+Striped Crew Neck Casual Men Dark Blue, Beige Sweater
+2299
+Pepe Jeans
+40%

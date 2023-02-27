@@ -1,0 +1,71 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Sporty Jacket
+2595
+Nike
+20%
+
+2
+Ampere Wind Trainer 2.0 Jacket
+7999
+The North Face
+2500
+
+3
+Men Solid Denim Jacket
+3499
+HERE&NOW
+40%
+
+4
+Solid Denim Jacket
+2499
+Bossini
+0%
+
+5
+Men AS Dry-Fit Sporty Jacket
+2995
+Nike
+20%
+
+6
+Men Colourblocked Tailored Jacket
+2999
+Flying Machine
+30%
+
+
+7
+Printed Denim Jacket
+2699
+UCLA
+0%
+
+8
+Men Solid Denim Jacket
+2599
+Campus Sutra
+50%
+
+
+9
+Men Slim Solid Denim Jacket
+3599
+WRONG
+30%
+
+10
+Men Solid Jacket
+4299
+HERE&NOW
+45%

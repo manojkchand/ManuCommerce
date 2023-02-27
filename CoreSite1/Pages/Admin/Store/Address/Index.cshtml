@@ -1,0 +1,131 @@
+﻿@page
+@model CoreSite1.Pages.Address.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        @*<p>
+            Find by name, phone, city:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>*@
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <div class="form-actions no-color">
+                    <p>
+                        Find by name, phone, city:
+                        <input type="search" class="form-control form-control-sidebar" name="SearchString" value="@Model.CurrentFilter" placeholder="Search" aria-label="Search" />
+                        <button class="btn btn-sidebar">
+                            <i class="fas fa-search fa-fw"></i>
+                        </button>
+                        |<a asp-page="./Index">Back to full List</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address[0].Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Address)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.AddressID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.AddressID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.AddressID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.Address.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Address.HasNextPage ? "disabled" : "";
+}
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.Address.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-page="./Index"
+   asp-route-pageIndex="@(Model.Address.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

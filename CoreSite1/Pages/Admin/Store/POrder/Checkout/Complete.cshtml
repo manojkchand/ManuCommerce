@@ -1,0 +1,140 @@
+﻿@page
+@model CoreSite1.Pages.MyStore.POCheckout.CompleteModel
+@{
+    ViewData["Title"] = "Complete";
+    Layout = "~/Pages/Shared/_LayoutMyStore.cshtml";
+}
+
+@*<h1>Complete</h1>*@
+
+<!--================ confirmation part start =================-->
+<section class="confirmation_part padding_top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="confirmation_tittle">
+                    <span>Thank you. Your order has been received.</span>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lx-4">
+                <div class="blog__sidebar__item">
+                    <div class="section-title">
+                        <h4>order info</h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <p>order number<span>: @Model.Order.OrderId</span></p>
+                        </li>
+                        <li>
+                            <p>data<span>: @Model.Order.OrderDate</span></p>
+                        </li>
+                        <li>
+                            <p>total<span>: INR @Model.Order.Total</span></p>
+                        </li>
+                        <li>
+                            <p>Payment method<span>: @Model.Order.PaymentStatus</span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lx-4">
+                <div class="contact__address">
+                    <div class="section-title">
+                        <h4>Billing Address</h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <p>Street<span>: @Model.Order.Address.Street</span></p>
+                        </li>
+                        <li>
+                            <p>city<span>: @Model.Order.Address.City</span></p>
+                        </li>
+                        <li>
+                            <p>country<span>: @Model.Order.Address.Country</span></p>
+                        </li>
+                        <li>
+                            <p>postcode<span>: @Model.Order.Address.PostalCode</span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lx-4">
+                <div class="blog__sidebar__item">
+                    <div class="section-title">
+                        <h4>shipping Address</h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <p>Street<span>: @Model.Order.Address.Street</span></p>
+                        </li>
+                        <li>
+                            <p>city<span>: @Model.Order.Address.City</span></p>
+                        </li>
+                        <li>
+                            <p>country<span>: @Model.Order.Address.Country</span></p>
+                        </li>
+                        <li>
+                            <p>postcode<span>: @Model.Order.Address.PostalCode</span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lx-4">
+                <div class="blog__sidebar__item">
+                    <div class="section-title">
+                        <h4>Order Details</h4>
+                    </div>
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Order.OrderDetails)
+                            {
+                                <tr>
+                                    <th colspan="2"><span>@item.Title</span></th>
+                                    <th>x @item.Quantity</th>
+                                    <th> <span>$@item.FinalUnitPrice</span></th>
+                                </tr>
+                            }
+                            @*<tr>
+                        <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
+                        <th>x02</th>
+                        <th> <span>$720.00</span></th>
+                    </tr>
+                    <tr>
+                        <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
+                        <th>x02</th>
+                        <th> <span>$720.00</span></th>
+                    </tr>*@
+                            <tr>
+                                <th colspan="3">Subtotal</th>
+                                <th> <span>$@Model.Order.Total</span></th>
+                            </tr>
+                            @*<tr>
+                                <th colspan="3">shipping</th>
+                                <th><span>flat rate: $50.00</span></th>
+                            </tr>*@
+                        </tbody>
+                        @*<tfoot>
+                            <tr>
+                                <th scope="col" colspan="3">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </tfoot>*@
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+        @*<div class="row">*@
+
+        @*</div>*@
+    </div>
+</section>
+<!--================ confirmation part end =================-->

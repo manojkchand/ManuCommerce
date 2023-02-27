@@ -1,0 +1,215 @@
+﻿@page
+@model CoreSite1.Pages.Admin.VariantEditModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <title>VariantEdit</title>
+</head>
+<body>
+
+    @*<h4>Variant</h4>
+        <hr />*@
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Edit Product Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="row">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <input type="hidden" asp-for="Variant.VariantId" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.Name" class="control-label"></label>
+                                            <input asp-for="Variant.Name" class="form-control" />
+                                            <span asp-validation-for="Variant.Name" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.AddedBy" class="control-label"></label>
+                                            <input asp-for="Variant.AddedBy" class="form-control" />
+                                            <span asp-validation-for="Variant.AddedBy" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.AddedDate" class="control-label"></label>
+                                            <input asp-for="Variant.AddedDate" class="form-control" />
+                                            <span asp-validation-for="Variant.AddedDate" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 pr-1">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.ProductId" class="control-label"></label>
+                                            <select asp-for="Variant.ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+                                            <span asp-validation-for="Variant.ProductId" class="text-danger"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 px-1">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.Size" class="control-label"></label>
+                                            <input asp-for="Variant.Size" class="form-control" />@*<select asp-for="Variant.Size" class="form-control" asp-items="ViewBag.SizeGuide"></select>*@
+                                            <span asp-validation-for="Variant.Size" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.UnitInStock" class="control-label"></label>
+                                            <input asp-for="Variant.UnitInStock" class="form-control" />
+                                            <span asp-validation-for="Variant.UnitInStock" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 pr-1">
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" asp-for="Variant.IsDefaulProduct" /> @Html.DisplayNameFor(model => model.Variant.IsDefaulProduct)
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 px-1">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.SKU" class="control-label"></label>
+                                            <input asp-for="Variant.SKU" class="form-control" />
+                                            <span asp-validation-for="Variant.SKU" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pl-1">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.OptionalPrice" class="control-label"></label>
+                                            <input asp-for="Variant.OptionalPrice" class="form-control" />
+                                            <span asp-validation-for="Variant.OptionalPrice" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Variant.OptionalImageURL" class="control-label"></label>
+                                            <input asp-for="Variant.OptionalImageURL" id="inp1" class="form-control" />
+                                            <span asp-validation-for="Variant.OptionalImageURL" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        @*added col-md-8 that may give error in form submition plese check in future.*@
+                                        <label asp-for="Variant.color" class="control-label"></label>
+                                        <input type="color" id="cinput" asp-for="Variant.color" value="@Model.Variant.color" class="form-control" />  @*asp-for="Variant.color"*@
+                                        <input type="text" disabled="disabled" id="coutput" asp-for="Variant.color" class="form-control" />
+                                        <span asp-validation-for="Variant.color" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <hr />
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-fill pull-right">Save</button>
+                                    <div class="clearfix"></div>
+                                    @*<input type="submit" value="Save" class="btn btn-primary" style=" color: #fff; background-color: #9368E9 !important; border-color: #9368E9;" />*@
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-user">
+                        <div class="card-header">
+                            <h4 class="card-title">Product Image</h4>
+                        </div>
+                        <div class="button-container mr-auto ml-auto">
+                            <img class="img-fluid" id="img1" src="@Model.Variant.Product.ProductArtUrl" alt="...">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SizeGuide[0].SizeType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SizeGuide[0].Name)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.SizeGuide)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SizeType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.id">Edit</a> |
+                                <a asp-page="./Details" asp-route-id="@item.id">Details</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @*<div>
+            <a asp-page="./Index">Back to List</a>
+        </div>*@
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#inp1").focusout(function () {
+        //$("#img1").css("visibility", "visible");
+        $("#img1").attr("src",$("#inp1").val());
+    });
+    $(document).ready(function () {
+        //alert(3);
+        $("#coutput").val($("#cinput").val());
+
+    });
+    $("#cinput").focusout(function () {
+        $("#coutput").val($("#cinput").val());
+    });
+    
+</script>

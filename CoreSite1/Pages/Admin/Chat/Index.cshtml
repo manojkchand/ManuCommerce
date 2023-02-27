@@ -1,0 +1,38 @@
+﻿@page
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <form class="form-inline">
+                <div class="input-prepend input-append">
+                    <input type="text" name="group-message" id="group-message-text" placeholder="Type a message" />
+                    <input type="text" name="group-name" id="group-name" placeholder="Type a group name" />
+                    <input type="button" id="groupmsg" class="btn" value="Send to Group" />
+                    <input type="button" id="join-group" class="btn" value="Join Group" />
+                    <input type="button" id="leave-group" class="btn" value="Leave Group" />
+                </div>
+                <div class="input-prepend input-append">
+                    <input type="text" name="user-message" id="user-message-text" placeholder="Type a message" />
+                    <input type="text" name="user-name" id="user-name" placeholder="Type a user name" />
+                    <input type="button" id="usermsg" class="btn" value="Send to user" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+@*<script src="~/lib/signalr/signalr.js"></script>*@
+<script src="~/js/chat.js"></script>

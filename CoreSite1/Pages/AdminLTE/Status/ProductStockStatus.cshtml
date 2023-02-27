@@ -1,0 +1,134 @@
+﻿@page
+@model CoreSite1.Pages.Admin.Status.ProductStockStatusModel
+
+@{
+    ViewData["Title"] = "ProductStockStatus";
+    ////Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Product Stock Status</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().UnitInStock)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Variant[0].Name)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().Colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().Price)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Product.First().Brand)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().ProductArtUrl)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Product.First().Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().StockOfNonVariant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.First().RowVersion)
+            </th>*@
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Product)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitInStock)
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped @(item.UnitInStock>10?"bg-warning":"bg-danger")" role="progressbar" style="width: @item.UnitInStock%" aria-valuenow="@item.UnitInStock" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Colour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.ProductArtUrl)*@
+                    <img id="myImg" calss="tt" src="@Html.DisplayFor(modelItem => item.ProductArtUrl)" alt="@Html.DisplayFor(modelItem => item.Title)" style="width: 72px; height: 72px;">
+
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StockOfNonVariant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RowVersion)
+                </td>*@
+                @*<td>
+                    <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                </td>*@
+                <td>
+                    <a asp-page="/Admin/Store/POrder/Product/Details" asp-route-id="@item.ProductId">NewPurchaseOrder</a>
+                </td>
+                <td>
+                    <a asp-page="/Admin/Store/POrder/ProductBEP" asp-route-id="@item.ProductId" asp-route-stok="@item.UnitInStock"
+                       asp-route-pr="@item.Price"
+                       asp-route-dis="@item.Discount"
+                       >BreakEvenPoint</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

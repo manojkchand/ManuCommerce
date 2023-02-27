@@ -1,0 +1,66 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Training Hooded Sweatshirt
+3295
+Nike
+20%
+
+2
+Hooded Sweatshirt
+1499
+H&M
+0%
+
+
+3
+Men's Pullover Hoodie
+2499
+GAP
+20%
+
+4
+Men Rapid Dry Sweatshirt
+2299
+HRX by Hrithik Roshan
+50%
+
+5
+Men Solid Sweatshirt
+1499
+Hubberholme
+65%
+
+
+6
+Men Solid Sweatshirt
+1399
+Campus Sutra
+40%
+
+
+7
+Men Printed Sweatshirt
+849
+Ecko Unltd
+20%
+
+8
+Full Sleeve Printed Men Sweatshirt
+2499
+Puma
+30%
+
+9
+Full Sleeve Solid Men Sweatshirt
+1499
+Van Heusen Sport
+60%

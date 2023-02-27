@@ -1,0 +1,148 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+    if (!User.IsInRole("ThisSiteAdmin")) {
+        Layout = "/Pages/Shared/_LayoutMyStore.cshtml";
+    }
+}
+<link href="~/css/card.css" rel="stylesheet" />
+@*<h4>@ViewData["Title"]</h4>*@
+<partial name="_StatusMessage" for="StatusMessage" />
+@*<div class="row">
+    <div class="col-md-6">
+        
+    </div>
+</div>*@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Edit Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="profile-form" enctype="multipart/form-data" method="post">
+                           <div class="row"><div asp-validation-summary="All" class="text-danger"></div></div>
+                                <div class="row">
+                                    
+                                    @*<div class="col-md-5 pr-1">
+                                        <div class="form-group">
+                                            <label>Company (disabled)</label>
+                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                                        </div>
+                                    </div>*@
+                                    <div class="col-md-5 px-1">
+                                        <div class="form-group">
+                                            <label asp-for="Username"></label>
+                                            <input asp-for="Username" class="form-control" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label asp-for="Input.Email"></label>
+                                            @if (Model.IsEmailConfirmed)
+                                            {
+                                                <div class="input-group">
+                                                    <input asp-for="Input.Email" class="form-control" />
+                                                    <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <input asp-for="Input.Email" class="form-control" />
+                                                <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                                            }
+                                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 pr-1">
+                                        <div class="form-group">
+                                            <label asp-for="Input.Name"></label>
+                                            <input asp-for="Input.Name" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 pl-1">
+                                        <div class="form-group">
+                                            <label asp-for="Input.DOB"></label>
+                                            <input asp-for="Input.DOB" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="Input.PhoneNumber"></label>
+                                            <input asp-for="Input.PhoneNumber" class="form-control" />
+                                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label asp-for="FileUpload.FormFile">Upload New Photo</label>
+                                            @*<input asp-for="FileUpload.FormFile" type="file" />*@
+                                            @*<img src="data:image;base64,@Convert.ToBase64String(Model.UserPhotos(Model.Input.FileUpload).FileContents)" style="width:60px;height:60px; background: #FFFFFF;
+                                    margin: auto; padding: 6px; box-shadow: 0px 0px 20px #888;" />*@
+                                            <input asp-for="FileUpload.FormFile" type="file" id="fileUpload" class="form-control" />
+                                            <span asp-validation-for="FileUpload.FormFile" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                @*<button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>*@
+                                <button type="submit" id="update-profile-button" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                                <div class="clearfix"></div>
+                           
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="card-image" style="background-color:purple;height:60px">
+                        @*<img alt="..." style="background-color:purple">*@
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="data:image;base64,@Convert.ToBase64String(Model.UserPhotos(Model.Input.FileUpload).FileContents)" alt="...">
+                                <h5 class="title">@Model.Username</h5>
+                            </a>
+                            <p class="description">
+                              @* @Model.*@
+                            </p>
+                        </div>
+                        <p class="description text-center">
+                            @*"Lamborghini Mercy
+                            <br> Your chick she so thirsty
+                            <br> I'm in that two seat Lambo"*@
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="button-container mr-auto ml-auto">
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-facebook-square"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                        <button href="#" class="btn btn-simple btn-link btn-icon">
+                            <i class="fa fa-google-plus-square"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

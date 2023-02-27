@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-CoreSite1-D5F444D4-8957-4E34-9E6A-C5E6322990D8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Identity\Pages\Account\NewFolder\Register.cshtml.cs" />
+    <Compile Remove="Utilities\JWTPostConfig.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Identity\Pages\Account\NewFolder\Register.cshtml" />
+    <Content Remove="Pages\Admin\Store\Users\Detail.cshtml" />
+    <Content Remove="Pages\Home\Index - Copy.cshtml" />
+    <Content Remove="wwwroot\Documents\PickDropFiles\Export.csv" />
+    <Content Remove="wwwroot\Documents\PickDropFiles\import4.csv" />
+    <Content Remove="wwwroot\Documents\PickDropFiles\import45.csv" />
+    <Content Remove="wwwroot\Documents\PickDropFiles\import453.csv" />
+    <Content Remove="wwwroot\Documents\PickDropFiles\old\import.csv" />
+    <Content Remove="wwwroot\Documents\PickDropFiles\old\import4.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="26.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.13" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.32">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.13" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0-preview.1.21102.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\NewFolder\" />
+    <Folder Include="wwwroot\Documents\Word\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Admin\PT\Create.cshtml" />
+    <None Include="Pages\Admin\PT\Delete.cshtml" />
+    <None Include="Pages\Admin\PT\Details.cshtml" />
+    <None Include="Pages\Admin\PT\Edit.cshtml" />
+    <None Include="Pages\Admin\PT\Index.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\Checkout\Complete.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\Checkout\Index.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\Details.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\Index.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\ProductBEP.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\Product\Details.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\ShoppingCart\Index.cshtml" />
+    <None Include="Pages\Admin\Store\POrder\UpdateStock.cshtml" />
+    <None Include="Pages\Admin\Store\Users\Detail.cshtml" />
+    <None Include="Pages\fr_FR\Index.cshtml" />
+    <None Include="Pages\Home\Create.cshtml" />
+    <None Include="Pages\Home\Delete.cshtml" />
+    <None Include="Pages\Home\Details.cshtml" />
+    <None Include="Pages\Home\Edit.cshtml" />
+    <None Include="Pages\Home\Index.cshtml" />
+    <None Include="Pages\Home\List.cshtml" />
+    <None Include="Pages\ja_JA\Index.cshtml" />
+    <None Include="wwwroot\DashBoard\assets\fonts\Pe-icon-7-stroke.svg" />
+    <None Include="wwwroot\DashBoard\assets\img\loading-bubbles.svg" />
+    <None Include="wwwroot\DashBoard\assets\js\bootstrap-notify.js" />
+    <None Include="wwwroot\DashBoard\assets\js\bootstrap-select.js" />
+    <None Include="wwwroot\DashBoard\assets\js\bootstrap.min.js" />
+    <None Include="wwwroot\DashBoard\assets\js\chartist.min.js" />
+    <None Include="wwwroot\DashBoard\assets\js\demo.js" />
+    <None Include="wwwroot\DashBoard\assets\js\jquery.3.2.1.min.js" />
+    <None Include="wwwroot\DashBoard\assets\js\light-bootstrap-dashboard.js" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_buttons.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_cards.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_chartist.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_icons.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_inputs.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_labels.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_morphing-buttons.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_navbars.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_social-buttons.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_tabs.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_transparency.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\mixins\_vendor-prefixes.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_alerts.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_buttons.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_cards.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_chartist.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_checkbox-radio-switch.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_dropdown.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_footers.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_inputs.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_misc.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_mixins.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_navbars.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_responsive.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_sidebar-and-main-panel.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_tables.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_typography.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\lbd\_variables.scss" />
+    <None Include="wwwroot\DashBoard\assets\sass\light-bootstrap-dashboard.scss" />
+    <None Include="wwwroot\Documents\PickDropFiles\old\Export.csv" />
+    <None Include="wwwroot\Documents\PickDropFiles\import4.csv" />
+    <None Include="wwwroot\Documents\PickDropFiles\import45.csv" />
+    <None Include="wwwroot\Documents\PickDropFiles\import453.csv" />
+    <None Include="wwwroot\Documents\PickDropFiles\old\import.csv" />
+    <None Include="wwwroot\Documents\PickDropFiles\old\import4.csv" />
+    <None Include="wwwroot\lib\jquery-ui\external\jquery\jquery.js" />
+    <None Include="wwwroot\lib\jquery-ui\jquery-ui.js" />
+    <None Include="wwwroot\lib\jquery-ui\jquery-ui.min.js" />
+    <None Include="wwwroot\lib\jquery-ui\README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Admin\Store\Users\Detail.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Admin\Store\Users\Detail.cshtml" />
+  </ItemGroup>
+  
+</Project>

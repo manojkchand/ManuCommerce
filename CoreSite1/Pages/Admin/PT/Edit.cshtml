@@ -1,0 +1,127 @@
+﻿@page
+@model CoreSite1.Pages.Admin.PageTemplate.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <!-- Bootstrap core CSS     -->
+    <link href="~/DashBoard/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <link href="~/DashBoard/assets/css/animate.min.css" rel="stylesheet" />
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="~/DashBoard/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="~/DashBoard/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/themes/default/style.css" />
+    @*<script src="~/ckeditor/adapters/jquery.js"></script>*@
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+    @*<script src="~/ckeditor/config.js"></script>
+        <script src="~/ckeditor/styles.js"></script>
+        <script src="~/ckeditor/samples/js/sample.js"></script>*@
+    @*<link href="~/tinymce/js/tinymce/skins/content/default/content.css" rel="stylesheet" />*@
+
+
+    <link rel="stylesheet" href="~/ckeditor/samples/css/samples.css">
+    <link rel="stylesheet" href="~/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+</head>
+<h2>PageTemplate- Edit</h2>
+
+<hr />
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="PageTemplate.PageTemplateId" />
+                        <div class="form-group">
+                            <label asp-for="PageTemplate.Name" class="control-label"></label>
+                            <input asp-for="PageTemplate.Name" class="form-control" />
+                            <span asp-validation-for="PageTemplate.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PageTemplate.TempleteURL" class="control-label"></label>
+                            <input asp-for="PageTemplate.TempleteURL" class="form-control" />
+                            <span asp-validation-for="PageTemplate.TempleteURL" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PageTemplate.Header" class="control-label"></label>
+                            @*<input asp-for="PageTemplate.Header" class="form-control" />*@
+                            <textarea asp-for="PageTemplate.Header" cols="80" rows="10" class="form-control">
+                            </textarea>
+                            <span asp-validation-for="PageTemplate.Header" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PageTemplate.Footer" class="control-label"></label>
+                            @*<input asp-for="PageTemplate.Footer" class="form-control" />*@
+                            <textarea asp-for="PageTemplate.Footer" cols="80" rows="10" class="form-control">
+                            </textarea>
+                            <span asp-validation-for="PageTemplate.Footer" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PageTemplate.SideBar" class="control-label"></label>
+                            @*<input asp-for="PageTemplate.SideBar" class="form-control" />*@
+                            <textarea asp-for="PageTemplate.SideBar" cols="80" rows="10" class="form-control">
+                            </textarea>
+                            <span asp-validation-for="PageTemplate.SideBar" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            NOTE: Do not save if the HTML is changed from databasae in CKeditor.Editor is auto changing the DB HTML.
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+@*<script src="~/tinymce/js/tinymce/icons/default/icons.js"></script>
+<script src="~/tinymce/jquery.tinymce.min.js"></script>*@
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="~/DashBoard/assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+@*<script src="~/tinymce/tinymce.js"></script>*@
+<script>
+//    // Import TinyMCE
+//    var tinymce = require('~/tinymce/js/tinymce/tinymce');
+
+//    // Default icons are required for TinyMCE 5.3 or above
+//    require('~/tinymce/js/tinymce/icons/default');
+
+//    // A theme is also required
+//    require('~/tinymce/js/tinymce/themes/silver');
+
+//    // Any plugins you want to use has to be imported
+//    require('~/tinymce/js/tinymce/plugins/paste');
+//    require('~/tinymce/js/tinymce/plugins/link');
+
+//// Initialize the app
+//    tinymce.init({
+//        selector: '#PageTemplate_Header',
+//        plugins: ['paste', 'link']
+//    });
+</script>
+<script>
+    CKEDITOR.replace('PageTemplate_Header');
+    CKEDITOR.replace('PageTemplate_Footer');
+    CKEDITOR.replace('PageTemplate_SideBar');
+</script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

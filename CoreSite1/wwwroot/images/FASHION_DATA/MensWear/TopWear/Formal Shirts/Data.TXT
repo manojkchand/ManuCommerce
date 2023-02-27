@@ -1,0 +1,110 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Classic Fit Formal Shirt
+2599
+Louis Philippe
+30%
+
+2
+Slim Fit Formal Shirt
+1299
+Peter England
+0%
+
+
+3
+Men Slim Fit Formal Shirt
+1299
+Marks & Spencer
+0%
+
+
+4
+Men Slim FIt Formal Shirt
+1799
+Park Avenue
+20%
+
+
+5
+Men Slim Fit Casual Shirt
+2399
+Louis Philippe
+15%
+
+
+6
+Men Regular Fit Formal Shirt
+2199
+Red Tape
+70%
+
+7
+Dobby Textured Slim FIt Formal Shirt
+1499
+CODE 
+40%
+
+
+8
+Checked Slim Fit Formal Shirt
+1999
+LOUIS PHILIPPE
+50%
+
+
+9
+Textured Full Sleeves Slim Fit SHirt
+1499
+CODE
+40%
+
+
+10
+Men Slim Fit Formal Shirt
+2099
+Raymond
+40%
+
+11
+Men Checked Formal Shirt
+2499
+Van Heusen
+0%
+
+12
+Slim FIt Formal Shirt
+1699
+Van Heusen
+30%
+
+
+13
+Men Gegular Fit Formal Shirt
+2299
+Van Heusen
+40%
+
+
+14
+Men Slim Fit Formal Shirt
+2395
+Blackberrys
+40%
+
+
+15
+Men Slim Fit Casual Shirt
+1999
+Arrow
+0%
+

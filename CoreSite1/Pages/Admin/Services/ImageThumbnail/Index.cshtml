@@ -1,0 +1,46 @@
+﻿@page
+@model AuthImageThumbNailService.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1> <span class="style2">Thumbnail Image Gallary</span></h1>
+                <h2>Automating the Light weight thumbnail Creation of Image path saved in Product Table</h2>
+            </hgroup>
+            <form method="post" class="index__form">
+                @*<input type="button" value="Create Thumbnails" />*@
+                <div class="form-group">
+                    <input type="submit" value="Create Thumbnails" id="submit" class="site-btn" />
+                </div>
+            </form>
+            @foreach (var s in Model.filePaths.Distinct())
+            {
+                <ul>
+                    <li>
+                         @s.ToString()
+                    </li>
+                </ul>
+            }
+            @if (Model.list != null)
+            {
+                @foreach (var v in Model.list)
+                {
+                    <p>
+                        <img src="wwwroot/Images/flyweight-images/thumbnail/@v.Name" style="Width:105px;Height:94px;Border:Solid" ID="Image1" />
+                        <br />
+                        <a ID="HyperLink1" Text='@v.Name' />
+
+
+                    </p>
+                }
+            }
+        </div>
+    </section>
+</div>
+

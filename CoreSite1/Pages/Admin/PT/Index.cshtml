@@ -1,0 +1,67 @@
+﻿@page
+@model CoreSite1.Pages.Admin.PageTemplate.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PageTemplate[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageTemplate[0].TempleteURL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageTemplate[0].Header)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageTemplate[0].Footer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageTemplate[0].SideBar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PageTemplate[0].RowVersion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.PageTemplate) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempleteURL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Header)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Footer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SideBar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RowVersion)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PageTemplateId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PageTemplateId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PageTemplateId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

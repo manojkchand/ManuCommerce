@@ -1,0 +1,52 @@
+﻿@page
+@model CoreSite1.Pages.Admin.Status.StockInCartsModel
+@{
+    ViewData["Title"] = "StockInCarts";
+    ////Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Stock In Carts</h1>
+
+@{var v = Model.cartItems.ToLookup(e => e.ProductId);
+   
+    }
+<p>NOTE: By default the items in shopping cart if not purchased are kept back to store Shelves(stock is incresed in same amout) after 1 days.
+    (Exception if user is registerd)
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => Model.cartItems.First().ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => Model.cartItems.First().Count)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var g in v)
+        {
+        <tr>
+            <td>
+                Total of Product ID @g.First().ProductId @*(@g.First().Product.Title)*@ in Shopping Carts:
+            </td>
+            <td>
+                @g.Select(p => p.Count).Sum()
+            </td>
+        </tr>   
+            @*@foreach (var item in g)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                </tr>
+            }*@
+        }
+    </tbody>
+</table>

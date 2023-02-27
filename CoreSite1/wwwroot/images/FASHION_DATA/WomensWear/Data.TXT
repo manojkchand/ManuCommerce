@@ -1,0 +1,10 @@
+TITLE
+PRICE
+DISCOUNTED PRICE
+IMAGE_URL
+SIZE
+SKU
+BRAND_optional
+Description_Optional
+
+

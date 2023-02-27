@@ -1,0 +1,588 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ExtendedUser> SignInManager
+@inject UserManager<ExtendedUser> UserManager
+
+@inject CoreSite1.Data.ApplicationDbContext _context
+    
+<!DOCTYPE html>
+
+@*<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
+        <div>
+            @RenderBody()
+        </div>
+    </body>
+    </html>*@
+@*<!DOCTYPE html>*@
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Manu Fashion | Store">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Manu Fashion | Store</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/ashion/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/ashion/css/style.css" type="text/css">
+    <style>
+
+
+        /***********************
+                 megaDropMenu
+            ////////////////////////////*/
+        .navbar-inverse .container {
+            position: relative;
+        }
+
+        .navbar-inverse .navbar-collapse li.dropdown.megaDropMenu {
+            position: static;
+            font-size: 14px;
+            /*font-size: 16px;*/
+            /*text-transform: uppercase;*/
+            /*text-align: center;*/
+            /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                    font-weight: 300;*/
+            /*text-align: center;*/
+        }
+
+            .navbar-inverse .navbar-collapse li.dropdown.megaDropMenu .dropdown-menu {
+                /*width: 97%;*/
+                /*color: #ee4266;*/
+                /*border-top: 2px solid #f48fb1;
+                        border-bottom: 2px solid #f48fb1;*/
+                /*border: 2px solid #ee4266;*/
+                /*border-radius: 6px;*/
+            }
+
+
+                .navbar-inverse .navbar-collapse li.dropdown.megaDropMenu .dropdown-menu li ul li:first-child {
+                    padding: 20px 0px 5px 15px;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    /*text-align: center;*/
+                    /*color: #f76b06;*/
+                    /*border-bottom: 1px solid currentColor;*/
+                    display: block;
+                    /*font-family: Poppins,"sans-serif";*/
+                    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                    font-weight: 300;
+                    /*border-top: 2px solid ;
+                            border-bottom: 2px solid ;*/
+                    /*border-radius: 6px;*/
+                }
+
+                .navbar-inverse .navbar-collapse li.dropdown.megaDropMenu .dropdown-menu li ul li a {
+                    display: block;
+                    /*color: #878c94;*/
+                    font-size: 12px;
+                    /*text-decoration: none;
+                            padding: 8px 15px;*/
+                    /*font-family: Poppins,"sans-serif";*/
+                    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                            font-weight: 300;*/
+                    /*text-align: center;*/
+                }
+
+                    .navbar-inverse .navbar-collapse li.dropdown.megaDropMenu .dropdown-menu li ul li a:hover {
+                        /*color: #00BCD4;*/
+                        text-decoration: none;
+                        background-color: rgba(0, 0, 0, 0.02);
+                    }
+
+                .navbar-inverse .navbar-collapse li.dropdown.megaDropMenu .dropdown-menu img {
+                    display: block;
+                    max-width: 100%;
+                    padding: 20px;
+                }
+    </style>
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__close">+</div>
+        <ul class="offcanvas__widget">
+            <li><span class="icon_search search-switch"></span></li>
+            @*<li>
+                    <a href="#">
+                        <span class="icon_heart_alt"></span>
+                        <div class="tip">2</div>
+                    </a>
+                </li>*@
+            <li>
+                <a href="#">
+                    <span class="icon_bag_alt"></span>
+                    <div class="tip" id="contentcart2"></div>
+                </a>
+            </li>
+        </ul>
+        <div class="offcanvas__logo">
+            <a href="./index"><img src="img/logo.png" alt="" style="width:100px;height:100px"></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__auth">
+            @*<partial name="_LoginPartial" />*@
+
+            @*<a href="#">Login</a>
+                <a href="#">Register</a>*@
+            @*<ul class="navbar-nav">*@
+            @if (SignInManager.IsSignedIn(User))
+            {
+
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form>
+                if (User.IsInRole("ThisSiteAdmin"))
+                {
+
+                    <a class="nav-link btn btn-link text-dark" href="/">Admin</a>
+                    <a class="" asp-area="" asp-page="/">Admin</a>
+                }
+
+            }
+            else
+            {
+                <a class="" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                <a class="" asp-area="Identity" asp-page="/Account/Register">Register</a>
+
+
+            }
+        </div>
+
+    </div>
+    <!-- Offcanvas Menu End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-3 col-lg-2">
+                    <div class="header__logo">
+                        <a href="./index"><img src="~/ashion/img/logo.png" alt="" style="height:40px;width:150px"></a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <nav class="header__menu navbar navbar-inverse navbar-fixed-top">
+                        <div class="container">
+                            <div class=" navbar-collapse navbar-1">
+                                <ul>
+                                    @*@if (!this.Url.Action().ToString().Contains("Identity"))
+                                    {*@
+
+
+                                        @*@{ var headerlink= var v = Category.Where(e => e.LinkType == "Header");}*@
+                                        @foreach (var Category0 in _context.Categorys.ToList())
+                                        {
+                                            if (Category0.LinkType == "Header")
+                                            {
+                                                @if (Category0.ParentCategoryId == 1 && Category0.CategoryId != 1)
+                                                {
+                                                    <li class="dropdown megaDropMenu">
+                                                        <div class="desktop-backdropStyle" id="desktop-backdropStyle" data-reactid="467"></div><!-- Changing Background Colour  -->
+                                                        <a href="#" class="" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">@Category0.Name.ToUpper() @*<i class="fa fa-angle-down ml-5"></i>*@</a>
+
+                                                        <ul class="dropdown-menu">
+                                                            @*dropdown-menu row ">*@
+                                                            @*@if (Category0.CategoryId == 2)
+                                                                {
+                                                                    <li class="col-sm-3 col-xs-12">
+                                                                        <ul class="list-unstyled">
+                                                                            <li>MAN'S WEAR</li>
+                                                                        </ul>
+                                                                        <img src="~/images/pexels-photo-1043474.jpg" class="img-responsive" alt="menu-img">
+                                                                    </li>
+                                                                }*@
+                                                            @foreach (var Category2 in _context.Categorys.ToList())
+                                                            {
+
+                                                                @if (Category2.ParentCategoryId == Category0.CategoryId)
+                                                                {
+                                                                    <li class="col-xs-9 col-xs-12">
+
+                                                                        <ul class="list-unstyled">
+                                                                            <li>@Category2.Name</li>
+                                                                            @foreach (var Category3 in _context.Categorys.ToList())
+                                                                            {
+                                                                                if (Category3.ParentCategoryId == Category2.CategoryId)
+                                                                                {
+                                                                                    <li>
+                                                                                        <a href="/MyStore/Browse?CategoryName=@Category3.Name">@Category3.Name</a>
+                                                                                        @*@Html.ActionLink(Category3.Name, "Browse", "store", new { Category = Category3.Name }, null)*@
+                                                                                        @*@Html.ActionLink(Category3.Name, "Browse", new { Category = Category3.Name })*@@*<a href="#">@Category3.Name</a>*@
+                                                                                    </li>
+                                                                                }
+                                                                            }
+                                                                        </ul>
+                                                                    </li>
+                                                                }
+
+                                                            }
+                                                            @*<li class="col-sm-3 col-xs-12">
+                                                                    <ul class="list-unstyled">
+                                                                        <li>Manoj Kumar</li>
+                                                                    </ul>
+                                                                    <img src="https://lh3.googleusercontent.com/-uwagl9sPHag/WM7WQa00ynI/AAAAAAAADtA/hio87ZnTpakcchDXNrKc_wlkHEcpH6vMwCJoC/w140-h148-p-rw/profile-pic.jpg" class="img-responsive" alt="menu-img">
+                                                                </li>*@
+                                                        </ul>
+
+                                                    </li>
+                                                }
+                                                else if (Category0.CategoryId == 1)
+                                                {
+                                                    @*<li class="dropdown megaDropMenu">*@
+                                                    @*<a href="Store" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">@Category0.Name <i class="fa fa-angle-down ml-5"></i></a>*@
+                                                    @*<a asp-area="" asp-controller="Store" asp-action="Index" >@Category0.Name.ToUpper()*@@*<i class="fa fa-angle-down ml-5"></i>*@ @*</a>*@
+                                                    @*</li>*@
+                                                }
+                                            }
+                                        }
+                                    @*}*@
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+                        @*<ul>
+                                <li class="active"><a href="./index.html">Home</a></li>
+                                <li><a href="#">Women’s</a></li>
+                                <li><a href="#">Men’s</a></li>
+                                <li><a href="./shop.html">Shop</a></li>
+                                <li>
+                                    <a href="#">Pages</a>
+                                    <ul class="dropdown">
+                                        <li><a href="./product-details.html">Product Details</a></li>
+                                        <li><a href="./shop-cart.html">Shop Cart</a></li>
+                                        <li><a href="./checkout.html">Checkout</a></li>
+                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="./blog.html">Blog</a></li>
+                                <li><a href="./contact.html">Contact</a></li>
+                            </ul>*@
+                    </nav>
+                </div>
+                <div class="col-lg-3 col-lg-2">
+                    <div class="header__right">
+                        <div class="header__right__auth">
+                            @*<partial name="_LoginPartial" />*@
+                            @*<a href="#">Login</a>
+                                <a href="#">Register</a>*@
+
+                            @*@inject SignInManager<ExtendedUser> SignInManager
+                                @inject UserManager<ExtendedUser> UserManager*@
+
+                            @*<ul class="navbar-nav">*@
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                </form>
+
+                            }
+                            else
+                            {
+                                <a class="" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                <a class="" asp-area="Identity" asp-page="/Account/Register">Register</a>
+
+
+                            }
+
+
+                        </div>
+                        <ul class="header__right__widget">
+                            <li><span class="icon_search search-switch"></span></li>
+                            @*<li>
+                                    <a href="#">
+                                        <span class="icon_heart_alt"></span>
+                                        <div class="tip">2</div>
+                                    </a>
+                                </li>*@
+                            <li>
+                                <a href="/MyStore/ShoppingCart">
+                                    <span class="icon_bag_alt"></span>
+                                    <div class="tip" id="contentcart"></div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Instagram Begin -->
+    <div class="instagram">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion/img/instagram/insta-1.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion/img/instagram/insta-2.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion/img/instagram/insta-3.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion/img/instagram/insta-4.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion/img/instagram/insta-5.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                    <div class="instagram__item set-bg" data-setbg="/ashion/img/instagram/insta-6.jpg">
+                        <div class="instagram__text">
+                            <i class="fa fa-instagram"></i>
+                            <a href="#">@@ ashion_shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-7">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="./"><img src="~/ashion/img/logo.png" alt=""></a>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            cilisis.
+                        </p>
+                        <div class="footer__payment">
+                            @*@if (!this.Url.Action().ToString().Contains("Identity"))
+                            {*@
+
+                                @foreach (var Category0 in _context.Categorys.ToList())
+                                {
+                                    if (Category0.LinkType == "Footer")
+                                    {
+
+                                        @if (Category0.ParentCategoryId == 1067 && Category0.CategoryId != 1064)
+                                        {
+                                            @*<a href="/MyStore/Browse?CategoryName=@Category3.Name">@Category3.Name</a>*@
+                                            <a href="#"><img src="@Category0.Description" alt=""></a>
+                                            @*<a href="#"><img src="~/ashion/img/payment/payment-1.png" alt=""></a>
+                                                <a href="#"><img src="~/ashion/img/payment/payment-2.png" alt=""></a>
+                                                <a href="#"><img src="~/ashion/img/payment/payment-3.png" alt=""></a>
+                                                <a href="#"><img src="~/ashion/img/payment/payment-4.png" alt=""></a>
+                                                <a href="#"><img src="~/ashion/img/payment/payment-5.png" alt=""></a>*@
+                                        }
+                                    }
+                                }
+                            @*}*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="footer__widget">
+                        <h6>Quick links</h6>
+                        <ul>
+                            @*@if (!this.Url.Action().ToString().Contains("Identity"))
+                            {*@
+
+                                @foreach (var Category0 in _context.Categorys.ToList())
+                                {
+                                    if (Category0.LinkType == "Footer")
+                                    {
+                                        @if (Category0.ParentCategoryId == 1075 && Category0.CategoryId != 1064)
+                                        {
+                                            @*<li><a href="/MyStore/Browse?CategoryName=@Category0.Name">@Category0.Name</a></li>*@
+                                            <li><a href="@Category0.Description">@Category0.Name</a></li>
+                                            @*<li><a href="/Home/?id=2194">About</a></li>
+                                                <li><a href="/Home/?id=2197">Blogs</a></li>
+                                                <li><a href="/Home/?id=2195">Contact</a></li>
+                                                <li><a href="/Home/?id=2196">FAQ</a></li>*@
+                                        }
+                                    }
+                                }
+                            @*}*@
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="footer__widget">
+                        <h6>Account</h6>
+                        <ul>
+                            @*@if (!this.Url.Action().ToString().Contains("Identity"))
+                            {*@
+
+                                @foreach (var Category0 in _context.Categorys.ToList())
+                                {
+                                    if (Category0.LinkType == "Footer")
+                                    {
+                                        @if (Category0.ParentCategoryId == 1076 && Category0.CategoryId != 1064)
+                                        {
+                                            <li><a href="@Category0.Description">@Category0.Name</a></li>
+                                            @*<li><a href="#">My Account</a></li>
+                                                <li><a href="#">Orders Tracking</a></li>
+                                                <li><a href="#">Checkout</a></li>
+                                                <li><a href="#">Wishlist</a></li>*@
+                                        }
+                                    }
+                                }
+                            @*}*@
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-8 col-sm-8">
+                    <div class="footer__newslatter">
+                        <h6>NEWSLETTER</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__social">
+                            @*@if (!this.Url.Action().ToString().Contains("Identity"))
+                            {*@
+
+                                @foreach (var Category0 in _context.Categorys.ToList())
+                                {
+                                    if (Category0.LinkType == "Footer")
+                                    {
+                                        @if (Category0.ParentCategoryId == 1077 && Category0.CategoryId != 1064)
+                                        {
+                                            if (Category0.Name == "facebook" || Category0.Name == "twitter" || Category0.Name == "youtube-play"
+                                                || Category0.Name == "instagram" || Category0.Name == "pinterest")
+                                            {
+                                                <a href="#"><i class="fa fa-@Category0.Name"></i></a>
+                                            }
+                                            @*<a href="#"><i class="fa fa-facebook"></i></a>
+                                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                                <a href="#"><i class="fa fa-pinterest"></i></a>*@
+                                        }
+                                    }
+                                }
+                            @*}*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <div class="footer__copyright__text">
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form" action="/MyStore/search">
+                <input type="text" id="search-input" placeholder="Search here....." name="searchString">
+            </form>
+            @*<form class="form-inline navbar-right my-2 my-lg-0 md-form form-sm active-pink active-pink-2 mt-4" action="/Store/search" style="padding-top:8px;padding-bottom:8px">
+
+                    <div class="md-form my-0">
+                        <button class="btn btn-outline-success my-2 my-sm-0" style="background-color:deeppink" value="Search" type="submit">
+                            <i class="fa fa-search" aria-hidden="true" action="/Store/search" value="Search" type="submit"></i>
+                        </button>
+
+                        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                               aria-label="Search" name="searchString">
+
+                    </div>
+                </form>*@
+        </div>
+    </div>
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="~/ashion/js/jquery-3.3.1.min.js"></script>
+    <script src="~/ashion/js/bootstrap.min.js"></script>
+    <script src="~/ashion/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/ashion/js/jquery-ui.min.js"></script>
+    <script src="~/ashion/js/mixitup.min.js"></script>
+    <script src="~/ashion/js/jquery.countdown.min.js"></script>
+    <script src="~/ashion/js/jquery.slicknav.js"></script>
+    <script src="~/ashion/js/owl.carousel.min.js"></script>
+    <script src="~/ashion/js/jquery.nicescroll.min.js"></script>
+    <script src="~/ashion/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>
+<script>
+
+        $(document).ready(function () {
+                //alert(0);contentMenu
+            $('#contentcart').load("@Url.Content("~/MyStore/ShoppingCart?handler=CartSummary")");
+            $('#contentcart2').load("@Url.Content("~/MyStore/ShoppingCart?handler=CartSummary")");
+                //$('#contentMenu').load("@Url.Content("~/Store/CategoryMenu")");
+                //alert(1);
+            });
+</script>

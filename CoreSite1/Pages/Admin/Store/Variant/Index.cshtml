@@ -1,0 +1,201 @@
+﻿@page
+@model CoreSite1.Pages.Variant.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h1>Index</h1>*@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Variants</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Variatns</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <partial name="_TotalPartial" />
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+            <div class="card">
+                <div class="card-header border-transparent">
+                    <h3 class="card-title">Variants</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card-header border-0">
+
+                    <p>
+                        <a asp-page="Create">Create New</a>
+                    </p>
+                    <form asp-page="./Index" method="get">
+                        @*<div class="form-actions no-color">
+                            <p>
+                                Find by name, Brand:
+                                <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                                <input type="submit" value="Search" class="btn btn-default" /> |
+                                <a asp-page="./Index">Back to full List</a>
+                            </p>
+                        </div>*@
+                        <div class="form-inline">
+                            <div class="input-group" data-widget="sidebar-search">
+                                <div class="form-actions no-color">
+                                    <p>
+                                        Find by name, Brand:
+                                        <input type="search" class="form-control form-control-sidebar" name="SearchString" value="@Model.CurrentFilter" placeholder="Search" aria-label="Search" />
+                                        <button class="btn btn-sidebar">
+                                            <i class="fas fa-search fa-fw"></i>
+                                        </button>
+                                        |<a asp-page="./Index">Back to full List</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].AddedDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].AddedBy)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].SKU)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].UnitInStock)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].Size)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].color)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].IsDefaulProduct)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].OptionalImageURL)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].OptionalPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Variant[0].Product)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Variant)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AddedDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AddedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SKU)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UnitInStock)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Size)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.color)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IsDefaulProduct)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OptionalImageURL)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OptionalPrice)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Product.Brand)
+                                    </td>
+                                    <td>
+                                        <a asp-page="./Edit" asp-route-id="@item.VariantId">Edit</a> |
+                                        <a asp-page="./Details" asp-route-id="@item.VariantId">Details</a> |
+                                        <a asp-page="./Delete" asp-route-id="@item.VariantId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @{
+                        var prevDisabled = !Model.Variant.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.Variant.HasNextPage ? "disabled" : "";
+                    }
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Variant.PageIndex - 1)"
+                       asp-route-currentFilter="@Model.CurrentFilter"
+                       class="btn btn-default @prevDisabled">
+                        Previous
+                    </a>
+                    <a asp-page="./Index"
+                       asp-route-pageIndex="@(Model.Variant.PageIndex + 1)"
+                       asp-route-currentFilter="@Model.CurrentFilter"
+                       class="btn btn-default @nextDisabled">
+                        Next
+                    </a>
+                </div>
+            </div>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+                <!-- The Close Button -->
+                <span class="close">&times;</span>
+
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" id="img01">
+
+                <!-- Modal Caption (Image Text) -->
+                <div id="caption"></div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+    </div><!--/. container-fluid -->
+</section>
+
+
+
+
+
+

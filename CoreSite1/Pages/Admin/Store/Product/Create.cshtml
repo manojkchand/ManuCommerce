@@ -1,0 +1,200 @@
+﻿@page
+@model CoreSite1.Pages.Product.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    ////Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h1>Create</h1>
+
+    <h4>Product</h4>
+    <hr />*@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Create Products</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Create Product</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- /.content-header -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <partial name="_TotalPartial" />
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-6">
+                @*<div class="card">*@
+                <div class="card">
+                    <div class="card-header border-transparent">
+                        <h3 class="card-title">Create Products</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-header border-0">
+                        <form enctype="multipart/form-data" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Product.CategoryId" class="control-label"></label>
+                                <input asp-for="Product.CategoryId" class="form-control" />
+                                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Product.Title" class="control-label"></label>
+                                <input asp-for="Product.Title" class="form-control" />
+                                <span asp-validation-for="Product.Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Product.Price" class="control-label"></label>
+                                <input asp-for="Product.Price" class="form-control" />
+                                <span asp-validation-for="Product.Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Product.Brand" class="control-label"></label>
+                                <input asp-for="Product.Brand" class="form-control" />
+                                <span asp-validation-for="Product.Brand" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Product.Discount" class="control-label"></label>
+                                <input asp-for="Product.Discount" class="form-control" />
+                                <span asp-validation-for="Product.Discount" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                Upload New Image File: <a href="#" onclick="window.open('BufferedSingleFileUploadPhysical','','toolbar=no,status=no,menubar=no,location=center,scrollbars=no,resizable=no,height=500,width=857')">New Image</a><br />
+                                @*get file path*@
+                                <dl>
+                                    <dt>
+                                        @*<label asp-for="FileUpload.FormFile"></label>*@
+                                    </dt>
+                                    <dd>
+                                        @*2.<input asp-for="FileUpload.FormFile" type="file" />
+                                        <span asp-validation-for="FileUpload.FormFile"></span>*@
+                                    </dd>
+                                </dl>
+                                @*Use Images Directory Choose File: @Model.path
+                                <br />*@<label asp-for="Product.ProductArtUrl" class="control-label">Uploaded Path -Product Art Url -(Use Dir "/images/FASHION_DATA/...")</label>
+                                <input asp-for="Product.ProductArtUrl" id="inp1" class="form-control" >(Always use / slash with https://)
+                                @*<a class="thumbnail pull-left" href="#">*@
+                                <br />
+                                <img class="media-object" id="img1" src="" style="width: 72px; height: 72px;visibility:hidden">
+                                @*</a>*@
+                                <span asp-validation-for="Product.ProductArtUrl" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Product.Description" class="control-label"></label>
+                                <input asp-for="Product.Description" class="form-control" />
+                                <span asp-validation-for="Product.Description" class="text-danger"></span>
+                            </div>
+                            @*<div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>*@
+                            @*</form>*@
+                            @*</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">*@
+                            @*<form method="post">*@
+                            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+                            @*<div class="form-group">
+                                <label asp-for="Variant.ProductId" class="control-label"></label>
+                                <select asp-for="Variant.ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Variant.AddedDate" class="control-label"></label>
+                                <input asp-for="Variant.AddedDate" class="form-control" />
+                                <span asp-validation-for="Variant.AddedDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Variant.AddedBy" class="control-label"></label>
+                                <input asp-for="Variant.AddedBy" class="form-control" />
+                                <span asp-validation-for="Variant.AddedBy" class="text-danger"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <label asp-for="Variant.SKU" class="control-label"></label>
+                                <input asp-for="Variant.SKU" class="form-control" />
+                                <span asp-validation-for="Variant.SKU" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Variant.UnitInStock" class="control-label"></label>
+                                <input asp-for="Variant.UnitInStock" class="form-control" />
+                                <span asp-validation-for="Variant.UnitInStock" class="text-danger"></span>
+                            </div>
+                            @*<div class="form-group">
+                                <label asp-for="Variant.Name" class="control-label"></label>
+                                <input asp-for="Variant.Name" class="form-control" />
+                                <span asp-validation-for="Variant.Name" class="text-danger"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <label asp-for="Variant.Size" class="control-label"></label>
+                                <input asp-for="Variant.Size" class="form-control" />
+                                <span asp-validation-for="Variant.Size" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Variant.color" class="control-label"></label>
+                                <input asp-for="Variant.color" class="form-control" />
+                                <span asp-validation-for="Variant.color" class="text-danger"></span>
+                            </div>
+                            @*<div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="Variant.IsDefaulProduct" /> @Html.DisplayNameFor(model => model.Variant.IsDefaulProduct))
+                                </label>
+                            </div>*@
+                            @*<div class="form-group">
+                                <label asp-for="Variant.OptionalImageURL" class="control-label"></label>
+                                <input asp-for="Variant.OptionalImageURL" class="form-control" />
+                                <span asp-validation-for="Variant.OptionalImageURL" class="text-danger"></span>
+                            </div>*@
+                            @*<div class="form-group">
+                                <label asp-for="Variant.OptionalPrice" class="control-label"></label>
+                                <input asp-for="Variant.OptionalPrice" class="form-control" />
+                                <span asp-validation-for="Variant.OptionalPrice" class="text-danger"></span>
+                            </div>*@
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <a asp-page="Index">Back to List</a>
+                    </div>
+                </div>
+                @*</div>*@
+            </div>
+
+        </div>
+    </div><!--/. container-fluid -->
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#inp1").focusout(function () {
+        $("#img1").css("visibility", "visible");
+        $("#img1").attr("src",$("#inp1").val());
+    });
+</script>

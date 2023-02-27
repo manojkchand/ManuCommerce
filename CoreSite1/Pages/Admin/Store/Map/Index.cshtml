@@ -1,0 +1,49 @@
+﻿@page
+@model CoreSite1.Pages.Admin.Store.Map.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Pages/Shared/Yoga/Blog/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MapImage[0].LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MapImage[0].MapShape)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MapImage[0].coords)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MapImage) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MapShape)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.coords)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.MapImageID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MapImageID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MapImageID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

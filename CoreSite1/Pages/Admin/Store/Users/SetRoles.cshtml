@@ -1,0 +1,119 @@
+﻿@page
+@model CoreSite1.Pages.Admin.Store.Users.SetRolesModel
+@{
+}
+<script>
+
+    function FilterCall(url) {
+        //alert(1);
+        //$('form').submit(category,CurrentSort,filter);
+        //window.location.replace(url);
+        // Simulate a mouse click:
+        window.location.href = url;
+      
+    }
+</script>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/css/card.css" rel="stylesheet" />
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">User Roles</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="profile-form" enctype="multipart/form-data" method="post">
+                            <div class="row"><div asp-validation-summary="All" class="text-danger"></div></div>
+                            <div class="row">
+                                <div class="col-md-5 px-1">
+                                    <div class="form-group">
+                                        <label value="@Model.user.UserName">UserName</label>
+                                        <input value="@Model.user.UserName" class="form-control" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover">@*style="border:solid">*@
+                                        <thead>
+                                        <th>User Roles-</th>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var role in Model.userRole)
+                                            {
+                                                <tr>
+                                                    @*<td>@role.Id</td>*@
+                                                    <td>@role </td>
+                                                    @*<td>@role.NormalizedName</td>*@
+                                                    @*<td><a href="./Detail?id=@user.Id" class="btn btn-primary">Details</a></td>*@
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">All Roles</h4>
+                        @*<p class="card-category">Here is a subtitle for this table</p>*@
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <form method="post">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <th>Name</th>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var role in Model.rolelist)
+                                    {
+                                    <tr>
+                                        @*<td>@role.Id</td>*@
+                                        <td>@role.Name </td>
+                                        @*<td>@role.NormalizedName</td>*@
+                                        @*<td><a href="./Detail?id=@user.Id" class="btn btn-primary">Details</a></td>*@
+
+                                        @if (Model.userRole.Contains(role.Name.ToString()))
+                                        {
+                                            <td><input type="checkbox" value="@role.Name" asp-for="@Model.selectedRole" onclick="FilterCall('/Admin/Store/Users/SetRoles?id=@Model.user.Id'+'&rl=@role.Name')" checked="checked" /></td>
+
+                                         
+                                        @*<input type="checkbox" class="custom-control-input" id="defaultIndeterminate{@i}" onclick="FilterCall('@mainURL','@Product.chcekboxAnswer','@Product.Brand.Trim().ToString()','@ss')" name="searchString" value="@Product.Brand.Trim()" asp-for="@Product.chcekboxAnswer" checked="@Product.chcekboxAnswer">
+                                        <label class="custom-control-label" for="defaultIndeterminate{@i}">@Product.Brand.Trim()</label>
+                                        <input type="hidden" asp-for="@Product.ProductId" />
+                                        <input type="hidden" asp-for="@Product.Brand" />*@
+                                        }
+                                        else
+                                        {
+                                        <td><input type="checkbox" value="@role.Name" asp-for="@Model.selectedRole" onclick="FilterCall('/Admin/Store/Users/SetRoles?id=@Model.user.Id'+'&rl=@role.Name')"/></td>
+                                        }
+                                    </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

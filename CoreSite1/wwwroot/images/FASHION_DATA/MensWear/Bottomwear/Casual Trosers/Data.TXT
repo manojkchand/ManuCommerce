@@ -1,0 +1,60 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men SLim FIt Regular Trousers
+1999
+Louis Philippe Sport
+10%
+
+2
+Men Regular Fit Regular Trousers
+2195
+Blackberrys
+505
+
+
+3
+Men Smart Slim Fit Chinos
+1699
+Allen Solly
+205
+
+
+4
+Men Slim Fit Regular Trousers
+2799
+Louis Phillippe Sport
+10%
+
+5
+Men SLim FIt Chinos
+2599
+Louis Philippe Sport
+10%
+
+
+6
+Men Regular Fit Regular Trousers
+2595
+Blackberrys
+30%
+
+7
+Men SLim Fit Regular Trousers
+2599
+Louis Philippe Sport
+15%
+
+8
+Men SLim Fit Regular Trousers
+1999
+Louis Philippe Sport
+15%

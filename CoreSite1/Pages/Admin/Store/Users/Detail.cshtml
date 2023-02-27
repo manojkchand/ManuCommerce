@@ -1,0 +1,173 @@
+﻿@page
+@model CoreSite1.Pages.Admin.Store.Users.DetailModel
+@{
+}
+<link href="~/css/card.css" rel="stylesheet" />
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">View Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="profile-form" enctype="multipart/form-data" method="post">
+                            <div class="row"><div asp-validation-summary="All" class="text-danger"></div></div>
+                            <div class="row">
+
+                                @*<div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label>Company (disabled)</label>
+                                        <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                                    </div>
+                                </div>*@
+                                <div class="col-md-5 px-1">
+                                    <div class="form-group">
+                                        <label value="@Model.userName">UserName</label>
+                                        <input value="@Model.userName" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label value="@Model.userEmail">Email</label>
+                                        @*@if (Model.IsEmailConfirmed)
+                                        {*@
+                                        <div class="input-group">
+                                            <input value="@Model.userEmail" class="form-control" disabled />
+                                            <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+                                        </div>
+                                        @*}
+                                        else
+                                        {
+                                            <input asp-for="Input.Email" class="form-control" />
+                                            <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                                        }
+                                        <span asp-validation-for="Input.Email" class="text-danger"></span>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label value="@Model.user.Name">Name</label>
+                                        <input value="@Model.user.Name" class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label value="@Model.user.DOB">DOB</label>
+                                        <input value="@Model.user.DOB" class="form-control" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label value="@Model.user.PhoneNumber">PhoneNumber"</label>
+                                        <input value="@Model.user.PhoneNumber" class="form-control" disabled />
+                                        @*<span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        @*<label asp-for="FileUpload.FormFile">Upload New Photo</label>*@
+                                        @*<input asp-for="FileUpload.FormFile" type="file" />*@
+                                        @*<img src="data:image;base64,@Convert.ToBase64String(Model.UserPhotos(Model.Input.FileUpload).FileContents)" style="width:60px;height:60px; background: #FFFFFF;
+                                        margin: auto; padding: 6px; box-shadow: 0px 0px 20px #888;" />*@
+                                        @*<input asp-for="FileUpload.FormFile" type="file" id="fileUpload" class="form-control" />
+                                        <span asp-validation-for="FileUpload.FormFile" class="text-danger"></span>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>*@
+                            @*<button type="submit" id="update-profile-button" class="btn btn-info btn-fill pull-right">Update Profile</button>*@
+                            <div class="clearfix"></div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="card-image" style="background-color:purple;height:60px">
+                        @*<img alt="..." style="background-color:purple">*@
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                            <a href="#">
+                                <img class="avatar border-gray" src="data:image;base64,@Convert.ToBase64String(Model.UserPhotos(Model.user.Photo).FileContents)" alt="...">
+                                <h5 class="title">@Model.userName</h5>
+                            </a>
+                            <p class="description">
+                                @* @Model.*@
+                            </p>
+                        </div>
+                        <p class="description text-center">
+                            @*"Lamborghini Mercy
+                            <br> Your chick she so thirsty
+                            <br> I'm in that two seat Lambo"*@
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="button-container mr-auto ml-auto">
+                       @*//check if the user in role super admin than show the below link*@
+                        <a href="./SetRoles?id=@Model.userId" class="btn btn-primary">Add user to Role</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="row">
+
+                    @*@if (Model.Addresses == null || Model.Addresses.Count == 0)
+                    {*@
+                    @foreach (var item in Model.Addresses)
+                    {
+                        <div class="col-md-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="contact-box center-version">
+                                        <h3 class="m-b-xs">
+                                            <strong>
+                                                @Html.DisplayFor(modelItem => item.FirstName)
+                                                @Html.DisplayFor(modelItem => item.LastName)
+                                            </strong>
+                                        </h3>
+                                        <address class="m-t-md">
+                                            @Html.DisplayFor(modelItem => item.Street)<br>
+                                            @Html.DisplayFor(modelItem => item.City)@Html.DisplayFor(modelItem => item.State)<br>
+                                            @Html.DisplayFor(modelItem => item.Country)  @Html.DisplayFor(modelItem => item.PostalCode)<br>
+                                            <i class="fa fa-phone"></i>@*<abbr title="Phone">P:</abbr>*@ (+91) @Html.DisplayFor(modelItem => item.Phone)
+                                            <i class="fa fa-envelope"></i>@Html.DisplayFor(modelItem => item.Email)
+                                        </address>
+                                        <div class="contact-box-footer">
+                                            <div class="m-t-xs btn-group">
+                                                @{
+                                                    IDictionary<string, string> routeData = new Dictionary<string, string>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    {"id", item.AddressID.ToString()}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                };
+                                                }
+                                                @*Deliver to this Address: <input type="radio" name="redirect" value="@item.AddressID" asp-page="AddressAndPayment" asp-controller="CheckoutController" asp-action="AddressAndPayment" asp-all-route-data="routeData">*@
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @*}*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

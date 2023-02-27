@@ -1,0 +1,122 @@
+﻿@page
+@model CoreSite1.Pages.Variant.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    //Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h1>Edit</h1>
+
+<h4>Variant</h4>
+<hr />*@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Edit Variant</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Edit Variant</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header border-transparent">
+                <h3 class="card-title">Edit Variant</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-header border-0">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Variant.VariantId" />
+                    <div class="form-group">
+                        <label asp-for="Variant.ProductId" class="control-label"></label>
+                        <select asp-for="Variant.ProductId" class="form-control" asp-items="ViewBag.ProductId"></select>
+                        <span asp-validation-for="Variant.ProductId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.AddedDate" class="control-label"></label>
+                        <input asp-for="Variant.AddedDate" class="form-control" />
+                        <span asp-validation-for="Variant.AddedDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.AddedBy" class="control-label"></label>
+                        <input asp-for="Variant.AddedBy" class="form-control" />
+                        <span asp-validation-for="Variant.AddedBy" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.SKU" class="control-label"></label>
+                        <input asp-for="Variant.SKU" class="form-control" />
+                        <span asp-validation-for="Variant.SKU" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.UnitInStock" class="control-label"></label>
+                        <input asp-for="Variant.UnitInStock" class="form-control" />
+                        <span asp-validation-for="Variant.UnitInStock" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.Name" class="control-label"></label>
+                        <input asp-for="Variant.Name" class="form-control" />
+                        <span asp-validation-for="Variant.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.Size" class="control-label"></label>
+                        <input asp-for="Variant.Size" class="form-control" />
+                        <span asp-validation-for="Variant.Size" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.color" class="control-label"></label>
+                        <input asp-for="Variant.color" class="form-control" />
+                        <span asp-validation-for="Variant.color" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Variant.IsDefaulProduct" /> @Html.DisplayNameFor(model => model.Variant.IsDefaulProduct)
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.OptionalImageURL" class="control-label"></label>
+                        <input asp-for="Variant.OptionalImageURL" class="form-control" />
+                        <span asp-validation-for="Variant.OptionalImageURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Variant.OptionalPrice" class="control-label"></label>
+                        <input asp-for="Variant.OptionalPrice" class="form-control" />
+                        <span asp-validation-for="Variant.OptionalPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+            <div>
+                <a asp-page="Index">Back to List</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<div>
+        <a asp-page="./Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

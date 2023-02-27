@@ -1,0 +1,47 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Tapered Fit Jeans
+1999
+HIGHLANDER
+50%
+
+
+2
+Men Skinny FIt Jeans
+1499
+Roadster
+30%
+
+
+3
+Men 519 Super Skinny Fit Jeans
+3499
+Levis
+10%
+
+4
+Men Slim Taper Fit Jeans
+3399
+Levis
+25%
+
+5
+Men 512 Slim Tapered Fit Jeans
+4199
+Levis
+19%
+
+6
+Men Straight Fit Jeans
+2399
+Flying Machine
+30%

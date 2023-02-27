@@ -1,0 +1,10 @@
+TITLE
+PRICE
+DISCOUNTED
+IMAGE_URL
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+BRAND_optional
+Description_Optional
+
+

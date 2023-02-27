@@ -1,0 +1,45 @@
+ProductId,CategoryId,AddedDate,AddedBy,Title,Price,Brand,Discount,ProductArtUrl,Description,CategoryId,AddedDate,AddedBy,Name,ParentCategoryId,Description,StockOfNonVariant,RowVersion,UnitInStock,Colour,Size,VariantId,OptionalImageURL,chcekboxAnswer
+1,18,07/15/2020 17:36:00,manojchand@gmail.com,Printed Polo Collar T-Shirt,637.00,FIDO DIDO,50,/images/FASHION_DATA/MensWear/TopWear/T-Shirts/1.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D1,,,,,,False
+2,18,07/15/2020 17:36:00,manojchand@gmail.com,Slim Fit Polo Collar T-Shirt,637.00,FIDO DIDO,50,/images/FASHION_DATA/MensWear/TopWear/T-Shirts/2.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D2,,,,,,False
+3,18,07/15/2020 17:36:00,manojchand@gmail.com,Solid Polo Collar T-Shirt,999.00,HERE&NOW,0,/images/FASHION_DATA/MensWear/TopWear/T-Shirts/3.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D3,,,,,,False
+4,18,07/15/2020 17:36:00,manojchand@gmail.com,"Color Block Men Round Neck White, Plue Grey T-Shirt",999.00,AUSK,60,/images/FASHION_DATA/MensWear/TopWear/T-Shirts/4.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D4,,,,,,False
+5,18,07/15/2020 17:36:00,manojchand@gmail.com,Color Block Men Round Neck Dark Blue T-Shirt,1499.00,Wrath,72,/images/FASHION_DATA/MensWear/TopWear/T-Shirts/5.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D5,,,,,,False
+6,18,07/15/2020 17:36:00,manojchand@gmail.com,"Color Block Men Round Neck White, Blue, Yellow T-Shirt",1499.00,Aelomart,70,/images/FASHION_DATA/MensWear/TopWear/T-Shirts/6.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D6,,,,,,False
+7,18,07/15/2020 17:36:00,manojchand@gmail.com,STATUS QUO Printed Slim Fit Crew Neck T-Shirt,699.00,Regular,50,"
+/images/FASHION_DATA/MensWear/TopWear/T-Shirts/7.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D7,,,,,,False
+9,18,07/15/2020 17:36:00,manojchand@gmail.com,SMILEY Graphic Print Regular Fit T-Shirt,599.00,Regular,40,"
+/images/FASHION_DATA/MensWear/TopWear/T-Shirts/8.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D8,,,,,,False
+10,18,07/15/2020 17:36:00,manojchand@gmail.com,FORCE Textured Regular Fit Crew Nect T-Shirt,599.00,Regular,40,"
+/images/FASHION_DATA/MensWear/TopWear/T-Shirts/9.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007D9,,,,,,False
+11,18,07/15/2020 17:36:00,manojchand@gmail.com,Striped Polo T-Shirt,899.00,Roadster,20,"
+/images/FASHION_DATA/MensWear/TopWear/T-Shirts/10.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007DA,,,,,,False
+12,19,07/15/2020 17:36:00,manojchand@gmail.com,Men Checkered Casual Spread Shirt,1299.00,Highlander,53,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/1.jpeg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007DB,,,,,,False
+13,19,07/15/2020 17:36:00,manojchand@gmail.com,Men Solid Casual Shirt,999.00,Highlander,0,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/2.jpeg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007DC,,,,,,False
+14,19,07/15/2020 17:36:00,manojchand@gmail.com,Slim Fit Casual Shirt,2599.00,Levis,15,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/3.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007DD,,,,,,False
+15,19,07/15/2020 17:36:00,manojchand@gmail.com,Men Regular Fit Casual Shirt,2195.00,Wrangler,10,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/4.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007DE,,,,,,False
+16,19,07/15/2020 17:36:00,manojchand@gmail.com,Men Slim Fit Casual Shirt,1899.00,SPYKAR,30,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/5.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007DF,,,,,,False
+17,19,07/15/2020 17:36:00,manojchand@gmail.com,Regular Fit Casual Shirt,799.00,"
+Excalibur",0,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/6.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E0,,,,,,False
+18,19,07/15/2020 17:36:00,manojchand@gmail.com,Men Checkerd Casual Button Down Shirt,1287.00,Asian & Fitch,50,/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/15.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E1,,,,,,False
+19,19,07/15/2020 17:36:00,manojchand@gmail.com,Regular Fit Casual Shirt,1895.00,Wrangler,15,/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/8.jpg,,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E2,,,,,,False
+20,19,07/15/2020 17:36:00,manojchand@gmail.com,Super Slim Fit Casual Shirt,2599.00,Lee,10,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/9.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E3,,,,,,False
+21,19,07/15/2020 17:36:00,manojchand@gmail.com,Ultra Slim Fit Checked Shirt,1799.00,ALlen Solly Sport,20,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/10.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E4,,,,,,False
+22,19,07/15/2020 17:36:00,manojchand@gmail.com,Slim Fit Casual Shirt,2199.00,Lee,10,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/11.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E5,,,,,,False
+23,19,07/15/2020 17:36:00,manojchand@gmail.com,Men Regular Fit Casual Shirt,2649.00,Louis Philippe Sport,0,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/12.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E6,,,,,,False
+24,19,07/15/2020 17:36:00,manojchand@gmail.com,Men Slim Fit Casual Shirt,2159.00,Lee,10,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/13.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E7,,,,,,False
+25,19,07/15/2020 17:36:00,manojchand@gmail.com,Super Slim Fit Checked Shirt,2499.00,Louis Philippe Sport,10,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/14.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E8,,,,,,False
+26,19,07/15/2020 17:36:00,manojchand@gmail.com,Slim Fit Casual Shirt,2799.00,Lee,10,"
+/images/FASHION_DATA/MensWear/TopWear/Casual_Shirts/15.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000007E9,,,,,,False
+27,27,08/05/2020 18:06:55,manojchand@gmail.com,"Men's Flex Lightweight Travel Jeans ",5000.00,Flex Jeans,10," /images/FASHION_DATA/MensWear/Bottomwear/Jeans/Variant_1/1_1.jpg",,0,01/01/0001 00:00:00,,,0,,,0x00000000000055F1,,,,,,False

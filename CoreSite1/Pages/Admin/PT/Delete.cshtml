@@ -1,0 +1,59 @@
+﻿@page
+@model CoreSite1.Pages.Admin.PageTemplate.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PageTemplate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTemplate.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTemplate.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTemplate.TempleteURL)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTemplate.TempleteURL)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTemplate.Header)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTemplate.Header)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTemplate.Footer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTemplate.Footer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTemplate.SideBar)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTemplate.SideBar)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PageTemplate.RowVersion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PageTemplate.RowVersion)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="PageTemplate.PageTemplateId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

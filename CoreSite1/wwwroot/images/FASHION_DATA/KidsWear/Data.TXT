@@ -1,0 +1,5 @@
+TITLE
+PRICE
+IMAGE_URL
+Description_Optional
+

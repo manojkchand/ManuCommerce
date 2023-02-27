@@ -1,0 +1,61 @@
+﻿@page
+@model CoreSite1.Pages.ToDoItem.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    //Layout = "~/Pages/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>ToDoItem</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ToDoItem.Id" />
+            <div class="form-group">
+                <label asp-for="ToDoItem.Note" class="control-label"></label>
+                <input asp-for="ToDoItem.Note" class="form-control" />
+                <span asp-validation-for="ToDoItem.Note" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ToDoItem.Done" /> @Html.DisplayNameFor(model => model.ToDoItem.Done)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ToDoItem.IsCalenderEvent" /> @Html.DisplayNameFor(model => model.ToDoItem.IsCalenderEvent)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDoItem.CalenderEventDate" class="control-label"></label>
+                <input asp-for="ToDoItem.CalenderEventDate" class="form-control" />
+                <span asp-validation-for="ToDoItem.CalenderEventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDoItem.AddedBy" class="control-label"></label>
+                <input asp-for="ToDoItem.AddedBy" class="form-control" />
+                <span asp-validation-for="ToDoItem.AddedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDoItem.AddedDate" class="control-label"></label>
+                <input asp-for="ToDoItem.AddedDate" class="form-control" />
+                <span asp-validation-for="ToDoItem.AddedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

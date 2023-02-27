@@ -1,0 +1,650 @@
+﻿@page
+@model CoreSite1.Pages.Admin.PListModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/css/card.css" rel="stylesheet" />
+    <style>
+        /* Style the Image Used to Trigger the Modal */
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            #myImg:hover {
+                opacity: 0.7;
+            }
+    </style>
+    <style>
+        .hiddenRow {
+            padding: 0 !important;
+        }
+    </style>
+
+    <title>PList</title>
+</head>
+<body>
+    @*<p>
+            <a asp-page="Create">Create New</a>
+        </p>*@
+
+    <!-- Button trigger modal -->
+    @*<button type="button" class="btn btn-primary" data-toggle="modal" id="myModal" data-target="#exampleModal">
+        Launch demo modal
+    </button>*@
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <!--<div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">-->
+            @*<embed class="modal-body" type="text/html" src="/MyStore/"  />*@
+            <!--</div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="ok_" class="btn btn-primary">Save changes</button>
+        </div>
+    </div>-->
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                            <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                            <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="" checked>Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                    <p>Not a member? <a href="#">Sign Up</a></p>
+                    <p>Forgot <a href="#">Password?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+        .hiddenRow {
+            padding: 0 !important;
+        }
+    </style>
+    @*<table class="table table-condensed" style="border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>buttons</th>
+                <th>#</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Credit</th>
+                <th>Debit</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
+                <td>buttons</td>
+                <td>1</td>
+                <td>05 May 2013</td>
+                <td>Credit Account</td>
+                <td class="text-success">$150.00</td>
+                <td class="text-error"></td>
+                <td class="text-success">$150.00</td>
+            </tr>
+            <tr>
+                <td colspan="6" class="hiddenRow"><div class="accordian-body collapse" id="demo1"> Demo1 </div> </td>
+            </tr>
+            <tr data-toggle="collapse" data-target="#demo2" class="accordion-toggle">
+                <td>buttons</td>
+                <td>2</td>
+                <td>05 May 2013</td>
+                <td>Credit Account</td>
+                <td class="text-success">$11.00</td>
+                <td class="text-error"></td>
+                <td class="text-success">$161.00</td>
+            </tr>
+            <tr>
+                <td colspan="6" class="hiddenRow"><div id="demo2" class="accordian-body collapse">Demo2</div></td>
+            </tr>
+            <tr data-toggle="collapse" data-target="#demo3" class="accordion-toggle">
+                <td>buttons</td>
+                <td>3</td>
+                <td>05 May 2013</td>
+                <td>Credit Account</td>
+                <td class="text-success">$500.00</td>
+                <td class="text-error"></td>
+                <td class="text-success">$661.00</td>
+            </tr>
+            <tr>
+                <td colspan="6" class="hiddenRow"><div id="demo3" class="accordian-body collapse">Demo3</div></td>
+            </tr>
+        </tbody>
+    </table>*@
+
+    @*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Brand)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Discount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].ProductArtUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].StockOfNonVariant)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].RowVersion)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Product)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Discount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductArtUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StockOfNonVariant)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RowVersion)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header ">
+                            <h4 class="card-title">Product's for Category:@Model.CurrentCategory</h4>
+                            <div class="card-category">
+                                <form asp-page="./Admin/PList" method="get">
+                                    <div class="form-inline">
+                                        <div class="input-group" data-widget="sidebar-search">
+                                            <div class="form-actions no-color">
+                                                <p>
+                                                    Find by name, Brand:
+                                                    <input type="hidden" name="cid" value="@Model.CurrentCid" />
+                                                    <input type="search" class="form-control form-control-sidebar" name="SearchString" value="@Model.CurrentFilter" placeholder="Search" aria-label="Search" />
+                                                    <button class="btn btn-sidebar">
+                                                        <i class="fa-search"></i>
+                                                    </button>
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body table-full-width table-responsive">
+                            <table class="table table-condensed table-hover table-striped" style="border-collapse:collapse" id="tblProd">
+                              
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @*Create New Variant*@Buttons
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Title)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Price)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Brand)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Discount)
+                                        </th>
+                                        <th>
+                                            @*@Html.DisplayNameFor(model => model.Product[0].ProductArtUrl)*@Image
+                                        </th>
+                                        @*<th>
+                    @Html.DisplayNameFor(model => model.Product[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Category)
+                </th>*@
+                                        @*<th></th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Product)
+                                    {
+                                        
+                                        <tr data-toggle="collapse" data-target="#demo_@item.ProductId"  class="accordion-toggle">
+                                            <td width="300px">
+                                                <a href="/MyStore/details/?id=@item.ProductId&vid=@item.VariantId">Details</a> |
+                                                <a asp-page="/Admin/ProductEdit" asp-route-id="@item.ProductId">Edit</a> |
+
+                                                @*<a asp-page="./Delete" data-toggle="modal" data-target="#exampleModal" asp-route-id="@item.ProductId">Delete</a>*@
+                                                <a href="#" data-toggle="modal" data-target="#exampleModal" data-id="P_@item.ProductId">Delete</a> | @*href for css*@
+                                                <a href="#" data-toggle="modal" data-target="#exampleModal" data-id="VCreate_@item.ProductId">AddVariant</a> @*href for css*@
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Brand)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Discount)
+                                            </td>
+                                            <td>
+                                                @*<a class="thumbnail pull-left" href="#">*@
+                                                <img id="myImg" calss="tt" src="@Html.DisplayFor(modelItem => item.ProductArtUrl)" alt="@Html.DisplayFor(modelItem => item.Title)" style="width: 22px; height: 32px;">
+                                                @*<img id="myImg" class="media-object" src="@Html.DisplayFor(modelItem => item.ProductArtUrl)" style="width: 72px; height: 72px;">*@
+                                                @*</a>*@
+
+                                            </td>
+                                            @*<td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>*@
+                                                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.Category.Name) | ID:@Model.CurrentCid
+                                            </td>*@
+                                            @*<td>
+                                              
+                                            </td>*@
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" class="hiddenRow">
+                                                <div class="accordian-body collapse" id="demo_@item.ProductId">
+                                                    <table class="table table-hover table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                @*<th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].AddedDate)
+                                                                </th>
+                                                                <th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].AddedBy)
+                                                                </th>*@
+                                                                @*<th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].SKU)
+                                                                </th>*@
+                                                                 <th>
+                                                                   Variant @Html.DisplayNameFor(model => item.Variantlist[0].Name)
+                                                                </th>
+                                                                <th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].UnitInStock)
+                                                                </th>
+                                                               
+                                                                <th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].Size)
+                                                                </th>
+                                                                <th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].color)
+                                                                </th>
+                                                                <th>
+                                                                    IsDefaulProduct
+                                                                </th>
+                                                                @*<th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].OptionalImageURL)
+                                                                </th>*@
+                                                                <th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].OptionalPrice)
+                                                                </th>
+                                                                @*<th>
+                                                                    @Html.DisplayNameFor(model => item.Variantlist[0].Product)
+                                                                </th>*@
+                                                                @*<th>Brand</th>*@<th>Buttons</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var vitem in item.Variantlist)
+                                                            {
+                                                                <tr>
+                                                                    @*<td>
+                                                                        @Html.DisplayFor(modelItem => vitem.AddedDate)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => vitem.AddedBy)
+                                                                    </td>*@
+                                                                    @*<td>
+                                                                        @Html.DisplayFor(modelItem => vitem.SKU)
+                                                                    </td>*@
+                                                                     <td>
+                                                                        @Html.DisplayFor(modelItem => vitem.Name)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => vitem.UnitInStock)
+                                                                    </td>
+                                                                   
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => vitem.Size)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => vitem.color)
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar" role="progressbar" style="width: 100%;background-color:@vitem.color !important" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => vitem.IsDefaulProduct)
+                                                                    </td>
+                                                                    @*<td>
+                                                                        @Html.DisplayFor(modelItem => vitem.OptionalImageURL)
+                                                                    </td>*@
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => vitem.OptionalPrice)
+                                                                    </td>
+                                                                    @*<td>
+                                                                        @Html.DisplayFor(modelItem => vitem.Product.Brand)
+                                                                    </td>*@
+                                                                <td style="width:200px">
+                                                                    <a href="/MyStore/details/?id=@vitem.ProductId&vid=@vitem.VariantId">Details</a>|
+                                                                    <a asp-page="/Admin/VariantEdit" asp-route-id="@vitem.VariantId">Edit</a> |
+                                                                    @*<a asp-page="/MyStore/Details" asp-route-id="@vitem.VariantId">Details</a>*@
+
+                                                                    <a href="#" data-toggle="modal" data-target="#exampleModal" data-id="V_@vitem.VariantId">Delete</a> @*href for css*@
+                                                                </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div> 
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @{
+                                var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+                            }
+                            <a asp-page="./Index"
+                               asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                               asp-route-currentFilter="@Model.CurrentFilter"
+                               class="btn btn-default @prevDisabled">
+                                Previous
+                            </a>
+                            <a asp-page="./Index"
+                               asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                               asp-route-currentFilter="@Model.CurrentFilter"
+                               class="btn btn-default @nextDisabled">
+                                Next
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01">
+
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#ok_").click(function () {
+                alert(2);
+            });
+        });
+        $(document).ready(function () {
+
+            $('a[data-toggle=modal], button[data-toggle=modal]').click(function () {
+
+              
+                var Id = $(this).data('id');
+                alert(Id);
+               //Delete Variant
+                if (Id.includes("V_"))
+                {
+                    alert('variant');
+                    Id = Id.replace("V_", "");
+                    alert(Id);
+
+                    uri = '/api/JSTVariants';
+                    fetch(`${uri}/${Id}`, {
+                        method: 'DELETE'
+                    })
+                        //.then(() => getItems())
+                        .catch(error => console.error('Unable to delete item.', error));
+                }
+                //Delete Product
+                if (Id.includes("P_")) {
+                    alert('product');
+                    Id = Id.replace("P_", "");
+                    alert(Id);
+
+                    var uri = '/api/JSTProducts';
+                    
+                    //check if the id is for page if yes than get the parent id.else if the id is for dir use its id.
+                    fetch(`${uri}/${Id}`, {
+                        method: 'DELETE'
+                    })
+                        //.then(() => getItems())
+                        .catch(error => console.error('Unable to delete item.', error));
+                } 
+                if (Id.includes("VCreate_")) 
+                {
+                    alert('Create product Variant');
+                    Id = Id.replace("VCreate_", "");
+                    alert(Id);
+
+
+                    const uri = '/api/JSTVariants';
+                    var Branchid = Id;
+                    //check if the id is for page if yes than get the parent id.else if the id is for dir use its id.
+                    var v = Id;
+                    const item = {
+                        //VariantId: parseInt(itemId, 10),
+                        //ProductId: parseInt(obj., 10),
+                        AddedBy: "manojchand@gmail.com",
+                        /*AddedDate: d.toDateString(),*/
+                        ProductId: parseInt(Branchid, 10),
+                        UnitInStock: parseInt(1, 10),
+                        Discount: parseInt(1, 10),
+                        Name: "Default",
+                        Size: "Default",
+                        color: "Default",
+                        IsDefaulProduct: false
+                    };
+                    alert(0);
+                    fetch(uri, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(item)
+                    })
+                        .then(response => response.json())
+                        .then(data => _displayItems(data))
+                        .then(() => {
+                            GetVariant();
+                        })
+                        .catch(error => console.error('Unable to add item.', error));
+                    function _displayItems(data) {
+                        alert(JSON.stringify(data));
+                        var v = obj.id;
+                       
+                    }
+
+                    alert("added");
+                    //$('#tree').jstree(true).refresh(Branchid);
+
+                }
+
+            })
+        });
+
+
+
+
+
+        var data =
+            [
+
+                [
+
+                    {
+
+                        text: "<i class='fa fa-cut site-cm-icon'></i>Add row",
+
+                        action: function () {
+
+                           // console.log("剪切");
+
+                        }
+
+                    },
+
+                    {
+
+                        text: "<i class='fa fa-copy site-cm-icon'></i>Remove Row"
+
+                    },
+
+                    {
+
+                        text: "<i class='fa fa-paste site-cm-icon'></i>Edit Data",
+
+                        action: function () {
+
+                            //console.log("粘贴");
+
+                        }
+
+                    }
+
+                ],
+
+                [
+
+                    {
+
+                        text: "<i class='fa fa-bold site-cm-icon'></i>Hide Row）"
+
+                    },
+
+                ]
+
+            ];
+
+
+        $("#tblProd").contextMenu(data);
+        //$("#tblProd").contextmenu(function () {
+        //    alert("Handler for .contextmenu() called.");
+        //});
+    </script>
+    <script>
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        $(document).ready(function () {
+            $(".table img").on('click', function () {
+                var modalImg = document.getElementById("img01");
+                var captionText = document.getElementById("caption");
+                //img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+                //alert('bb');
+            });
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+        });
+    </script>
+</body>
+</html>

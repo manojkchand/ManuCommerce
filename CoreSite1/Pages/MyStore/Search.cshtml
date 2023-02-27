@@ -1,0 +1,776 @@
+﻿@page
+@model CoreSite1.Pages.MyStore.SearchModel
+
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Pages/Shared/_LayoutMyStore.cshtml";
+}
+
+
+<style>
+    .dropbtn {
+        background-color: rgba(221, 221, 221, 1);
+        /*background-color: #3498DB;*/
+        color: white;
+        /*padding: 16px;*/
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: #2980B9;
+        }
+
+    /*.dropdown {
+        position: relative;
+        display: inline-block;
+    }*/
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+    }
+
+
+    .arrow {
+        border: solid black;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+    }
+
+    .down {
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+    }
+</style>
+
+<script>
+
+
+
+
+
+</script>
+
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                    <span>Shop</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" style="float:right">
+            @{ string s1 = ""; string s2 = ""; string s3 = "";
+                @if (!String.IsNullOrEmpty(Model.CurrentFilter))
+                {
+                    s1 = Model.CurrentFilter;
+
+                }
+                if (!String.IsNullOrEmpty(Model.PriceFilter))
+                {
+                    s2 = Model.PriceFilter;
+                }
+                if (!String.IsNullOrEmpty(Model.DiscountFilter))
+                {
+                    s3 = Model.DiscountFilter;
+
+                }
+            }
+            <ul class="" style="list-style:none">
+                <li id="">
+                    @*<div class="sidebar__filter">
+                        <div class="section-title">
+                            <h4>Shop by price</h4>
+                        </div></div>*@
+                    <a id="drp_sort" class="dropdown-toggle">Sort By @*<i class="arrow down"></i>*@ </a>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="@Url.Page("Search", new { CategoryName = Model.CurrentCategory, sortOrder = "Discount", searchString = s1, price = s2, discount = s3 })">Discount</a>
+                        <a href="@Url.Page("Search", new { CategoryName = Model.CurrentCategory, sortOrder = "Price", searchString = s1, price = s2, discount = s3 })">Price low to high</a>
+                        <a href="@Url.Page("Search", new { CategoryName = Model.CurrentCategory, sortOrder = "Price_Desc", searchString = s1, price = s2, discount = s3 })">Price high to low</a>
+                        <a href="@Url.Page("Search", new { CategoryName = Model.CurrentCategory, sortOrder = "Name_desc", searchString = s1, price = s2, discount = s3 })">Alphabetical</a>
+                        <a href="@Url.Page("Search", new { CategoryName = Model.CurrentCategory, sortOrder = "Brand", searchString = s1, price = s2, discount = s3 })">Brand</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+@*<h1>Search</h1>*@
+
+@*<p>
+        <a asp-page="Create">Create New</a>
+    </p>*@
+
+
+<!-- Shop Section Begin -->
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="shop__sidebar">
+                    <div class="sidebar">
+                        @*@{ var v = Model.Product.GroupBy(y => y.Brand).Select(y => y.FirstOrDefault());}*@
+                        <partial name="_SearchProductFilterPartial" />
+                    </div>
+                    <div class="sidebar__categories">
+                        <div class="section-title">
+                            <h4>Categories</h4>
+                        </div>
+                        <div class="categories__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading active">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Women</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><a href="#">Coats</a></li>
+                                                <li><a href="#">Jackets</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Shirts</a></li>
+                                                <li><a href="#">T-shirts</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">Men</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><a href="#">Coats</a></li>
+                                                <li><a href="#">Jackets</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Shirts</a></li>
+                                                <li><a href="#">T-shirts</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Kids</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><a href="#">Coats</a></li>
+                                                <li><a href="#">Jackets</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Shirts</a></li>
+                                                <li><a href="#">T-shirts</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFour">Accessories</a>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><a href="#">Coats</a></li>
+                                                <li><a href="#">Jackets</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Shirts</a></li>
+                                                <li><a href="#">T-shirts</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFive">Cosmetic</a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <ul>
+                                                <li><a href="#">Coats</a></li>
+                                                <li><a href="#">Jackets</a></li>
+                                                <li><a href="#">Dresses</a></li>
+                                                <li><a href="#">Shirts</a></li>
+                                                <li><a href="#">T-shirts</a></li>
+                                                <li><a href="#">Jeans</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar__filter">
+                        <div class="section-title">
+                            <h4>Shop by price</h4>
+                        </div>
+                        <div class="filter-range-wrap">
+                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                                 data-min="33" data-max="99"></div>
+                            <div class="range-slider">
+                                <div class="price-input">
+                                    <p>Price:</p>
+                                    <input type="text" id="minamount">
+                                    <input type="text" id="maxamount">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">Filter</a>
+                    </div>
+                    <div class="sidebar__sizes">
+                        <div class="section-title">
+                            <h4>Shop by size</h4>
+                        </div>
+                        <div class="size__list">
+                            <label for="xxs">
+                                xxs
+                                <input type="checkbox" id="xxs">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="xs">
+                                xs
+                                <input type="checkbox" id="xs">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="xss">
+                                xs-s
+                                <input type="checkbox" id="xss">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="s">
+                                s
+                                <input type="checkbox" id="s">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="m">
+                                m
+                                <input type="checkbox" id="m">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="ml">
+                                m-l
+                                <input type="checkbox" id="ml">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="l">
+                                l
+                                <input type="checkbox" id="l">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="xl">
+                                xl
+                                <input type="checkbox" id="xl">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="sidebar__color">
+                        <div class="section-title">
+                            <h4>Shop by size</h4>
+                        </div>
+                        <div class="size__list color__list">
+                            <label for="black">
+                                Blacks
+                                <input type="checkbox" id="black">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="whites">
+                                Whites
+                                <input type="checkbox" id="whites">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="reds">
+                                Reds
+                                <input type="checkbox" id="reds">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="greys">
+                                Greys
+                                <input type="checkbox" id="greys">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="blues">
+                                Blues
+                                <input type="checkbox" id="blues">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="beige">
+                                Beige Tones
+                                <input type="checkbox" id="beige">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="greens">
+                                Greens
+                                <input type="checkbox" id="greens">
+                                <span class="checkmark"></span>
+                            </label>
+                            <label for="yellows">
+                                Yellows
+                                <input type="checkbox" id="yellows">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="row">
+                    @foreach (var items in Model.Product)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="@items.ProductArtUrl">
+                                    <ul class="product__hover">
+                                        <li><a href="@items.ProductArtUrl" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li>
+                                            <a id="detail-btn" class="detail-btn">
+                                                <span class="icon_document_alt"></span>
+                                                <input type="hidden" name="pid" value="@items.ProductId" />
+                                                <input type="hidden" name="vid" value="@items.VariantId" />
+                                            </a>
+                                        </li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>@*/MyStore/details?id=@item.ProductId&vid=@item.VariantId*@
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">@items.Title</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">@items.Price</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @*<div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-1.jpg">
+                                    <div class="label new">New</div>
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Furry hooded parka</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 59.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-2.jpg">
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Flowy striped skirt</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 49.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-3.jpg">
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Croc-effect bag</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 59.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-4.jpg">
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Dark wash Xavi jeans</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 59.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-5.jpg">
+                                    <div class="label">Sale</div>
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-5.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Ankle-cuff sandals</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-6.jpg">
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-6.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Contrasting sunglasses</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 59.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-7.jpg">
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-7.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Circular pendant earrings</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 59.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-8.jpg">
+                                    <div class="label stockout stockblue">Out Of Stock</div>
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-8.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Cotton T-Shirt</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 59.0</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product__item sale">
+                                <div class="product__item__pic set-bg" data-setbg="/ashion/img/shop/shop-9.jpg">
+                                    <div class="label">Sale</div>
+                                    <ul class="product__hover">
+                                        <li><a href="/ashion/img/shop/shop-9.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#">Water resistant zips backpack</a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
+                                </div>
+                            </div>
+                        </div>*@
+                    <div class="col-lg-12 text-center">
+                        @{
+                            IDictionary<string, string> routeData = new Dictionary<string, string>
+                                                                                                {
+
+                                                                                                    { "searchString",@Model.CurrentFilter},
+                                                                                                    {"price", s2},
+                                                                                                    {"discount", s3}
+                                                                                                };
+                        }
+                        @{
+                            var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                            var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+                        }
+                        <a asp-page="./Search"
+                           asp-all-route-data="routeData"
+                           asp-route-sortOrder="@Model.CurrentSort"
+                           asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                           asp-route-currentFilter="@Model.CurrentFilter"
+                           class="btn btn-default @prevDisabled">
+                            Previous
+                        </a>
+                        <a asp-page="./Search"
+                           asp-all-route-data="routeData"
+                           asp-route-sortOrder="@Model.CurrentSort"
+                           asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                           asp-route-currentFilter="@Model.CurrentFilter"
+                           class="btn btn-default @nextDisabled">
+                            Next
+                        </a>
+                        @(Model.Product.TotalPages)
+                        <div class="pagination__option">
+                            @for (int i = 0; i < Model.Product.TotalPages; i++)
+                            {
+                                <a asp-page="./Search"
+                                   asp-all-route-data="routeData"
+                                   asp-route-sortOrder="@Model.CurrentSort"
+                                   asp-route-pageIndex="@(i+1)"
+                                   asp-route-currentFilter="@Model.CurrentFilter">
+                                    @(i + 1)
+                                </a>
+                            }
+                            @*<a href="#">2</a>
+                                <a href="#">3</a>*@
+                            <a asp-page="./Search"
+                               asp-all-route-data="routeData"
+                               asp-route-sortOrder="@Model.CurrentSort"
+                               asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                               asp-route-currentFilter="@Model.CurrentFilter"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->
+
+<script src="~/ashion/js/jquery-3.3.1.min.js"></script>
+<script>
+
+    $('.detail-btn').click(function () {
+        //Your code
+        //alert(0);
+        var $button = $(this);
+        var pValue = $button.parent().find('input[name=pid]').val();
+        var vValue = $button.parent().find('input[name=vid]').val();
+
+        window.location.href = ("/MyStore/details?id=" + pValue + "&vid=" + vValue).trim();
+        ///MyStore/ShoppingCart ? handler = AddToCart & id=5
+        //alert($(this).attr.);
+    });
+
+    //sort dropdown
+    $('#drp_sort').click(function () {
+        //Your code
+        document.getElementById("myDropdown").classList.toggle("show");
+
+    });
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+        if (!event.target.matches('#drp_sort')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+                //var proQty = $('.pro-qty');
+                //proQty.prepend('<span class="dec qtybtn">-</span>');
+                //proQty.append('<span class="inc qtybtn">+</span>');
+
+                //proQty.on('click', '.qtybtn', function () {
+                //    //alert(proQty.parent().find(':hidden').val());
+                //    var $button = $(this);
+                //    var oldValue = $button.parent().find(':text').val();
+
+                //    if ($button.hasClass('inc')) {
+
+                //        var newVal = parseFloat(oldValue) + 1;
+                //    } else {
+                //        // Don't allow decrementing below zero
+                //        if (oldValue > 0) {
+
+                //            var newVal = parseFloat(oldValue) - 1;
+                //        } else {
+                //            newVal = 0;
+                //        }
+                //    }
+                //    $button.parent().find('input').val(newVal);
+                //});
+</script>
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Brand)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Discount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].ProductArtUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].StockOfNonVariant)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product[0].RowVersion)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Product)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Discount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductArtUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StockOfNonVariant)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RowVersion)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ProductId">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ProductId">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

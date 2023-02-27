@@ -1,0 +1,169 @@
+﻿@page
+@model CoreSite1.Pages.Home.EditModel
+
+@{
+    ViewData["Title"] = "Edit Page";
+    Layout = null;
+}
+
+
+<head>
+    <!-- Bootstrap core CSS     -->
+    <link href="~/DashBoard/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <link href="~/DashBoard/assets/css/animate.min.css" rel="stylesheet" />
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="~/DashBoard/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="~/DashBoard/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/themes/default/style.css" />
+    @*<script src="~/ckeditor/adapters/jquery.js"></script>*@
+    <script src="~/ckeditor/ckeditor.js"></script>
+
+    @*<script src="~/ckeditor/config.js"></script>
+    <script src="~/ckeditor/styles.js"></script>
+    <script src="~/ckeditor/samples/js/sample.js"></script>*@
+
+    <link rel="stylesheet" href="~/ckeditor/samples/css/samples.css">
+    <link rel="stylesheet" href="~/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+</head>
+
+<h2>Edit Page</h2>
+
+@*<h4>Page</h4>*@
+<hr />
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    @*<div class="header">
+                            <h4 class="title">Edit </h4>
+                        </div>*@
+                    @*<div class="content">
+                        <div class="col-md-4">*@
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Page.PageId" />
+
+                        <div class="form-group">
+                            <label asp-for="Page.Content" class="control-label"></label>
+                            @*<div >*@
+                            @*<input asp-for="Page.Content" class="form-control" id="Content" />*@
+                            <textarea asp-for="Page.Content" cols="80" rows="10" class="form-control">
+                            </textarea>
+                            @*</div>*@
+                            <span asp-validation-for="Page.Content" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Page.Heading" class="control-label"></label>
+                            <input asp-for="Page.Heading" class="form-control" />
+                            @*<textarea asp-for="Page.Heading" cols="80" rows="10" class="form-control">
+            </textarea>*@
+                            <span asp-validation-for="Page.Heading" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Page.SubHeading" class="control-label"></label>
+                            <input asp-for="Page.SubHeading" class="form-control" />
+                            @*<textarea asp-for="Page.SubHeading" cols="80" rows="10" class="form-control">
+            </textarea>*@
+                            <span asp-validation-for="Page.SubHeading" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Page.CategoryId" class="control-label"></label>
+                            <input asp-for="Page.CategoryId" class="form-control" />
+                            <span asp-validation-for="Page.CategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Page.PageTempleteId" class="control-label"></label>
+                            <input asp-for="Page.PageTempleteId" class="form-control" />
+                            <span asp-validation-for="Page.PageTempleteId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Page.PageName" class="control-label"></label>
+                            <input asp-for="Page.PageName" class="form-control" />
+                            <span asp-validation-for="Page.PageName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Page.LayoutPage" class="control-label"></label>
+                            <input asp-for="Page.LayoutPage" class="form-control" />
+                            <span asp-validation-for="Page.LayoutPage" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Page.URL" class="control-label"></label>
+                            <input asp-for="Page.URL" class="form-control" disabled />
+                            <span asp-validation-for="Page.URL" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Page.HeaderImage" class="control-label"></label>
+                            <input asp-for="Page.HeaderImage" class="form-control" />
+                            <span asp-validation-for="Page.HeaderImage" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" id="edit_save" class="btn btn-default" />
+                        </div>
+                    </form>
+                    @*</div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<input type="hidden" id="newurl" value="/Home/?id=@Model.Page.PageId"/>*@
+<div>
+    <a asp-page="./List">Back to List</a>
+</div>
+<script>
+    //initSample();
+
+    //$("#submit").mousedown(function () {
+    //    for (var i in CKEDITOR.instances) {
+    //        CKEDITOR.instances[i].updateElement();
+    //    }
+    //});
+</script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="~/DashBoard/assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+<script>
+    CKEDITOR.replace('Page_Content');
+    //CKEDITOR.replace('Page_Heading');
+    //CKEDITOR.replace('Page_SubHeading');
+
+    //, {
+    //        extraPlugins: 'autogrow',
+    //        autoGrow_minHeight: 200,
+    //        autoGrow_maxHeight: 600,
+    //        autoGrow_bottomSpace: 50,
+    //        removePlugins: 'resize'
+    //    }
+    </script>
+<script>
+    //$('#edit_save').on("click", function () {
+    //    alert($('#newurl').val());
+    //    $('#emb_details').attr('src', "/Home/List/?cid=1");
+    //    $('#emb_edit').attr('src', e);
+    //    //$('#Details').load($('#newurl').val());
+    //    alert($('#emb_details').text());
+    //     //$('#emb_details').attr('src', $('#newurl').val());
+    //    //$('#emb_edit').attr('src', e);
+    //    //trigger a tab click event emb_details
+    //   // $('#emb_details').load($('#newurl').val());
+    //   // $(".tablinks2").trigger("click", ["Details"]);
+    //});
+    </script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,70 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Slim Fit Formal Suit
+12999
+Louis Philippe
+10%
+
+2
+Men Self-Design Slim Fit Suit
+5999
+Peter England
+20%
+
+3
+Men Slim Single-Breasted Suit
+10999
+Louis Philippe
+40%
+
+4
+Men Contemporary Fit Suit
+11999
+Raymond
+40
+
+5
+Men Single-Breasted Suit
+10999
+Park Avenue
+60%
+
+
+6
+Single-Breasted Formal Suit
+4499
+Peter England
+0%
+
+7
+Men Single-Breasted Suit
+12599
+Louis Philippe
+10%
+
+8
+Super Slim Fit Party Suit
+10999
+Park Avenue
+60%
+
+9
+Men Ethnic Suit
+9999
+Raymond
+50%
+
+10
+Men Slim Fit Formal Suit
+12999
+Raymond
+50%

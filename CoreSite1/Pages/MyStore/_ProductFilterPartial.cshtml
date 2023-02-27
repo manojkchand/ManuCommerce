@@ -1,0 +1,401 @@
+﻿@model CoreSite1.Pages.MyStore.BrowseModel
+@*<script>
+
+        function checkChecked(formname) {
+            var anyBoxesChecked = false;
+            $('#' + formname + ' input[type="checkbox"]').each(function () {
+                if ($(this).is(":checked")) {
+                    anyBoxesChecked = true;
+                }
+            });
+
+            if (anyBoxesChecked == false) {
+                alert('Please select at least one checkbox');
+                return false;
+            }
+        }
+
+        $(document).on("click", "#searchString", function () {
+            if ($(this).is(':checked') ){
+               // $('form').submit();
+
+                $.post("samples/PostMultipleSimpleValues?action=kazam",
+                    { name: "Rick", value: 1, entered: "12/01/2012" },
+                    function (result) {
+                        alert(result);
+                    });
+
+                $.post("samples/PostMultipleSimpleValues?action=kazam",
+                    $("form").serialize(),
+                    function (result) {
+                        alert(result);
+                    });
+            }
+
+        });
+    </script>*@
+@*<link href="~/css/site.css" rel="stylesheet" />*@
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">*@
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //    alert(9);
+        //    $("button").click(function () {
+
+        //        var favorite = [];
+
+        //        $.each($("input[name='searchString']:checked"), function () {
+
+        //            favorite.push($(this).val());
+
+        //        });
+
+        //        alert("My favourite sports are: " + favorite.join(", "));
+
+        //    });
+       // $('.Check2String').prop('indeterminate', true);
+
+    });
+
+
+
+    function FilterCall(url, flag1, brand, currentfilter) {
+        alert(flag1);
+        //$('form').submit(category,CurrentSort,filter);
+        //window.location.replace(url);
+        // Simulate a mouse click:
+        //window.location.href = "Browse?CategoryName=" + category + "&sortOrder=" + CurrentSort + "&searchString=" + filter;
+        if (flag1 == "False") {
+            alert(currentfilter);
+            if (currentfilter)//empty
+            {
+                window.location.href = (url + "&searchString=" + currentfilter + brand + ",").trim();
+            }
+            else {
+                alert(brand);
+                window.location.href = (url + "&searchString=" + brand + ",").trim();
+            }
+        }
+        else if (flag1 == "True") {
+            alert(0);
+
+            if (currentfilter)//empty
+            {
+                var v = currentfilter.replace(brand + ",", '');
+                //currentfilter
+                alert(v);
+                window.location.href = url + "&searchString=" + v;
+            }
+            else {
+                //var v = currentfilter.replace(brand, '');
+                //alert(brand);
+                alert(currentfilter);
+                window.location.href = url + "&searchString=" + brand;
+            }
+        }
+    }
+</script>
+<div class="col-lg-12">
+    <!-- Section: Sidebar https://mdbootstrap.com/docs/jquery/ecommerce/design-blocks/filters/ -->
+    <section>
+        @*asp-controller="Store" asp-action="Browse"*@
+        @{ var a = Model.BrandFilterList;
+            for (int ia = 0; ia < a.Count(); ia++)
+            {
+                if (!String.IsNullOrEmpty(Model.CurrentFilter))
+                { 
+                string[] words = Model.CurrentFilter.Split(',');
+
+                foreach (var word in words)
+                {
+                    if (a[ia].Brand.Trim() == word.Trim())
+                    {
+
+                        a[ia].chcekboxAnswer = true;
+                    }
+                }
+                }
+            }
+            Model.BrandFilterList= a;
+        }
+        @using (Html.BeginForm("Browse", "Store", FormMethod.Get))
+        {
+            //statemanagement of checkbox
+            string checkstring = ""; string ss = "";
+            if (!String.IsNullOrEmpty(Model.CurrentFilter))
+            {
+                //checkstring = ViewData["CurrentFilter"].ToString();
+                checkstring = Model.CurrentFilter.Trim();
+            }
+            string mainURL = "";
+            @if (String.IsNullOrEmpty(ViewData["CurrentSort"] as String))
+            {
+                mainURL = "Browse?CategoryName=" + Model.CurrentCategory;
+
+            }
+            else
+            {
+                mainURL = "Browse?CategoryName=" + Model.CurrentCategory + "&sortOrder=" + ViewData["CurrentSort"].ToString();
+            }
+            string mainURLCheck1 = mainURL; string mainURLCheck2 = mainURL;
+            if (!String.IsNullOrEmpty(Model.PriceFilter))
+            {
+                mainURL = mainURL + "&price=" + Model.PriceFilter;
+            }
+            if (!String.IsNullOrEmpty(Model.DiscountFilter))
+            {
+                mainURL = mainURL + "&discount=" + Model.DiscountFilter;
+                //discountcheckstring = pricecheckstring.Trim();
+            }
+
+
+            @if (!String.IsNullOrEmpty(Model.CurrentFilter))
+            {
+                ss = Model.CurrentFilter;
+
+            }
+
+            <!-- Section: Filters -->
+            <section>
+
+                @*<h5>FILTERS -</h5>*@
+                <!-- Section: Condition -->
+                <div class="sidebar__color">
+                    @{int i = 0; int j = 0; }
+                   
+                    <div class="sidebar__filter">
+                        <div class="section-title">
+                            <h4>BRAND</h4>
+                        </div>
+                    </div>
+                    @*<hr />*@
+                    @*//var std in ViewData["students"] as IList<Student>*@
+                    <div class="size__list color__list">
+                        @foreach (var Product in Model.BrandFilterList)
+                        {
+                            i++;
+                            if (i < 6)
+                            {
+                                <div class="size__list color__list">
+                                    @*class="form-check pl-0 mb-3">class="form-check-input filled-in"     class="form-check-label small text-uppercase card-link-secondary"*@
+                                    @{
+
+                                        string url = mainURL + "&searchString=" + Product.Brand.Trim().ToString();}
+                                    <input type="checkbox" class="custom-control-input" id="defaultIndeterminate{@i}" onclick="FilterCall('@mainURL','@Product.chcekboxAnswer','@Product.Brand.Trim().ToString()','@ss')" name="searchString" value="@Product.Brand.Trim()" asp-for="@Product.chcekboxAnswer" checked="@Product.chcekboxAnswer">
+                                    <label class="custom-control-label" for="defaultIndeterminate{@i}">@Product.Brand.Trim()</label>
+                                    <input type="hidden" asp-for="@Product.ProductId" />
+                                    <input type="hidden" asp-for="@Product.Brand" />
+                                </div>
+                            }
+                        }
+
+                        <a class="btn btn-link text-muted p-0" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            More
+                        </a>
+                        <div class="collapse pt-3" id="collapseExample">
+
+                            @foreach (var Product in Model.BrandFilterList)
+                            {
+                                j++;
+                                if (j >= 6)
+                                {
+                                    <div class="form-check checkbox checkbox-lg">
+                                        @*form-check pl-0 mb-3">form-check-input filled-in       form-check-label small text-uppercase card-link-secondary*@
+
+                                        @{
+
+                                            string url = mainURL + "&searchString=" + Product.Brand.Trim().ToString();}
+                                        <input type="checkbox" class="custom-control-input" id="defaultIndeterminate{@j}" onclick="FilterCall('@mainURL','@Product.chcekboxAnswer','@Product.Brand.Trim().ToString()','@ss')" name="searchString" value="@Product.Brand" asp-for="@Product.chcekboxAnswer" checked="@Product.chcekboxAnswer">
+                                        <label class="custom-control-label" for="defaultIndeterminate{@j}">@Product.Brand</label>
+                                        <input type="hidden" asp-for="@Product.ProductId" />
+                                        <input type="hidden" asp-for="@Product.Brand" />
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- Section: Condition -->
+                @if (!String.IsNullOrEmpty(Model.CurrentFilter))
+                {
+                    mainURLCheck1 = mainURLCheck1 + "&searchString=" + Model.CurrentFilter;
+                    mainURLCheck2 = mainURLCheck1;
+                    //string mainURLCheck1 = mainURL;
+                }
+
+                @if (!String.IsNullOrEmpty(Model.DiscountFilter))
+                {
+                    mainURLCheck1 = mainURLCheck1 + "&discount=" + Model.DiscountFilter;
+                    //discountcheckstring = pricecheckstring.Trim();
+                }
+
+            </section>
+            <!-- Section: Average -->
+            @*<hr />*@
+            <!-- Section: Price -->
+            <div class="sidebar__color">
+                <div class="sidebar__filter">
+                    <div class="section-title">
+                        <h4>PRICE</h4>
+                    </div>
+                </div>
+               
+                @*<hr />*@
+                @{ //statemanagement
+                    string pricecheckstring = ""; string flag = "";
+                    if (!String.IsNullOrEmpty(Model.PriceFilter))
+                    {
+                        pricecheckstring = Model.PriceFilter;
+                    }
+                }
+                @{int k; string url1 = mainURLCheck1; }
+                @for (k = 0; k < 6; k++)
+                {
+
+
+
+                    @*<input type="radio" class="form-check-input" id="@(p+1)0%" onclick="window.location.replace('@url')" name="searchString" value="@(p+1)0%">*@
+
+                    <div class="size__list">
+                        @*"form-check pl-0 mb-3">  form-check-input form-check-label small text-uppercase card-link-secondary*@
+
+                        @if (k == 0)
+                        {
+                            if (pricecheckstring == "500₹") { flag = " checked=True  "; } else { flag = ""; }
+                            url1 = mainURLCheck1 + "&price=500₹";
+                            <input type="radio" class="custom-control-input" id="defaultChecked{@k}" onclick="window.location.replace('@url1')" name="Check1String" value="500₹" @flag>
+                            <label class="custom-control-label" for="defaultChecked{@k}">
+                                Under 500&#8377;
+                            </label>
+                        }
+                        else if (k == 1)
+                        {
+                            if (pricecheckstring == "1000₹") { flag = " checked=True "; } else { flag = ""; }
+                            url1 = mainURLCheck1 + "&price=1000₹";
+                            //@Html.RadioButton()
+                            <input type="radio" class="custom-control-input" id="defaultChecked{@k}" onclick="window.location.replace('@url1')" name="Check1String" value="1000₹" @flag>
+                            <label class="custom-control-label" for="defaultChecked{@k}">
+                                500 &#8377; to 1000&#8377;
+                            </label>
+                        }
+                        else if (k == 2)
+                        {
+                            if (pricecheckstring == "1500₹") { flag = " checked=True "; } else { flag = ""; }
+                            url1 = mainURLCheck1 + "&price=1500₹";
+                            <input type="radio" class="custom-control-input" id="defaultChecked{@k}" onclick="window.location.replace('@url1')" name="Check1String" value="1500₹" @flag>
+                            <label class="custom-control-label" for="defaultChecked{@k}">
+                                1000 &#8377; to 1500&#8377;
+                            </label>
+                        }
+                        else if (k == 3)
+                        {
+                            if (pricecheckstring == "2000₹") { flag = " checked=True "; } else { flag = ""; }
+                            url1 = mainURLCheck1 + "&price=2000₹";
+                            <input type="radio" class="custom-control-input" id="defaultChecked{@k}" onclick="window.location.replace('@url1')" name="Check1String" value="2000₹" @flag>
+                            <label class="custom-control-label" for="defaultChecked{@k}">
+                                1500 &#8377; to 2000&#8377;
+                            </label>
+                        }
+                        else if (k == 4)
+                        {
+                            if (pricecheckstring == "2500₹") { flag = " checked=True "; } else { flag = ""; }
+                            url1 = mainURLCheck1 + "&price=2500₹";
+                            <input type="radio" class="custom-control-input" id="defaultChecked{@k}" onclick="window.location.replace('@url1')" name="Check1String" value="2500₹" @flag>
+                            <label class="custom-control-label" for="defaultChecked{@k}">
+                                2000 &#8377; to 2500&#8377;
+                            </label>
+                        }
+                        else if (k == 5)
+                        {
+                            if (pricecheckstring == "2501₹") { flag = " checked=True  "; } else { flag = ""; }
+                            url1 = mainURLCheck1 + "&price=2501₹";
+                            <input type="radio" class="custom-control-input" id="defaultChecked{@k}" onclick="window.location.replace('@url1')" name="Check1String" value="2501₹" @flag>
+                            <label class="custom-control-label" for="defaultChecked{@k}">
+                                2500 &#8377 & Above
+                            </label>
+                        }
+
+                    </div>
+
+
+
+                }
+                @*<form>
+            <div class="d-flex align-items-center mt-4 pb-1">
+                <div class="md-form md-outline my-0">
+                    <input id="from" type="text" class="form-control mb-0">
+                    <label for="form">$ Min</label>
+                </div>
+                <p class="px-2 mb-0 text-muted"> - </p>
+                <div class="md-form md-outline my-0">
+                    <input id="to" type="text" class="form-control mb-0">
+                    <label for="to">$ Max</label>
+                </div>
+            </div>
+        </form>*@
+
+            </div>
+            <!-- Section: Price -->
+            <!-- Section: Discount -->
+            <hr />
+            <div class="sidebar__sizes">
+                <div class="sidebar__filter">
+                    <div class="section-title">
+                        <h4>DISCOUNT RANGE</h4>
+                    </div>
+                </div>
+                
+                <hr />
+                @{ //statemanagement
+                    if (!String.IsNullOrEmpty(Model.PriceFilter))
+                    {
+                        mainURLCheck2 = mainURLCheck2 + "&price=" + Model.PriceFilter;
+                    }
+
+                    string discountcheckstring = ""; string flag2 = "";
+                    if (!String.IsNullOrEmpty(Model.DiscountFilter))
+                    {
+                        discountcheckstring = Model.DiscountFilter;
+                        //discountcheckstring = pricecheckstring.Trim();
+                    }}
+                @{int p; }
+                @for (p = 0; p < 8; p++)
+                {
+                    <div class="size__list">
+                        @*"form-check pl-0 mb-3"> form-check-label small text-uppercase card-link-secondary*@
+                        @{string url = mainURLCheck2 + "&discount=" + (p + 1) + "0%";
+                            if (discountcheckstring == ((p + 1) + "0%").ToString()) { flag2 = " checked=checked "; } else { flag2 = ""; }}
+                        <input type="radio" class="custom-control-input" id="defaultChecked@(p+1)" onclick="window.location.replace('@url')" name="Check2String" value="@(p+1)0%" @flag2>
+                        @*<input type="radio" class="form-check-input" id="@(p+1)0%" onclick="window.location.replace('@url')" name="searchString" value="@(p+1)0%">*@
+                        <label class="custom-control-label" for="defaultChecked@(p+1)">@(p + 1)0% and above</label>
+                    </div>
+                }
+
+            </div>
+            <!-- Section: Discount -->
+           
+        }
+    </section>
+    <!-- Section: Filters -->
+    @*</section>*@
+    <!-- Section: Sidebar -->
+    @*<div style="height:380px"></div>*@
+</div>
+@*<input type="hidden" id="contentFilter" value="@ViewData["CurrentFilter"]" />
+    <div id="contentFilter"></div>*@
+<script>
+            @*$(document).ready(function () {
+                alert(0);//contentMenu
+                //$('#contentcart').load("@Url.Content("~/ShoppingCart/CartSummary")");
+                //$('#contentMenu').load("@Url.Content("~/Store/CategoryMenu")");
+                //alert(1);
+            });*@
+
+</script>

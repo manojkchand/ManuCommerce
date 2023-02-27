@@ -1,0 +1,8 @@
+ProductId,CategoryId,AddedDate,AddedBy,Title,Price,Brand,Discount,ProductArtUrl,Description,CategoryId,AddedDate,AddedBy,Name,ParentCategoryId,Description,LinkType,StockOfNonVariant,UnitInStock,Colour,Size,VariantId,OptionalImageURL,chcekboxAnswer
+116,20,7/15/2020 17:36,manojchand@gmail.com,Men Slim Fit Formal Shirt,1299,Marks & Spencer,0,/images/FASHION_DATA/MensWear/TopWear/Formal Shirts/3.jpg,,0,01/01/0001 00:00:01,,,0,,,,,,,,,FALSE
+117,20,7/15/2020 17:36,manojchand@gmail.com,Men Slim Fit Casual Shirt,2399,Park Avenue,15,/images/FASHION_DATA/MensWear/TopWear/Formal Shirts/5.jpg,,0,01/01/0001 00:00:02,,,0,,,,,,,,,FALSE
+118,20,7/15/2020 17:36,manojchand@gmail.com,Men Regular Fit Formal Shirt,2199,Red Tape,,/images/FASHION_DATA/MensWear/TopWear/Formal Shirts/6.jpg,,0,01/01/0001 00:00:03,,,0,,,,,,,,,FALSE
+119,20,7/15/2020 17:36,manojchand@gmail.com,Dobby Textured Slim FIt Formal Shirt,1499,CODE,40,/images/FASHION_DATA/MensWear/TopWear/Formal Shirts/7.jpg,,0,01/01/0001 00:00:04,,,0,,,,,,,,,FALSE
+120,20,7/15/2020 17:36,manojchand@gmail.com,Checked Slim Fit Formal Shirt,1999,LOUIS PHILIPPE,50,/images/FASHION_DATA/MensWear/TopWear/Formal Shirts/8.jpg,,0,01/01/0001 00:00:05,,,0,,,,,,,,,FALSE
+121,20,7/15/2020 17:36,manojchand@gmail.com,Textured Full Sleeves Slim Fit Shirt,1499,CODE,40,/images/FASHION_DATA/MensWear/TopWear/Formal Shirts/9.jpg,,0,01/01/0001 00:00:06,,,0,,,,,,,,,FALSE
+122,20,7/15/2020 17:36,manojchand@gmail.com,Men Slim Fit Formal Shirt,2099,Raymond,40,/images/FASHION_DATA/MensWear/TopWear/Formal Shirts/10.jpg,,0,01/01/0001 00:00:07,,,0,,,,,,,,,FALSE

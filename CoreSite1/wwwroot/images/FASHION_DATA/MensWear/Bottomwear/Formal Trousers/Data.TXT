@@ -1,0 +1,59 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Slim Fit Formal Trousers
+2299
+U.S.Polo Assn.
+10%
+
+2
+Men Formal Trousers
+1649
+Black coffee
+53%
+
+3
+Men Slim Fit Formal Trousers
+1999
+Louis Philippe
+10%
+
+4
+Men Tapered Fit Formal Trousers
+2195
+Blackberrys
+305
+
+5
+Men Formal Trousers
+1649
+Black coffee
+53%
+
+6
+Men Slim Fit formal Trousers
+2799
+Louis Philippe
+15%
+
+
+7
+Men Slim Fit Formal Trousers
+2199
+Raymond
+40%
+
+
+8
+Men Comfort Formal Trousers
+2099
+Park Avenue
+35%

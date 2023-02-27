@@ -1,0 +1,1985 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] Moon Commerce</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link href="~/lib/overlayScrollbars/css/OverlayScrollbars.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/themes/default/style.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css">
+
+
+    <style>
+        /* .sidebar .nav .open > a,
+                .sidebar .nav li.dropdown .dropdown-menu li:hover > a,
+                .sidebar .nav li:hover > a {
+                    background-color: rgba(255, 255, 255, 0.13);
+                    opacity: 1;
+                }*/
+        /*
+                .navbar-nav .li .dropdown-menu {
+                    border-radius: 10px;
+                    margin-top: -5px;
+                }
+
+
+                .navbar-transparent .dropdown-menu .divider {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+
+        */
+
+        .dropdown-menu {
+            /*visibility: hidden;*/
+            margin: 0;
+            padding: 0;
+            border-radius: 10px;
+            display: block;
+            z-index: 9000;
+            position: absolute;
+            /*opacity: 0;*/
+            filter: drop-shadow();
+            -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.125);
+            box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.125);
+        }
+
+        .open .dropdown-menu {
+            opacity: 1;
+            filter: alpha(opacity=100);
+            visibility: visible;
+        }
+
+        .select .dropdown-menu {
+            border-radius: 0 0 10px 10px;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            -webkit-transform-origin: 50% -40px;
+            -moz-transform-origin: 50% -40px;
+            -o-transform-origin: 50% -40px;
+            -ms-transform-origin: 50% -40px;
+            transform-origin: 50% -40px;
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+            -webkit-transition: all 150ms linear;
+            -moz-transition: all 150ms linear;
+            -o-transition: all 150ms linear;
+            -ms-transition: all 150ms linear;
+            transition: all 150ms linear;
+            margin-top: -20px;
+        }
+
+        .select.open .dropdown-menu {
+            margin-top: -1px;
+        }
+
+        .dropdown-menu > li > a {
+            padding: 8px 16px;
+            color: #333333;
+        }
+
+            .dropdown-menu > li > a img {
+                margin-top: -3px;
+            }
+
+            .dropdown-menu > li > a:focus {
+                outline: 0 !important;
+            }
+
+        .btn-group.select .dropdown-menu {
+            min-width: 100%;
+        }
+
+        .dropdown-menu > li:first-child > a {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .dropdown-menu > li:last-child > a {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .select .dropdown-menu > li:first-child > a {
+            border-radius: 0;
+            border-bottom: 0 none;
+        }
+
+        .dropdown-menu > li > a:hover,
+        .dropdown-menu > li > a:focus {
+            background-color: #F5F5F5;
+            color: #333333;
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .dropdown-menu.dropdown-blue > li > a:hover,
+        .dropdown-menu.dropdown-blue > li > a:focus {
+            background-color: rgba(52, 114, 247, 0.2);
+        }
+
+        .dropdown-menu.dropdown-azure > li > a:hover,
+        .dropdown-menu.dropdown-azure > li > a:focus {
+            background-color: rgba(29, 199, 234, 0.2);
+        }
+
+        .dropdown-menu.ct-green > li > a:hover,
+        .dropdown-menu.ct-green > li > a:focus {
+            background-color: rgba(135, 203, 22, 0.2);
+        }
+
+        .dropdown-menu.dropdown-orange > li > a:hover,
+        .dropdown-menu.dropdown-orange > li > a:focus {
+            background-color: rgba(255, 149, 0, 0.2);
+        }
+
+        .dropdown-menu.dropdown-red > li > a:hover,
+        .dropdown-menu.dropdown-red > li > a:focus {
+            background-color: rgba(255, 74, 85, 0.2);
+        }
+
+        .dropdown-with-icons > li > a {
+            padding-left: 0px;
+            line-height: 28px;
+        }
+
+        .dropdown-with-icons i {
+            text-align: center;
+            line-height: 28px;
+            float: left;
+        }
+
+            .dropdown-with-icons i[class^="pe-"] {
+                font-size: 24px;
+                width: 46px;
+            }
+
+            .dropdown-with-icons i[class^="fa"] {
+                font-size: 14px;
+                width: 38px;
+            }
+
+        .dropdown-menu .divider {
+            background-color: rgba(229, 229, 229, 0.15);
+        }
+
+        .navbar-nav {
+            margin: 1px 0;
+            float: none !important;
+        }
+
+            .navbar-nav .open .dropdown-menu > li > a {
+                padding: 10px 15px 10px 60px;
+                border-radius: 4px;
+                color: inherit;
+            }
+
+                .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus {
+                    background-color: transparent;
+                }
+
+        [class*="navbar-"] .navbar-nav > li > a,
+        [class*="navbar-"] .navbar-nav > li > a:hover,
+        [class*="navbar-"] .navbar-nav > li > a:focus,
+        [class*="navbar-"] .navbar-nav .active > a,
+        [class*="navbar-"] .navbar-nav .active > a:hover,
+        [class*="navbar-"] .navbar-nav .active > a:focus,
+        [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a,
+        [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a:hover,
+        [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a:focus,
+        [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a:active {
+            color: white;
+        }
+
+            [class*="navbar-"] .navbar-nav > li > a,
+            [class*="navbar-"] .navbar-nav > li > a:hover,
+            [class*="navbar-"] .navbar-nav > li > a:focus {
+                opacity: .7;
+                background-color: transparent;
+                outline: none;
+            }
+
+            [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a:hover,
+            [class*="navbar-"] .navbar-nav .open .dropdown-menu > li > a:focus {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+        [class*="navbar-"] .navbar-nav.navbar-nav .open .dropdown-menu > li > a:active {
+            opacity: 1;
+        }
+
+        [class*="navbar-"] .navbar-nav .dropdown > a:hover .caret {
+            border-bottom-color: #fff;
+            border-top-color: #fff;
+        }
+
+        [class*="navbar-"] .navbar-nav .dropdown > a:active .caret {
+            border-bottom-color: white;
+            border-top-color: white;
+        }
+
+        .dropdown-menu {
+            display: none;
+        }
+
+        .navbar-fixed-top {
+            -webkit-backface-visibility: hidden;
+        }
+
+        #bodyClick {
+            height: 100%;
+            width: calc(100% - 260px);
+            position: fixed;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            content: "";
+            z-index: 9999;
+            overflow-x: hidden;
+        }
+
+        .social-line .btn {
+            margin: 0 0 10px 0;
+        }
+
+        .subscribe-line .form-control {
+            margin: 0 0 10px 0;
+        }
+
+        .social-line.pull-right {
+            float: none;
+        }
+
+        .footer nav.pull-left {
+            float: none !important;
+        }
+
+        .footer:not(.footer-big) nav > ul li {
+            float: none;
+        }
+
+        .social-area.pull-right {
+            float: none !important;
+        }
+
+        .form-control + .form-control-feedback {
+            margin-top: -8px;
+        }
+
+        .navbar-toggle:hover, .navbar-toggle:focus {
+            background-color: transparent !important;
+        }
+
+        .btn.dropdown-toggle {
+            margin-bottom: 0;
+        }
+
+        .media-post .author {
+            width: 20%;
+            float: none !important;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        .media-post .media-body {
+            width: 100%;
+        }
+
+        .navbar-collapse.collapse {
+            height: 100% !important;
+        }
+
+            .navbar-collapse.collapse.in {
+                display: block;
+            }
+
+        .navbar-header .collapse, .navbar-toggle {
+            display: block !important;
+        }
+
+        .navbar-header {
+            float: none;
+        }
+
+        .navbar-nav .open .dropdown-menu {
+            position: static;
+            float: none;
+            width: auto;
+            margin-top: 0;
+            background-color: transparent;
+            border: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .navbar-collapse .nav p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .navbar-collapse [class^="pe-7s-"] {
+            float: left;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    </style>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        /*.tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }*/
+
+        /* Style the buttons inside the tab */
+        /*.tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 10px 12px;
+                transition: 0.3s;
+                font-size: 17px;
+            }*/
+
+        /* Change background color of buttons on hover */
+        /*.tab button:hover {
+                    background-color: #ddd;
+                }*/
+
+        /* Create an active/current tablink class */
+        /*.tab button.active {
+                    background-color: #ccc;
+                }*/
+        .tab {
+            overflow: hidden;
+            border: 1px solid #9368E9;
+            background-color: #9368E9;
+            color: #FFFFFF;
+            opacity: 1;
+            /*background: rgba(255, 255, 255, 0.23);*/
+        }
+
+            /* Style the buttons that are used to open the tab content */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s; /*
+                font-size:13px;*/
+                background-color: #9368E9;
+                color: #FFFFFF;
+                /*margin: 5px 15px;*/
+                opacity: .86;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    /*background-color: #ddd;*/
+                    color: #FFFFFF;
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.23);
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    border-radius: 4px;
+                    display: block;
+                    color: #FFFFFF;
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.23);
+                }
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            /* padding: 6px 12px;*/
+            border: 1px solid #9368E9;
+            border-top: none;
+        }
+    </style>
+    <style>
+        .main-panel {
+            position: relative;
+            float: right;
+            width: calc(100% - 140px);
+            transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1);
+        }
+        /*.jstree {
+
+                    color: mediumpurple;
+                    padding: 100% 12px;
+                }*/
+        .jstree-anchor {
+            font-size: 13px;
+            color: white !important;
+        }
+
+        /*//icon command header colour*/
+        /*.navbar-light .navbar-nav .nav-link {
+                    color: #9368E9;*/ /*#9368E9;*/
+        /*}
+                .navbar-light .navbar-brand {
+                    color: #9368E9;*/ /*rgba(0, 0, 0, 0.9);*/
+        /*}*/
+        [class*='sidebar-light'] .brand-link {
+            color: white;
+        }
+        /* .text-dark {
+                    color: #9368E9 !important;
+                }*/
+
+
+
+        /*
+
+                .main-sidebar {
+                    position: fixed;
+                    top: 0;
+                    bottom: 0;
+                    right: auto;
+                    left: 0;
+                    width: 250px;
+                    display: block;
+                    z-index: 1;
+                    color: #fff;
+                    font-weight: 200;
+                    background-size: cover;
+                    background-position: center center;
+                }
+
+                .main-sidebar .sidebar-wrapper {
+                    position: relative;
+                    max-height: calc(100vh - 75px);
+                    min-height: 100%;
+                    overflow: auto;
+                    width: 250px;
+                    z-index: 4;
+                    padding-bottom: 100px;
+                }
+
+                .main-sidebar .sidebar-background {
+                    position: absolute;
+                    z-index: 1;
+                    height: 100%;
+                    display: block;
+                    top: 0;
+                    left: 0;
+                    background-size: cover;
+                    background-position: center center;
+                }*/
+
+
+        /*
+
+
+
+
+
+
+
+
+
+
+
+                .main-sidebar .nav {
+                    margin-top: 20px;
+                    float: none;
+                }
+
+                        .sidebar .nav .open > a,
+                        .main-sidebar .nav li.dropdown .dropdown-menu li:hover > a,
+                        .main-sidebar .nav li:hover > a {
+                            background-color: rgba(255, 255, 255, 0.13);
+                            opacity: 1;
+                        }
+
+                .main-sidebar .nav li > a {
+                    color: #FFFFFF;
+                    margin: 5px 15px;
+                    opacity: .86;
+                    border-radius: 4px;
+                    display: block;
+                }
+
+                .main-sidebar .nav li.active > a {
+                    color: #FFFFFF;
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.23);
+                }
+
+                .main-sidebar .nav li.separator {
+                    margin: 15px 0;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                }
+
+                .main-sidebar .nav li.separator + li {
+                    margin-top: 31px;
+                }
+
+                .main-sidebar .nav p {
+                    margin: 0;
+                    line-height: 30px;
+                    font-size: 12px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    margin-left: 45px;
+                }
+
+                .main-sidebar .nav i {
+                    font-size: 28px;
+                    float: left;
+                    margin-right: 15px;
+                    line-height: 30px;
+                    width: 30px;
+                    text-align: center;
+                }
+
+                .main-sidebar .nav .caret {
+                    margin-top: 13px;
+                    position: absolute;
+                    right: 30px;
+                }
+
+
+
+                .main-sidebar:after, .main-sidebar:before {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                }
+
+                .main-sidebar:before {
+                    opacity: .33;
+                    background: #000000;
+                }
+
+                .main-sidebar:after {
+                    background: #787878;
+                    background: -moz-linear-gradient(top, #787878 0%, #343434 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #787878), color-stop(100%, #343434));
+                    background: -webkit-linear-gradient(top, #787878 0%, #343434 100%);
+                    background: -o-linear-gradient(top, #787878 0%, #343434 100%);
+                    background: -ms-linear-gradient(top, #787878 0%, #343434 100%);
+                    background: linear-gradient(to bottom, #787878 0%, #343434 100%);
+                    background-size: 150% 150%;
+                    z-index: 3;
+                    opacity: 1;
+                }
+
+                .main-sidebar[data-image]:after, .main-sidebar.has-image:after {
+                    opacity: .77;
+                }
+
+                .main-sidebar[data-color="blue"]:after {
+                    background: #1F77D0;
+                    background: -moz-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1F77D0), color-stop(100%, #533ce1));
+                    background: -webkit-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+                    background: -o-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+                    background: -ms-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+                    background: linear-gradient(to bottom, #1F77D0 0%, #533ce1 100%);
+                    background-size: 150% 150%;
+                }
+
+                .main-sidebar[data-color="azure"]:after {
+                    background: #1DC7EA;
+                    background: -moz-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1DC7EA), color-stop(100%, #4091ff));
+                    background: -webkit-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
+                    background: -o-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
+                    background: -ms-linear-gradient(top, #1DC7EA 0%, #4091ff 100%);
+                    background: linear-gradient(to bottom, #1DC7EA 0%, #4091ff 100%);
+                    background-size: 150% 150%;
+                }
+
+                .main-sidebar[data-color="green"]:after {
+                    background: #87CB16;
+                    background: -moz-linear-gradient(top, #87CB16 0%, #6dc030 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87CB16), color-stop(100%, #6dc030));
+                    background: -webkit-linear-gradient(top, #87CB16 0%, #6dc030 100%);
+                    background: -o-linear-gradient(top, #87CB16 0%, #6dc030 100%);
+                    background: -ms-linear-gradient(top, #87CB16 0%, #6dc030 100%);
+                    background: linear-gradient(to bottom, #87CB16 0%, #6dc030 100%);
+                    background-size: 150% 150%;
+                }
+
+                .main-sidebar[data-color="orange"]:after {
+                    background: #FFA534;
+                    background: -moz-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFA534), color-stop(100%, #ff5221));
+                    background: -webkit-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+                    background: -o-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+                    background: -ms-linear-gradient(top, #FFA534 0%, #ff5221 100%);
+                    background: linear-gradient(to bottom, #FFA534 0%, #ff5221 100%);
+                    background-size: 150% 150%;
+                }
+
+                .main-sidebar[data-color="red"]:after {
+                    background: #FB404B;
+                    background: -moz-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FB404B), color-stop(100%, #bb0502));
+                    background: -webkit-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+                    background: -o-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+                    background: -ms-linear-gradient(top, #FB404B 0%, #bb0502 100%);
+                    background: linear-gradient(to bottom, #FB404B 0%, #bb0502 100%);
+                    background-size: 150% 150%;
+                }
+
+                .main-sidebar[data-color="purple"]:after {
+                    background: #9368E9;
+                    background: -moz-linear-gradient(top, #9368E9 0%, #943bea 100%);
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #9368E9), color-stop(100%, #943bea));
+                    background: -webkit-linear-gradient(top, #9368E9 0%, #943bea 100%);
+                    background: -o-linear-gradient(top, #9368E9 0%, #943bea 100%);
+                    background: -ms-linear-gradient(top, #9368E9 0%, #943bea 100%);
+                    background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
+                    background-size: 150% 150%;
+                }
+        */
+    </style>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/Popper/popper.min.js"></script>
+    <script src="~/DashBoard/assets/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!-- Extra Div addded to wrap everything togeather.+ aside 2sidebars-->
+    <div class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">Moon Commerce</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                        <partial name="_LoginPartial" />
+
+                        <!-- Right navbar links -->
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                                    <i class="fa fa-share"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="close_fullscreen" data-widget="fullscreen" onclick="closeFullscreen();" href="#" style="visibility:hidden" role="button">
+                                    <i class="fas fa-compress-arrows-alt"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-widget="fullscreen" onclick="openFullscreen();" id="open_fullscreen" href="#" role="button">
+                                    <i class="fas fa-expand-arrows-alt"></i>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav flex-grow-1">
+                            @*extra added*@
+                            <li class="nav-item" style="padding-left: 1rem;">
+                                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fa fa-reply"></i></a>
+                            </li>
+                            @*extra added-close*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="/Admin/">EditorMode</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Sidebar Container sidebar-light-primary-->
+        <aside class="main-sidebar sidebar-light-purple elevation-4" style="background-color:mediumpurple !important">
+
+            <!-- Brand Logo ~/AdminLTE/img/AdminLTELogo.png -->
+            <a href="index3.html" class="brand-link">
+                @*<img src="~/AdminLTE/img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">*@
+                <img src="~/Icon/favicon.ico.bmp" style="height:30px;width:30px" /><span class="brand-text font-weight-light">  Moon Commerce</span>
+            </a>
+            @*//show all this if else below only if the user is logedin*@
+
+
+            @if (this.Url.Action().ToString() == "/Admin")
+            {
+                <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Pages</button>
+                <button class="tablinks" onclick="openCity(event, 'London')">Links</button>
+                <button class="tablinks" onclick="openCity(event, 'Tokyo')">Orders</button>
+
+
+
+
+            </div>
+            
+            <div id="London" class="tabcontent" style="height:500px"><h6 style="color:white">Edit Product and Other Links-</h6>
+                <div id="tree" class="sidebar jstree jstree jstree-default" style="height:2px;color:white"></div>
+                <div id="evts" class="demo"></div>
+                @*<h3>London</h3>
+            <p>London is the capital city of England.</p>*@
+            </div>
+            
+            <div id="Paris" class="tabcontent" style="height:500px"><h6 style="color:white">Edit Static Pages-</h6>
+                <div id="ptree" class="jstree jstree jstree-default" style="height:2px;color:white"></div>
+                <div id="pevts" class="demo"></div>
+            </div>
+
+
+            
+            <div id="Tokyo" class="tabcontent" style="height:500px"><h6 style="color:white">View Order by Date-</h6>
+                <div id="ordertree" class="jstree jstree jstree-default" style="height:2px;color:white"></div>
+                <div id="orderevts" class="demo"></div>
+            </div>
+
+        </div>
+                <!-- /.sidebar -->
+            }
+            else
+            {
+                <!-- Sidebar Menu -->
+                <style>
+                    /* Hide the nested list */
+                    .nested {
+                        display: none;
+                    }
+
+                    /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+                    .active {
+                        display: block;
+                    }
+                </style>
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/adminLTE/dashboard" class="nav-link">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>Store Dashboard</p>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
+                    <a href="./index2.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Dashboard v2</p>
+                    </a>
+                </li>*@
+                                @*<li class="nav-item">
+                    <a href="/admin/dashboard1" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>User Dashboard</p>
+                    </a>
+                </li>*@
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item ui-selectmenu-open">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-bars"></i>
+                                <p>
+                                    Stock Keeping
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/AdminLTE/Status/ProductStockStatus" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>Product Stock Status</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/AdminLTE/Status/VariantStockStatus" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>Variant Stocks Status</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/POrder" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>Purchase Order</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/AdminLTE/Status/StockInCarts" class="nav-link">
+
+                                        <p>Check Product in Carts</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ui-selectmenu-open">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-bars"></i>
+                                <p>
+                                    Services
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/Admin/Services/" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Services</p>
+                                    </a>
+                                </li>
+                            
+                                <li class="nav-item">
+                                    <a href="/Admin/Services/Config" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Setup Configuration</p>
+                                    </a>
+                                </li>
+                            
+                                @*<li class="nav-item">
+                                    <a href="/Admin/Store/Users/UserList" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>User List Setup</p>
+                                    </a>
+                                </li>*@
+                            </ul>
+                        </li>
+
+
+
+                        <li class="nav-item ui-selectmenu-open">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-people-arrows"></i>
+                                <p>
+                                    Customers
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/Users/UserList" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Customers List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/chat/chat" class="nav-link">
+                                        <i class="nav-icon fas fa-people-arrows"></i>
+                                        <p>Admin User Chat</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ui-selectmenu-open ">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-list"></i>
+                                <p>
+                                    Reports
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/AdminLTE/Reports/Reports" class="nav-link">
+                                        <i class="fa fa-list nav-icon"></i>
+                                        <p>Order Reports</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/AdminLTE/Reports/" class="nav-link">
+                                        <i class="fa fa-list nav-icon"></i>
+                                        <p>Other Reports</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        
+                        <li class="nav-item ui-selectmenu-open">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-shopping-bag"></i>
+                                <p>
+                                    Orders
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/Order" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>Order</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/Order/OrderStatus" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>Check Orders Status</p>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
+                                <a href="/ShippingMethod/Create" class="nav-link">
+                                @*<i class="far fa-circle nav-icon"></i>*@
+                                                @*<p>Create ShippingMethod</p>
+                                    </a>
+                                </li>*@
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ui-selectmenu-open">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-shipping-fast"></i>
+                                <p>
+                                    Shipping Methods
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/ShippingMethod" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>Shipping Methods</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/ShippingMethod/Create" class="nav-link">
+                                        @*<i class="far fa-circle nav-icon"></i>*@
+                                        <p>Create ShippingMethod</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item ui-selectmenu-open">
+                            <a href="#" class="nav-link active caret">
+                                <i class="nav-icon fas fa-tshirt"></i>
+                                <p>
+                                    Products
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview nested">
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/Product" class="nav-link">
+                                        <i class="nav-icon fas fa-tshirt"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/Product/Create" class="nav-link">
+                                        <i class="nav-icon fas fa-tshirt"></i>
+                                        <p>Create Product</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/Category" class="nav-link">
+                                        <i class="nav-icon fa fa-list"></i>
+                                        <p>Product Categories</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Store/Category/Create" class="nav-link">
+                                        <i class="nav-icon fa fa-list"></i>
+                                        <p>Create Product Categorie</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @*<li class="nav-item">
+            <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Simple Link
+                    <span class="right badge badge-danger">New</span>
+                </p>
+            </a>
+        </li>*@
+                    </ul>
+                </nav>
+                <script>
+                    //var toggler = document.getElementsByClassName("caret");
+                    //var i;
+
+                    //for (i = 0; i < toggler.length; i++) {
+                    //    toggler[i].addEventListener("click", function () {
+                    //        this.parentElement.querySelector(".nested").classList.toggle("active");
+                    //        this.classList.toggle("caret-down");
+                    //    });
+                    //}
+
+                    var acc = document.getElementsByClassName("caret");
+                    var i;
+
+                    for (i = 0; i < acc.length; i++) {
+                        acc[i].addEventListener("click", function () {
+                            /* Toggle between adding and removing the "active" class,
+                            to highlight the button that controls the panel */
+                            this.classList.toggle("active");
+
+                            /* Toggle between hiding and showing the active panel */
+                            var panel = this.nextElementSibling;
+                            if (panel.style.display === "block") {
+                                panel.style.display = "none";
+                            } else {
+                                panel.style.display = "block";
+                            }
+                        });
+                    }
+
+                </script>
+                <!-- /.sidebar-menu -->
+            }
+        </aside>
+        <div class="content-wrapper" style="background: white">
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+
+                </main>
+            </div>
+        </div>
+
+        <footer class="border-top footer text-right flex-sm-row-reverse">
+            <div class="container flex-sm-row-reverse">
+                &copy;
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> - CoreSite1 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            </div>
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-light" style="background-color:mediumpurple">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                @if (this.Url.Action().ToString() == "/Admin")
+                {
+                    <h5 style="background-color:white">Explorer</h5>
+                    <a href="#" class="btn btn-primary" onclick="window.open('/Home/BufferedSingleFileUploadPhysical','','toolbar=no,status=no,menubar=no,location=center,scrollbars=no,resizable=no,height=500,width=857')">Add New File</a>
+                    @*<p>Sidebar content</p>
+                        <p>TThis place is left blank for something .</p>*@
+                    <div id="DirTree"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-user">
+                                <div class="card-header">
+                                    <h4 class="card-title">File</h4>
+                                </div>
+                                <div class="button-container mr-auto ml-auto">
+                                    @*<img class="img-fluid" id="img1" src="~/images/DefaultImageless.png" alt="...">*@
+                                    <embed class="img-fluid" id="img1" src="~/images/DefaultImageless.png" alt="..." />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                }
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01">
+
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
+
+    <input type="hidden" value="@Context.Request.Host" id="urlval" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>*@
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/adminlte.js"></script>
+    <script src="~/lib/overlayScrollbars/js/OverlayScrollbars.js"></script>
+    @*<script src="~/js/demo.js"></script>*@
+    <script src="~/js/jstree.js"></script>
+    @*<script src="~/lib/JSTree/src/jstree.js"></script>*@
+    @*///tab script*@
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+
+            //alert(cityName);
+            if (cityName == "London") {
+                //document.getElementById("tab2").style.visibility = "visible";
+                document.getElementById("tab2").style.visibility = "hidden";
+                document.getElementById("tab3").style.visibility = "hidden";
+                $('#emb_details').attr('src', '/Admin/PList/?cid=1');
+                $(".tablinks2").trigger("click", ["Details"]);
+
+            }
+            if (cityName == "Paris") {
+                document.getElementById("tab2").style.visibility = "visible";
+                document.getElementById("tab3").style.visibility = "visible";
+                //document.getElementById("tab2").style.visibility = "hidden";
+                $('#emb_details').attr('src', '/Home/List/?cid=1');
+                $(".tablinks2").trigger("click", ["Details"]);
+                //alert(0);
+            }
+        }
+    </script>
+
+    @*jstree script*@
+    <script>
+
+        // interaction and events
+        $('#tree').on("click", function () {
+            var instance = $('#evts').jstree({
+                'core': {
+                    'force_text': true,
+                    "check_callback": true
+                }
+            });
+            //instance.deselect_all();
+            //instance.select_node('1');
+        });
+        $('#evts')
+            .on("changed.jstree", function (e, data) {
+                if (data.selected.length) {
+                    //get the id and remove Page from it added while creating unique Json node (Json combine data from 2 tables)
+                    var v = data.instance.get_node(data.selected[0]).id;
+
+                    //alert(v);
+                    if (v.includes("Page")) {
+                        v = v.replace("Page", "");
+                        var j = data.node.original.vid;
+                        //alert(JSON.stringify( data.instance.get_node(data.selected[0])));original
+                        //get the host name dynamically from a hidden field.
+                        host = $('#urlval').val();
+                        //create the detail and edit url path for Pages.
+                        var d = 'https://' + host + data.node.a_attr.href + '/?id=' + v + '&vid=' + j;
+                        var e = 'https://' + host + '/Admin/ProductEdit?id=' + v;
+                        var f = 'https://' + host + '/Admin/VariantEdit?id=' + j;
+                    }
+                    else //always bee else.
+                    {
+                        //get the host name dynamically from a hidden field.
+                        host = $('#urlval').val();
+                        if (data.node.a_attr.href == '#') {
+                            //alert('new');
+                            var d = 'https://' + host + '/Admin/PList?cid=' + v;
+                            var e = 'https://' + host + '/Admin/PList?cid=' + v;//+ '/Edit?id=' + v;
+                        }
+                        else {
+                            //alert(data.node.a_attr.href);
+                            //create the detail and edit url path for PageCategory./Admin/PList?cid=1068
+                            var d = 'https://' + host + data.node.a_attr.href; //+ '/?id=' + v;
+                            var e = 'https://' + host + data.node.a_attr.href;//+ '/Edit?id=' + v;
+                        }
+                    }
+                    //alert(d);https://localhost:44336/Admin/PList?cid=1067
+                    //getproduct(v);//was designed to show product in right bar new jstree
+                    //alert(7);
+
+                    //add the the paths to embid.
+                    //alert(d); alert(e);
+                    $('#emb_details').attr('src', d);
+                    $('#emb_edit').attr('src', e);
+                    //$('#emb_vedit').attr('src', f);
+                    //trigger a tab click event
+                    (".tablinks2").trigger("click", ["Details"]);
+                }
+            })
+            .jstree({
+                'core': {
+                    "animation": 0,
+                    "check_callback": true,
+                    'force_text': true,
+                    "check_callback": true,
+                    'force_text': true,
+                    //'primaryKey': 'id',
+                    //'dataSource': '/Admin?handler=LazyPCategory',
+                    //'lazyLoading': true,
+                    "themes": {
+                        /* "stripes": true,*/
+                        'name': 'default',
+                        "variant": "small"
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "fas fa-bars"//"jstree-folder" //"//jstree.com/tree.png"
+                        },
+                        "demo": {
+                            "icon": "jstree-file"
+                        }
+                    },
+
+                    'data': {
+                        'url': function (node) {
+                            return node.id === '#' ?
+                                '/Admin?handler=PCategorys' :
+                                '/Admin?handler=LazyPCategory&id=' + { 'id': node.id };
+                        },
+                        'data': function (node) {
+                            return { 'id': node.id, "a_attr": { "href": node.a_attr } };
+                        }
+                        //"url": "/Admin?handler=LazyPCategory", /*////https://localhost:44336/Admin?handler=LazyPCategory&id=5*/
+                        //"data": function (node) {
+                        //    return { "id": node.id };
+                        //}
+                        //function(node, cb) {
+                        //    if (node.id === "#") {
+                        //        cb([{ "text": "Root", "id": "1", "children": true }]);
+                        //    }
+                        //    else {
+                        //        cb(["Child"]);
+                        //    }
+                        //}
+                    }
+
+                },
+                //// plugins here
+                "plugins": ["contextmenu", "dnd", "search", "state", "types", "wholerow"]
+            });
+
+        $(document).ready(function () {
+            //alert(2);
+            //var v = '/Admin?handler=PCategorys';
+            //v = JSON.stringify(v);
+            //v = v.replaceAll('[', '').replaceAll(']', '');
+            //alert(v);
+            //$('div#tree').jstree().bind("select_node.jstree", function (e, data) {
+            //    var href = data.node.a_attr.href;
+            //    document.location.href = href;
+            //});
+            //$('#emb_details').attr('src', '/Home/List/?cid=1');
+
+            $(".tablinks").trigger("click", ["London"]);
+            // document.getElementById("tab2").style.visibility = "hidden";
+            // document.getElementById("tab3").style.visibility = "hidden";
+        });
+
+        function getproduct(v) {
+            //alert(5);
+            $('div#producttree').jstree({
+                'core': {
+                    "themes": {
+                        /* "stripes": true,*/
+                        'name': 'default',
+                        "variant": "small"
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "fas fa-bars"//"jstree-folder" //"//jstree.com/tree.png"
+                        },
+                        "demo": {
+                            "icon": "jstree-file"
+                        }
+                    },
+
+                    'data': {
+                        'url': function (node) {
+                            return node.id === '#' ?
+                                '/Admin?handler=PCategorys' :
+                                '/Admin?handler=LazyPCategory&id=' + { 'id': node.id };
+                        },
+                        'data': function (node) {
+                            return { 'id': node.id, "a_attr": { "href": node.a_attr } };
+                        }
+                        //"url": "/Admin?handler=LazyPCategory", /*////https://localhost:44336/Admin?handler=LazyPCategory&id=5*/
+
+                    }
+
+                },
+                //// plugins here
+                "plugins": ["contextmenu", "dnd", "search", "state", "types", "wholerow"]
+            });
+            //alert(v);
+        }
+        //$(document).ready(function () {
+        //    $('div#Tree').jstree().bind("select_node.jstree", function (e, data) {
+        //        var href = data.node.a_attr.href;
+        //        document.location.href = href;
+        //    });
+        //});
+
+        //$(document).ready(function () {
+        //    alert(9);
+        //    $('div#tree').jstree()
+        //});
+    </script>
+
+    <script>
+        //var instance = OverlayScrollbars(document.getElementsByTagName('body'), {
+        //    className: "os-theme-dark"
+        //});
+
+        document.addEventListener("DOMContentLoaded", function () {
+            //The first argument are the elements to which the plugin shall be initialized os-theme-light
+            //The second argument has to be at least a empty object or a object with your desired options
+            OverlayScrollbars(document.getElementById('Paris'), {
+                className: "os-theme-dark",
+                resize: "both",
+                sizeAutoCapable: true,
+                paddingAbsolute: true
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            //The first argument are the elements to which the plugin shall be initialized os-theme-light
+            //The second argument has to be at least a empty object or a object with your desired options
+            OverlayScrollbars(document.getElementById('London'), {
+                className: "os-theme-dark",
+                resize: "both",
+                sizeAutoCapable: true,
+                paddingAbsolute: true
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            //The first argument are the elements to which the plugin shall be initialized os-theme-light
+            //The second argument has to be at least a empty object or a object with your desired options
+            OverlayScrollbars(document.getElementById('Tokyo'), {
+                className: "os-theme-dark",
+                resize: "both",
+                sizeAutoCapable: true,
+                paddingAbsolute: true
+            });
+        });
+        //var instance2 = OverlayScrollbars(document.getElementById('tree'), {
+        //    className: "os-theme-minimal-dark",
+        //    resize: "both",
+        //    sizeAutoCapable: true,
+        //    paddingAbsolute: true
+        //});
+    </script>
+
+    <script>
+        /* Get the documentElement (<html>) to display the page in fullscreen */
+        var elem = document.documentElement;
+
+        /* View in fullscreen */
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+
+            document.getElementById("close_fullscreen").style.visibility = "visible";
+            document.getElementById("open_fullscreen").style.visibility = "hidden";
+        }
+
+        /* Close fullscreen */
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+            document.getElementById("open_fullscreen").style.visibility = "visible";
+            document.getElementById("close_fullscreen").style.visibility = "hidden";
+        }
+    </script>
+
+
+    <script>
+
+
+        // interaction and events
+        $('#ptree').on("click", function () {
+            var instance = $('#pevts').jstree({
+                'core': {
+                    'force_text': true,
+                    "check_callback": true
+                }
+            });
+            //instance.deselect_all();
+            //instance.select_node('1');
+        });
+        $('#pevts')
+            .on("changed.jstree", function (e, data) {
+                if (data.selected.length) {
+                    //get the id and remove Page from it added while creating unique Json node (Json combine data from 2 tables)
+                    var v = data.instance.get_node(data.selected[0]).id;
+                    //alert(v);
+                    var d;
+                    var e;
+                    if (v.includes("Page")) {
+                        v = v.replace("Page", "");
+                        //get the host name dynamically from a hidden field.
+                        host = $('#urlval').val();
+                        //create the detail and edit url path for Pages.
+                        var urlpart = data.node.a_attr.href;
+                        if (data.node.a_attr.href == '#') {
+                            //alert('new');
+                            urlpart = '/Home';
+                        }
+                        d = 'https://' + host + urlpart + '/?id=' + v;
+                        e = 'https://' + host + urlpart + '/Edit?id=' + v;
+                    }
+                    else {
+                        // alert(v); alert(data.node.a_attr.href);
+                        //get the host name dynamically from a hidden field.
+                        host = $('#urlval').val();
+                        //create the detail and edit url path for PageCategory.
+                        d = 'https://' + host + data.node.a_attr.href + '/?cid=' + v;
+                        e = 'https://' + host + data.node.a_attr.href;//+ '/Edit?id=' + v;
+                    }
+
+                    //add the the paths to embid.
+                    // alert(d); alert(e);
+
+                    //var cacheParamValue = (new Date()).getTime();
+                    //d = d + "&cache=" + cacheParamValue;
+                    //e = e + "&cache=" + cacheParamValue;
+                    //alert(d); alert(e);
+                    $('#emb_details').attr('src', d);
+                    $('#emb_edit').attr('src', e);
+
+
+                    //trigger a tab click event
+                    $(".tablinks2").trigger("dblclick", ["Details"]);
+                    // alert(2);
+                }
+            })
+            .jstree({
+                'core': {
+
+                    "check_callback": true,
+                    'force_text': true,
+                    "themes": {
+                        'name': 'default',
+                        "variant": "small"
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "jstree-folder"
+                        },
+                        "demo": {
+                            "icon": "jstree-file"
+                        }
+                    },
+                    'data': {
+                        'url': function (node) {
+                            return node.id === '#' ?
+                                '/Privacy?handler=PCategorys' :
+                                '/Privacy?handler=LazyPCategory';
+                        },
+                        'data': function (node) {
+                            return { 'id': node.id, "a_attr": { "href": node.a_attr } };
+                        }
+                    }
+
+                },
+                //// plugins here
+                "plugins": ["contextmenu", "dnd", "search", "state", "types", "wholerow"], contextmenu: { items: customMenu }
+            });
+        function customMenu(node) {
+            // The default set of all items
+            var items = {
+
+                "create": {
+                    "separator_before": false,
+                    "separator_after": true,
+                    "_disabled": false, //(this.check("create_node", data.reference, {}, "last")),
+                    "label": "Create New Page",
+                    "action": function (data) {
+                        // alert(7);
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        //inst.insert(obj);
+                        var v = obj.id;
+                        if (!v.includes("Page")) {
+
+                            var newNodeattr;
+                            inst.insertPage(obj, inst);//created by create new Node-Page database instinct
+                            //var v1 = JSON.stringify(newNodeattr);
+                            //newNodeattr.pageId
+
+                        }
+                        else {
+                            alert("Create Page or Sub-Node from Parent Node");
+                        }
+
+
+                    }
+                },
+                "createNode": {
+                    "separator_before": false,
+                    "separator_after": true,
+                    "_disabled": false, //(this.check("create_node", data.reference, {}, "last")),
+                    "label": "Create New Node",
+                    "action": function (data) {
+                        // alert(7);
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        //inst.insert(obj);
+                        //alert(2);
+
+                        // var newNodeattr;
+                        inst.insertNode(obj, inst);//created to create new node-Category in database.
+                        //var v = obj.id;
+                        //if (!v.includes("Page")) {
+                        //    inst.create_node(obj, {}, "last", function (new_node) {
+                        //        //try {
+                        //        //    inst.edit(new_node);
+                        //        //} catch (ex) {
+                        //        //    setTimeout(function () { inst.edit(new_node); }, 0);
+                        //        //}
+                        //    });
+                        //}
+                        //else {
+                        //    alert("Create Page or Sub-Node from Parent Node");
+                        //}
+                    }
+                },
+                "remove": {
+                    "separator_before": false,
+                    "icon": false,
+                    "separator_after": false,
+                    "_disabled": false, //(this.check("delete_node", data.reference, this.get_parent(data.reference), "")),
+                    "label": "Delete",
+                    "action": function (data) {
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        if (inst.is_selected(obj)) {
+                            //alert(4);
+                            //inst.delete_node(inst.get_selected());
+                            inst.delete_node(obj);
+                        }
+                        else {
+                            inst.delete_node(obj);
+                        }
+                    }
+                },
+                "rename": {
+                    "separator_before": false,
+                    "separator_after": false,
+                    "_disabled": false, //(this.check("rename_node", data.reference, this.get_parent(data.reference), "")),
+                    "label": "Rename",
+                    /*!
+                    "shortcut"			: 113,
+                    "shortcut_label"	: 'F2',
+                    "icon"				: "glyphicon glyphicon-leaf",
+                    */
+                    "action": function (data) {
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        inst.editPage(obj);
+                    }
+                }
+            };
+
+
+            //if ($(node).hasClass("folder")) {
+            //    // Delete the "delete" menu item
+            //    delete items.deleteItem;
+            //}
+
+            return items;
+        }
+    </script>
+    @*right side menu*@
+    <script>
+        var parturl = "Documents";
+        $('#DirTree')
+            .on("changed.jstree", function (e, data) {
+                if (data.selected.length) {
+                    //get the id and remove Page from it added while creating unique Json node (Json combine data from 2 tables)
+                    var v = data.instance.get_node(data.selected[0]).id;
+                    //alert(v);
+                    var d = data.instance.get_node(data.selected[0]).text;
+                    if (d.includes(".")) {
+                        v = v.replace(d, "");
+                        //$("#img1").css("visibility", "visible");
+                        var temp = data.instance.get_node(data.selected[0]).id;
+                        temp = temp.replace("C:\\Users\\L\\source\\repos\\CoreSite1\\CoreSite1\\wwwroot", "");
+
+                        //get the host name dynamically from a hidden field.
+                        host = $('#urlval').val();
+                        //create the detail and edit url path for Pages.
+                        var d = host + temp; //'https://' +
+                        alert("Copy The URL for Pasting in Editor: " + temp + "          The complete URL is:     " + d);
+                        $("#img1").attr("src", temp);
+                        //CKE input
+                        //if (d.includes(".")) { }
+                        //$("#cke_86_textInput").attr("value", temp);
+                        //$("#cke_124_textInput").attr("value", temp);
+                        //$("#cke_188_textInput ").attr("value", d); //
+                        //alert(0);
+                    }
+                    //alert(v);
+                    $('#inp1').attr('value', v);
+                    //alert('The selected node is: ' + data.instance.get_node(data.selected[0]).text);
+                }
+            })
+            .jstree({
+                'core': {
+                    "animation": 0,
+                    "check_callback": true,
+                    'force_text': true,
+                    "check_callback": true,
+                    'force_text': true,
+                    "themes": {
+                        /* "stripes": true,*/
+                        'name': 'default',
+                        "variant": "small"
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "fas fa-bars"//"jstree-folder" //"//jstree.com/tree.png"
+                        },
+                        "demo": {
+                            "icon": "jstree-file"
+                        }
+                    },
+
+                    'data': {
+                        'url': function (node) {
+                            return node.id === '#' ?
+                                '/Admin/Store/Product/BufferedSingleFileUploadPhysical?handler=TreeData&pathpart=' + parturl :
+                                '/Admin?handler=LazyPCategory&id=' + { 'id': node.id };
+                        },
+                        'data': function (node) {
+                            return { 'id': node.id, "a_attr": { "href": node.a_attr } };
+                        }
+
+                    }
+
+                },
+                //// plugins here
+                "plugins": ["contextmenu", "dnd", "search", "types", "wholerow"], contextmenu: { items: RFolderMenu }
+
+            });
+        function RFolderMenu(node) {
+            // The default set of all items
+            var items = {
+
+                "create": {
+                    "separator_before": false,
+                    "separator_after": true,
+                    "_disabled": false, //(this.check("create_node", data.reference, {}, "last")),
+                    "label": "Create New Folder",
+                    "action": function (data) {
+                        // alert(7);
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        //inst.insert(obj);
+                        var v = obj.id;
+                        //if (!v.includes("Page")) {
+
+                        var newNodeattr;
+                        inst.insertFolder(obj, inst);//created by create new Node-Page database instinct
+                        //}
+                        //else {
+                        //    alert("Create Page or Sub-Node from Parent Node");
+                        //}
+
+
+                    }
+                },
+                "remove": {
+                    "separator_before": false,
+                    "icon": false,
+                    "separator_after": false,
+                    "_disabled": false, //(this.check("delete_node", data.reference, this.get_parent(data.reference), "")),
+                    "label": "Delete",
+                    "action": function (data) {
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        if (inst.is_selected(obj)) {
+                            //alert(4);
+                            //inst.delete_node(inst.get_selected());
+                            inst.delete_Folder(obj);
+                        }
+                        else {
+                            inst.delete_Folder(obj);
+                        }
+                    }
+                },
+                "rename": {
+                    "separator_before": false,
+                    "separator_after": false,
+                    "_disabled": false, //(this.check("rename_node", data.reference, this.get_parent(data.reference), "")),
+                    "label": "Rename",
+                    /*!
+                    "shortcut"			: 113,
+                    "shortcut_label"	: 'F2',
+                    "icon"				: "glyphicon glyphicon-leaf",
+                    */
+                    "action": function (data) {
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        inst.editFolder(obj);
+                    }
+                }
+            };
+
+            return items;
+        }
+    </script>
+
+    <script>
+
+
+        // interaction and events
+        $('#ordertree').on("click", function () {
+            var instance = $('#orderevts').jstree({
+                'core': {
+                    'force_text': true,
+                    "check_callback": true
+                }
+            });
+            //if (evt.target.className.includes("select2") && !evt.target.className.includes("treeSearch")) {
+            //    $(this).toggleClass("select2-container--open");
+            //}
+            //instance.deselect_all();
+            //instance.select_node('1');
+        });
+        $('#orderevts')
+            .on("changed.jstree", function (e, data) {
+                if (data.selected.length) {
+                    //get the id and remove Page from it added while creating unique Json node (Json combine data from 2 tables)
+                    var v = data.instance.get_node(data.selected[0]).id;
+
+                    //alert(v);
+                    if (v.includes("Page")) {
+                        v = v.replace("Page", "");
+                        var j = data.node.original.vid;
+                        //alert(JSON.stringify( data.instance.get_node(data.selected[0])));original
+                        //get the host name dynamically from a hidden field.
+                        host = $('#urlval').val();
+                        //create the detail and edit url path for Pages.
+                        var d = 'https://' + host + data.node.a_attr.href + '/?id=' + v + '&vid=' + j;
+                        var e = 'https://' + host + '/Admin/ProductEdit?id=' + v;
+                        var f = 'https://' + host + '/Admin/VariantEdit?id=' + j;
+                    }
+                    else //always bee else.
+                    {
+                        //get the host name dynamically from a hidden field.
+                        host = $('#urlval').val();
+                        if (data.node.a_attr.href == '#') {
+                            //alert('new');
+                            var d = 'https://' + host + '/Admin/OList?cid=' + v;
+                            var e = 'https://' + host + '/Admin/OList?cid=' + v;//+ '/Edit?id=' + v;
+                        }
+                        else {
+                            //alert(data.node.a_attr.href);
+                            //create the detail and edit url path for PageCategory./Admin/PList?cid=1068
+                            var d = 'https://' + host + data.node.a_attr.href; //+ '/?id=' + v;
+                            var e = 'https://' + host + data.node.a_attr.href;//+ '/Edit?id=' + v;
+                        }
+                    }
+                    //alert(data.node.a_attr.href);
+                    //alert(d);https://localhost:44336/Admin/PList?cid=1067
+                    //getproduct(v);//was designed to show product in right bar new jstree
+                    //alert(7);
+
+                    //add the the paths to embid.
+                    //alert(d); alert(e);
+                    $('#emb_details').attr('src', d);
+                    $('#emb_edit').attr('src', e);
+                    //$('#emb_vedit').attr('src', f);
+                    //trigger a tab click event
+                    //(".tablinks2").trigger("click", ["Details"]);
+                }
+            })
+            .jstree({
+                'core': {
+
+                    "check_callback": true,
+                    'force_text': true,
+                    "themes": {
+                        'name': 'default',
+                        "variant": "small"
+                    },
+                    "types": {
+                        "default": {
+                            "icon": "jstree-folder"
+                        },
+                        "demo": {
+                            "icon": "jstree-file"
+                        }
+                    },
+                    'data': {
+                        'url': function (node) {
+                            return node.id === '#' ?
+                                '/Admin/OList?handler=OCategorys' :
+                                '/Privacy?handler=LazyPCategory';
+                        },
+                        'data': function (node) {
+                            return { 'id': node.id, "a_attr": { "href": node.a_attr } };
+                        }
+                    }
+
+                },
+                //// plugins here
+                "plugins": ["dnd", "search", "types", "wholerow","unique"]
+            });
+        function customOrderMenu(node) {
+            // The default set of all items
+            var items = {
+
+                "create": {
+                    "separator_before": false,
+                    "separator_after": true,
+                    "_disabled": false, //(this.check("create_node", data.reference, {}, "last")),
+                    "label": "Create New Page",
+                    "action": function (data) {
+                        // alert(7);
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        //inst.insert(obj);
+                        var v = obj.id;
+                        if (!v.includes("Page")) {
+
+                            var newNodeattr;
+                            inst.insertPage(obj, inst);//created by create new Node-Page database instinct
+                            //var v1 = JSON.stringify(newNodeattr);
+                            //newNodeattr.pageId
+
+                        }
+                        else {
+                            alert("Create Page or Sub-Node from Parent Node");
+                        }
+
+
+                    }
+                },
+                "createNode": {
+                    "separator_before": false,
+                    "separator_after": true,
+                    "_disabled": false, //(this.check("create_node", data.reference, {}, "last")),
+                    "label": "Create New Node",
+                    "action": function (data) {
+                        // alert(7);
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        //inst.insert(obj);
+                        //alert(2);
+
+                        // var newNodeattr;
+                        inst.insertNode(obj, inst);//created to create new node-Category in database.
+                        //var v = obj.id;
+                        //if (!v.includes("Page")) {
+                        //    inst.create_node(obj, {}, "last", function (new_node) {
+                        //        //try {
+                        //        //    inst.edit(new_node);
+                        //        //} catch (ex) {
+                        //        //    setTimeout(function () { inst.edit(new_node); }, 0);
+                        //        //}
+                        //    });
+                        //}
+                        //else {
+                        //    alert("Create Page or Sub-Node from Parent Node");
+                        //}
+                    }
+                },
+                "remove": {
+                    "separator_before": false,
+                    "icon": false,
+                    "separator_after": false,
+                    "_disabled": false, //(this.check("delete_node", data.reference, this.get_parent(data.reference), "")),
+                    "label": "Delete",
+                    "action": function (data) {
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        if (inst.is_selected(obj)) {
+                            //alert(4);
+                            //inst.delete_node(inst.get_selected());
+                            inst.delete_node(obj);
+                        }
+                        else {
+                            inst.delete_node(obj);
+                        }
+                    }
+                },
+                "rename": {
+                    "separator_before": false,
+                    "separator_after": false,
+                    "_disabled": false, //(this.check("rename_node", data.reference, this.get_parent(data.reference), "")),
+                    "label": "Rename",
+                    /*!
+                    "shortcut"			: 113,
+                    "shortcut_label"	: 'F2',
+                    "icon"				: "glyphicon glyphicon-leaf",
+                    */
+                    "action": function (data) {
+                        var inst = $.jstree.reference(data.reference),
+                            obj = inst.get_node(data.reference);
+                        inst.editPage(obj);
+                    }
+                }
+            };
+
+
+            //if ($(node).hasClass("folder")) {
+            //    // Delete the "delete" menu item
+            //    delete items.deleteItem;
+            //}
+
+            return items;
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+    </html>
+
+
+
+
+
+

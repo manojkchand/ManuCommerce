@@ -1,0 +1,118 @@
+﻿@*@page*@
+@*@model ManuFashionAdmin.Pages.Admin.Dashboard.TotalPartialModel*@
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<!-- Info boxes -->
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tshirt"></i></span>
+            <div id="1_tp" class="info-box-content" >
+                @*<span class="info-box-text" >Total Products</span>
+                <span class="info-box-number">
+                    10
+                    <small>%</small>
+                </span>*@
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-list"></i></span>
+            <div id="2_tc" class="info-box-content">
+               
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <!-- fix for small devices only -->
+    <div class="clearfix hidden-md-up"></div>
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-boxes"></i></span>
+            <div id="3_tv" class="info-box-content">
+                @*<span class="info-box-text">Total Product Variants</span>
+                <span class="info-box-number">760</span>*@
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-compass"></i></span>
+            <div id="4_tb" class="info-box-content">
+                @*<span class="info-box-text">Total Brands</span>
+                <span class="info-box-number">2,000</span>*@
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+
+
+
+
+@*<div id="cart-total" style="font-size:larger;font-weight:bold"></div>*@
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@*<script src="~/lib/chart.js/Chart.js"></script>*@
+@*<script src="~/js/chart-bar-demo.js"></script>*@
+
+
+<script>
+    $(document).ready(function () {
+        //alert(0);
+        const uri = '/Admin/Dashboard/TotalPartial?handler=TotalProduct';
+        fetch(uri)
+            .then(response => response.json())
+            .then(data => _displayTotalProduct(data))
+            .catch(error => console.error('Unable to get items.', error));
+        function _displayTotalProduct(data) {
+           // alert(4);
+            $('#1_tp').append('<span class="info-box-text" >Total Products</span><span class="info-box-number">' + data +'</span>' );
+        }
+        //////////////////////////////////
+        
+        const uri2 = '/Admin/Dashboard/TotalPartial?handler=TotalCategory';
+        fetch(uri2)
+            .then(response => response.json())
+            .then(data => _displayTotalCategory(data))
+            .catch(error => console.error('Unable to get items.', error));
+        function _displayTotalCategory(data) {
+            //alert(4);
+            $('#2_tc').append('<span class="info-box-text" >Total Categorys</span><span class="info-box-number">' + data + '</span>');
+        }
+        /////////////////////////////////
+        const uri3 = '/Admin/Dashboard/TotalPartial?handler=TotalProductVariant';
+        fetch(uri3)
+            .then(response => response.json())
+            .then(data => _displayTotalVariant(data))
+            .catch(error => console.error('Unable to get items.', error));
+        function _displayTotalVariant(data) {
+            //alert(4);
+            $('#3_tv').append('<span class="info-box-text" >Total Product Variants</span><span class="info-box-number">' + data + '</span>');
+        }
+        /////////////////////////////////
+        const uri4 = '/Admin/Dashboard/TotalPartial?handler=TotalBrands';
+        fetch(uri4)
+            .then(response => response.json())
+            .then(data => _displayTotalBrand(data))
+            .catch(error => console.error('Unable to get items.', error));
+        function _displayTotalBrand(data) {
+            //alert(4);
+            $('#4_tb').append('<span class="info-box-text" >Total Brands</span><span class="info-box-number">' + data + '</span>');
+        }
+        ///////////////////////
+    });
+</script>

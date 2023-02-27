@@ -1,0 +1,71 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Self Striped Straight Kurta
+1499
+Anouk
+35%
+
+2
+Woven Design Straight Kurta
+1499
+Jompers
+37%
+
+3
+Solid Straight Kurta
+2199
+See Designs
+51%
+
+4
+Men Sherwani With Dhoti Pant
+9999
+Hangup
+65%
+
+
+5
+Men Woven Design Silk Sherwani
+9999
+SG RAJASAHAB
+60%
+
+
+6
+Men Self Design Sherwani Set
+5499
+SOJANYA
+50%
+
+7
+Velvet Ethnic Dhoti(BLACK)Solid Men Dhoti
+1499
+Golfer Men 
+60%
+
+8
+Men Sherwani with Achkan
+21999
+House of Pataudi
+45%
+
+9
+Men Solid Dhoti
+2799
+SOJANYA
+50%
+
+10
+Men Dhoti Pants
+2499
+SOJANYA
+45%

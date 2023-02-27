@@ -1,0 +1,106 @@
+﻿@page
+@model CoreSite1.Pages.AdminLTE.Status.VisualStockPositionModel
+@{
+}
+<style>
+    .popup {
+        border-color: #000;
+        border-style: groove;
+        border-width: 2px;
+        padding: 0px;
+        background-color: #FFF;
+        font-size: 70%;
+        position: absolute;
+        top: 200px;
+    }
+</style>
+<h2>Image Maps</h2>
+<p>Note:Popup message box image cordinate may not be correct if the left side bar is hidden(by default its visable):</p>
+Search Product Location:<input type="text" id="Searchtxt" />
+<input id="test" type="submit" onclick="myFunction1()" />
+
+
+<img src="~/VSP/MCS.jpg" alt="Workplace" usemap="#workmap" width="1000" height="800">
+
+<map name="workmap">
+    <area shape="rect" id="1" coords="350,337,410,377" alt="Computer" href="#" onclick="myFunction(1,350,337)">
+    <area shape="rect" id="2" coords="580,337,640,377" alt="Phone" href="#" onclick="myFunction(2,580,337)">
+    <area shape="rect" coords="508,327,564,377" alt="Phone" href="#" onclick="myFunction(3,508,327)">
+    
+    @*<area shape="circle" coords="337,300,44" href="coffee.htm" alt="Cup of coffee" onclick="myFunction()">*@
+    @*<area shape="poly" coords="140,121,181,116,204,160,204,222,191,270,140,329,85,355,58,352,37,322,40,259,103,161,128,147" alt="food" href="croissant.htm">*@
+</map>
+
+<div class="popup" id="popupD" style="visibility: hidden;" >
+    
+</div>
+
+
+<script>
+    function myFunction(id,left,top) {
+        //alert("You clicked the pink shirts!");
+        const uri = '/api/MapStocks/' + id;
+        //alert(uri);
+
+        fetch(uri, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => _displayItems(data))
+            .catch(error => console.error('Unable to add item.', error));
+        function _displayItems(data) {
+            //alert(0);
+            //var v = data.productlist;
+            //alert(JSON.stringify(v));
+
+            var jsonData = JSON.parse(JSON.stringify(data.productlist));
+           // alert(JSON.stringify(jsonData[0]['title']));
+
+            //clear previous data
+            $("#popupD").empty();
+
+            //showing div popup
+            $("#popupD").css("visibility", "visible");
+
+            //positionsing div popup
+            var leftSide = left + 300;
+            $("#popupD").css("left", leftSide + "px");
+
+            var topSide = top + 115;
+            $("#popupD").css("top", topSide + "px");
+           
+            //getElementById('popupD').style.display = 'block';
+            //alert(JSON.stringify(jsonData[0]['title']));
+            $("#popupD").append( 'Title:'+ JSON.stringify(jsonData[0]['title']));
+            $("#popupD").append('Stock:'+ JSON.stringify(jsonData[0]['unitInStock']));
+            $("#popupD").append('<img src=' + JSON.stringify(jsonData[0]['productArtUrl']).replace('\r\n','') + ' alt="Paris" style="width:60px; border: 1px solid #ddd;border - radius: 4px;padding: 5px;">');
+            //alert(JSON.stringify(jsonData[0]['title']));
+        }
+
+    }
+
+
+
+    function myFunction1()
+    {
+        //trigger image map area
+        ///admin/Controllers/Map/Search?handler=MapImage&searchString=
+        const uri = '/admin/Controllers/Map/Search?handler=MapImage&searchString='+ $('#Searchtxt').val();
+        alert(uri);
+        fetch(uri)
+            .then(response => response.json())
+            .then(data => _displayItems(data))
+            .catch(error => console.error('Unable to get items.', error));
+        function _displayItems(data) {
+            alert(4);
+            //$('#cart-total').text('TOTAL SALE FOR TODAY: ' + data);
+
+            $('area[id=' + data.mapStockID +']').trigger('click');
+        }
+        
+    }
+</script>

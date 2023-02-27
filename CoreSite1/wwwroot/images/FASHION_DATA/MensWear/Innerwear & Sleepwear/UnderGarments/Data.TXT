@@ -1,0 +1,84 @@
+TITLE
+PRICE
+BRAND_optional
+DISCOUNTED
+IMAGE_URL
+Description_Optional
+SIZE (XS, S, M, L, XL, XXL)
+SKU
+
+
+1
+Men Solid Trunks
+479
+Undercolors of Benetton
+0
+
+2
+Men Pack Of 2 Solid Briefs
+342
+Chromozome
+0
+
+
+3
+Men Pack of 3 Trunks
+2499
+Calvin Klein Underwear
+0
+
+4
+Men Pack of 5 Solid Trunks
+1499
+Marks & Spencer
+0
+
+5
+Men Slim Fit Printed Boxers
+1599
+Calvin Klein Underwear
+0
+
+6
+Boxers
+3599
+Calvin Klein Underwear
+0
+
+
+7
+Men Pack of 2 Innerwear Vest
+1499
+Marks & Spender
+0
+
+8
+Men Solid Swift Dry Gym Vest
+849
+Van Heusen
+0
+
+9
+Solid Gym Vest
+449
+FCUK
+0
+
+10
+Men Solid Lounge Pants
+1499
+Fruit of the loom
+0
+
+11
+Men Lounge Pants
+494
+VIMAL
+0
+
+
+12
+Men Lounge Pants
+1724
+Puma
+0

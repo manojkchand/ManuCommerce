@@ -1,0 +1,98 @@
+﻿@page
+@model CoreSite1.Views.Shared._MenuModel
+@{
+}
+@*@model IEnumerable<ManuFashion.Models.Category>*@
+@*<nav class="navbar navbar-main navbar-default" role="navigation" style="opacity: 1;">*@
+@*<div class="container">*@
+    <!-- Brand and toggle -->
+    <!-- Collect the nav links,  -->
+
+
+    <div class="collapse navbar-collapse navbar-1" style="margin-top: 0px;">
+        <ul class="nav navbar-nav ">
+            @foreach (var Category0 in Model.Category)
+            {
+                @if (Category0.ParentCategoryId == 1 && Category0.CategoryId != 1)
+                {
+                    <li class="dropdown megaDropMenu">
+                        <div class="desktop-backdropStyle" id="desktop-backdropStyle" data-reactid="467"></div><!-- Changing Background Colour  -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">@Category0.Name.ToUpper() @*<i class="fa fa-angle-down ml-5"></i>*@</a>
+
+                        <ul class="dropdown-menu row">
+                            @if (Category0.CategoryId == 2)
+                            {
+                                <li class="col-sm-3 col-xs-12">
+                                    <ul class="list-unstyled">
+                                        <li>MAN'S WEAR</li>
+                                    </ul>
+                                    <img src="~/images/pexels-photo-1043474.jpg" class="img-responsive" alt="menu-img">
+                                </li>
+                            }
+                            @foreach (var Category2 in Model.Category)
+                            {
+
+                                @if (Category2.ParentCategoryId == Category0.CategoryId)
+                                {
+                                    <li class="col-sm-3 col-xs-12">
+                                        <ul class="list-unstyled">
+                                            <li>@Category2.Name</li>
+                                            @foreach (var Category3 in Model.Category)
+                                            {
+                                                if (Category3.ParentCategoryId == Category2.CategoryId)
+                                                {
+                                            <li>
+                                                @Html.ActionLink(Category3.Name, "Browse", "store",new { Category = Category3.Name }, null)
+                                                @*@Html.ActionLink(Category3.Name, "Browse", new { Category = Category3.Name })*@@*<a href="#">@Category3.Name</a>*@
+                                            </li>
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+
+                            }
+                            @*<li class="col-sm-3 col-xs-12">
+                            <ul class="list-unstyled">
+                                <li>Manoj Kumar</li>
+                            </ul>
+                            <img src="https://lh3.googleusercontent.com/-uwagl9sPHag/WM7WQa00ynI/AAAAAAAADtA/hio87ZnTpakcchDXNrKc_wlkHEcpH6vMwCJoC/w140-h148-p-rw/profile-pic.jpg" class="img-responsive" alt="menu-img">
+                        </li>*@
+                        </ul>
+
+                    </li>
+                }
+                else if (Category0.CategoryId == 1)
+                {
+                    @*<li class="dropdown megaDropMenu">*@
+                        @*<a href="Store" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">@Category0.Name <i class="fa fa-angle-down ml-5"></i></a>*@
+                        @*<a asp-area="" asp-controller="Store" asp-action="Index" >@Category0.Name.ToUpper()*@@*<i class="fa fa-angle-down ml-5"></i>*@ @*</a>*@
+                    @*</li>*@
+                }
+
+            }
+
+
+        </ul>
+        </div><!-- /.navbar-collapse -->
+
+@*</div>*@
+@*</nav>*@
+
+
+
+
+@*<ul id="categories">
+        @foreach (var Category in Model)
+
+        {
+            @if (Category.ParentCategoryId == 0) {
+        <li>
+            @Html.ActionLink(Category.Name,
+    "Browse", "Store",
+    new { Category = Category.Name }, null)
+    </li>
+            }}
+    </ul>*@
+
+

@@ -1,0 +1,107 @@
+﻿@page
+@model CoreSite1.Pages.Home.ListModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = Model.Layout;///null; //Layout = "~/Pages/Shared/_LayoutGlobal.cshtml";
+}
+<head>
+    <!-- Bootstrap core CSS     -->
+    <link href="~/DashBoard/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <link href="~/DashBoard/assets/css/animate.min.css" rel="stylesheet" />
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="~/DashBoard/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="~/DashBoard/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/themes/default/style.css" />
+<link href="~/css/card.css" rel="stylesheet" />
+</head>
+@*<h2>Page List</h2>
+<hr />
+<p>
+    <a asp-page="Create">Create New</a>
+</p>*@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header ">
+                        <h4 class="card-title">Page List</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Pages[0].CategoryId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Pages[0].URL)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Pages[0].PageName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Pages[0].Heading)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Pages[0].SubHeading)
+                                    </th>
+                                    @*<th>
+                            @Html.DisplayNameFor(model => model.Pages[0].Content)
+                        </th>*@
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Pages)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CategoryId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.URL)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PageName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Heading)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SubHeading)
+                                        </td>
+                                        @*<td>
+                                @Html.DisplayFor(modelItem => item.Content)
+                            </td>*@
+                                        <td>
+                                            @*<a asp-page="./Edit" asp-route-id="@item.PageId">Edit</a> |
+                                            <a asp-page="./Details" asp-route-id="@item.PageId">Details</a> |
+                                            <a asp-page="./Delete" asp-route-id="@item.PageId">Delete</a>*@
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+<script src="~/DashBoard/assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
