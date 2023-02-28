@@ -5,5 +5,5 @@ https://youtu.be/aMpyPYCGzE8
 This project is dedictaed the the Chand Kings of Himalays (More details in below link)
 https://en.wikipedia.org/wiki/Chand_kings
 
-Chand is hindi word means Moon in english so we support Nasa Artemis mission which we reland human on Moon (More details in below link)
+Chand is hindi word means Moon in english so we support Nasa Artemis mission which will reland humans on Moon (More details in below link)
 https://en.wikipedia.org/wiki/Artemis_1
