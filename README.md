@@ -7,3 +7,8 @@ https://en.wikipedia.org/wiki/Chand_kings
 
 Chand is hindi word means Moon in english so we support Nasa Artemis mission which will reland humans on Moon (More details in below link)
 https://en.wikipedia.org/wiki/Artemis_1
+
+
+NOTE:
+for configuration issue please contact: manojchand@live.com
+
